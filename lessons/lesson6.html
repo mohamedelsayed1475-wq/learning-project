@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  إعلان نوع المستند للمتصفح بأنه HTML5 ليعمل بشكل صحيح.
+  =====================================================
+-->
+<html lang="ar" dir="rtl">
+<!--
+  <html> = الجذر (Root).
+  - lang="ar": لغة المحتوى العربية.
+  - dir="rtl": اتجاه المحتوى من اليمين لليسار.
+-->
+<head>
+<!-- وسم الرأس الذي يحتوي على معلومات وصفية وتنسيقات لا تظهر للزائر مباشرة -->
+  <meta charset="UTF-8">
+  <!-- ترميز الحروف العالمي لضمان سلامة الأحرف العربية -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ضبط التجاوب والتناسق مع أحجام الشاشات المختلفة للأجهزة -->
+  <meta name="description" content="الدرس السادس: النماذج في HTML - form input button select textarea">
+  <!-- وصف الصفحة لمحركات البحث -->
+  <title>📖 الدرس 6: النماذج - تعلم HTML</title>
+  <!-- عنوان التبويب العلوي للمتصفح -->
+  <link rel="stylesheet" href="../style.css">
+  <!-- ربط ملف الاستايل CSS الخارجي -->
+</head>
+<body>
+<!-- وسم الجسم ويحتوي على كافة عناصر الصفحة المرئية للمستخدم -->
+
+  <header id="main-header">
+  <!-- رأس الموقع، يحتوي على شعار وقائمة التنقل -->
+    <nav id="main-nav">
+    <!-- حاوية روابط قائمة التنقل الرئيسية -->
+      <div class="nav-logo">
+      <!-- شعار الموقع -->
+        <a href="../index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم HTML</span>
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+      <!-- قائمة صفحات الموقع -->
+        <li class="nav-item"><a href="../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+      <!-- زر لفتح وإغلاق القائمة في الموبايل -->
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+  <!-- المحتوى الرئيسي لصفحة الدرس -->
+    <article class="lesson-article">
+    <!-- مقال الدرس المستقل -->
+
+      <header class="lesson-header">
+      <!-- ترويسة الدرس وعنوانه ومعلومات عنه -->
+        <div class="lesson-meta">
+          <span class="category-badge intermediate">الدرس السادس - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 18 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">📝 النماذج (Forms) في HTML</h1>
+        <p class="lesson-summary">
+          النماذج هي الطريقة الأساسية لاستقبال البيانات من المستخدمين — سواء كانت تسجيل دخول، نموذج تواصل، أو استطلاع رأي. سنتعلم كل عناصر النماذج بالتفصيل.
+        </p>
+      </header>
+
+      <section class="lesson-body">
+      <!-- قسم شرح الدرس بالتفصيل -->
+
+        <h2>1. عنصر النموذج &lt;form&gt;</h2>
+        <p>
+          <code>&lt;form&gt;</code> هو الحاوي الأساسي لجميع عناصر الإدخال والأزرار. له سمتان رئيسيتان ومهمتان لربطه بالخادم (Backend):
+        </p>
+        <dl class="explain-list">
+          <dt><code>action</code></dt>
+          <dd>يحدد مسار أو رابط صفحة الخادم التي سترسل إليها بيانات النموذج عند قيام المستخدم بالضغط على زر الإرسال.</dd>
+          <dt><code>method</code></dt>
+          <dd>يحدد الطريقة التي تُرسل بها البيانات: إما <code>GET</code> (البيانات تظهر مباشرة في شريط عنوان المتصفح) أو <code>POST</code> (البيانات تُرسل بشكل خفي وآمن داخل كود الطلب، وهي الأفضل للبيانات الحساسة ككلمات المرور).</dd>
+        </dl>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;form action="/send-data" method="POST"&gt;
+  &lt;!-- عناصر النموذج توضع هنا --&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+
+        <hr>
+
+        <h2>2. عنصر الإدخال &lt;input&gt;</h2>
+        <p>
+          <code>&lt;input&gt;</code> هو الوسم الأكثر مرونة واستخداماً في النماذج. لا يحتاج لسمة إغلاق (وسم فارغ)، ويتغير شكله وتصرفه بالكامل بناءً على قيمة سمة النوع <code>type</code>:
+        </p>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;!-- حقل نصي عادي --&gt;
+&lt;input type="text" placeholder="اكتب اسمك" name="username"&gt;
+
+&lt;!-- بريد إلكتروني (يتحقق المتصفح من صياغته ويمنع الإرسال إذا كانت خاطئة) --&gt;
+&lt;input type="email" placeholder="بريدك الإلكتروني" name="email"&gt;
+
+&lt;!-- كلمة مرور (يقوم المتصفح بإخفاء الحروف وتشفير عرضها بنقاط أو نجوم) --&gt;
+&lt;input type="password" placeholder="كلمة المرور" name="password"&gt;
+
+&lt;!-- حقل أرقام (يمنع كتابة الحروف ويحدد النطاق) --&gt;
+&lt;input type="number" min="1" max="100" name="age"&gt;
+
+&lt;!-- اختيار تاريخ --&gt;
+&lt;input type="date" name="birthday"&gt;
+
+&lt;!-- مربع اختيار (Checkbox) لاختيار أكثر من خيار أو الموافقة --&gt;
+&lt;input type="checkbox" name="agree" id="agree"&gt;
+&lt;label for="agree"&gt;أوافق على الشروط&lt;/label&gt;
+
+&lt;!-- أزرار الاختيار الدائري (Radio) - لاختيار خيار واحد فقط من قائمة خيارات (يجب أن تتطابق سمة name لتحديد المجموعة) --&gt;
+&lt;input type="radio" name="gender" value="male" id="male"&gt;
+&lt;label for="male"&gt;ذكر&lt;/label&gt;
+
+&lt;input type="radio" name="gender" value="female" id="female"&gt;
+&lt;label for="female"&gt;أنثى&lt;/label&gt;
+
+&lt;!-- لرفع ملف من جهاز المستخدم --&gt;
+&lt;input type="file" name="photo"&gt;
+
+&lt;!-- زر إرسال النموذج للخادم --&gt;
+&lt;input type="submit" value="إرسال"&gt;</code></pre>
+          <!--
+            - placeholder: نص تلميحي خفيف يظهر داخل الحقل ويختفي بمجرد بدء الكتابة.
+            - name: أهم سمة لكل حقل، حيث يتم إرسال البيانات للخادم باسم هذا المفتاح (مثلاً: username=value).
+            - min & max: تحدد القيم الصغرى والكبرى للأرقام المقبولة.
+          -->
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>سمة name مهمة جداً!</strong> بدون إضافة سمة <code>name</code> لحقل الإدخال، سيتجاهل المتصفح إرسال قيمته تماماً عند إرسال النموذج، ولن تصل أي بيانات تخص هذا الحقل للخادم.
+        </div>
+
+        <hr>
+
+        <h2>3. وسم التسمية &lt;label&gt;</h2>
+        <p>
+          <code>&lt;label&gt;</code> يُستخدم لإعطاء تسمية واضحة ومقروءة بجانب حقول الإدخال. يرتبط بشكل وثيق بحقل الإدخال المقابل له عن طريق سمة <code>for</code> التي يجب أن تطابق تماماً قيمة معرف الـ <code>id</code> الخاص بحقل الإدخال.
+          فائدته: يسهل النقر؛ بمجرد نقر المستخدم على النص التسميات، ينتقل التركيز تلقائياً لحقل الإدخال المرتبط.
+        </p>
+        <div class="code-explain-card">
+          <pre><code>&lt;label for="user-name"&gt;الاسم الكامل:&lt;/label&gt;
+&lt;input type="text" id="user-name" name="fullname" placeholder="أدخل اسمك"&gt;</code></pre>
+        </div>
+
+        <hr>
+
+        <h2>4. منطقة النص &lt;textarea&gt;</h2>
+        <p>تُستخدم لكتابة نصوص طويلة متعددة الأسطر (مثل الملاحظات أو رسائل الدعم الفني وتواصل معنا):</p>
+        <div class="code-explain-card">
+          <pre><code>&lt;label for="msg"&gt;رسالتك:&lt;/label&gt;
+&lt;textarea id="msg" name="message" rows="5" cols="40"
+  placeholder="اكتب رسالتك هنا..."&gt;&lt;/textarea&gt;</code></pre>
+          <!--
+            - rows: يحدد ارتفاع المنطقة بعدد الأسطر الافتراضي.
+            - cols: يحدد عرض المنطقة بعدد الحروف الافتراضي.
+            - وسم <textarea> له وسم إغلاق على عكس <input>.
+          -->
+        </div>
+
+        <hr>
+
+        <h2>5. القائمة المنسدلة &lt;select&gt;</h2>
+        <p>تُستخدم لإنشاء قائمة منسدلة يختار المستخدم منها خياراً واحداً أو أكثر:</p>
+        <div class="code-explain-card">
+          <pre><code>&lt;label for="city"&gt;اختر مدينتك:&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+  &lt;option value=""&gt;-- اختر --&lt;/option&gt;
+  &lt;option value="cairo"&gt;القاهرة&lt;/option&gt;
+  &lt;option value="alex"&gt;الإسكندرية&lt;/option&gt;
+  &lt;option value="giza"&gt;الجيزة&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+          <!--
+            - <select>: يمثل القائمة المنسدلة نفسها.
+            - <option>: يمثل الخيارات الفردية المتاحة داخل القائمة.
+            - value: القيمة الفعلية التي ستُرسل للخادم عند اختيار هذا البند.
+          -->
+        </div>
+
+        <hr>
+
+        <h2>6. نموذج تسجيل كامل - مثال متكامل</h2>
+        <div class="code-explain-card">
+          <pre><code>&lt;form action="/register" method="POST"&gt;
+
+  &lt;label for="reg-name"&gt;الاسم:&lt;/label&gt;
+  &lt;input type="text" id="reg-name" name="name" required placeholder="اسمك الكامل"&gt;
+
+  &lt;label for="reg-email"&gt;البريد الإلكتروني:&lt;/label&gt;
+  &lt;input type="email" id="reg-email" name="email" required placeholder="example@mail.com"&gt;
+
+  &lt;label for="reg-pass"&gt;كلمة المرور:&lt;/label&gt;
+  &lt;input type="password" id="reg-pass" name="password" required minlength="8"&gt;
+
+  &lt;label for="reg-city"&gt;المدينة:&lt;/label&gt;
+  &lt;select id="reg-city" name="city"&gt;
+    &lt;option value="cairo"&gt;القاهرة&lt;/option&gt;
+    &lt;option value="alex"&gt;الإسكندرية&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;button type="submit"&gt;إنشاء الحساب&lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+          <!--
+            - minlength="8": تمنع إرسال النموذج إذا كانت كلمة المرور أقل من 8 أحرف.
+            - <button type="submit">: زر الإرسال الفعلي للنموذج.
+          -->
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>سمة required:</strong> تجعل حقل الإدخال إلزامياً بالكامل، ولن يسمح المتصفح بإرسال النموذج إذا ترك المستخدم هذا الحقل فارغاً، وسيعرض له تنبيهاً بذلك تلقائياً ودون الحاجة لأي كود جافاسكريبت!
+        </div>
+
+      </section>
+
+      <footer class="lesson-footer-nav">
+      <!-- أزرار التنقل السفلية -->
+        <a href="lesson5.html" class="btn btn-secondary">⬅️ الدرس السابق</a>
+        <a href="lesson7.html" class="btn btn-primary">الدرس التالي: البنية الدلالية ➡️</a>
+      </footer>
+
+    </article>
+  </main>
+
+  <footer id="main-footer" class="main-footer">
+  <!-- تذييل الصفحة -->
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 تعلم HTML - جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* تنسيقات CSS لصفحة الدرس */
+    .lesson-meta { margin-bottom: 15px; font-size: 0.9em; color: #666; }
+    .category-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-left: 10px; }
+    .category-badge.intermediate { background: #fff3e0; color: #ef6c00; }
+    .read-time { font-style: italic; }
+    .lesson-title { font-size: 2.2em; margin-top: 10px; margin-bottom: 15px; color: #1a1a1a; }
+    .lesson-summary { font-size: 1.2em; line-height: 1.6; color: #555; background: #fdfdfd; padding: 15px; border-right: 4px solid #007bff; }
+    .lesson-body h2 { font-size: 1.6em; margin-top: 35px; margin-bottom: 15px; color: #007bff; border-bottom: 2px solid #eaeaea; padding-bottom: 8px; }
+    .lesson-body p { font-size: 1.1em; line-height: 1.7; color: #333; margin-bottom: 15px; }
+    .code-explain-card { background: #272822; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto; }
+    .code-explain-card code { color: #f8f8f2; font-family: monospace; font-size: 0.95em; white-space: pre; }
+    .explain-list dt { font-weight: bold; font-size: 1.1em; color: #333; margin-top: 15px; }
+    .explain-list dd { margin-right: 20px; color: #666; margin-bottom: 15px; line-height: 1.6; }
+    .tip-box { background: #fff8e1; border-right: 4px solid #ffc107; padding: 12px 16px; border-radius: 6px; margin: 15px 0; font-size: 1em; color: #333; line-height: 1.8; }
+    .lesson-footer-nav { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 15px; }
+  </style>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الخامس JavaScript: المصفوفات والكائنات - Arrays and Objects in JavaScript">
+  <title>📖 JS - الدرس 5: المصفوفات والكائنات | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge intermediate" style="background:rgba(234,179,8,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3);">JavaScript - الدرس الخامس - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 18 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">📦 المصفوفات والكائنات (Arrays & Objects)</h1>
+        <p class="lesson-description">
+          تعلم كيف تخزن وتتحكم في مجموعات البيانات المعقدة والمرتبطة ببعضها البعض في جافاسكريبت باستخدام المصفوفات والكائنات!
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>📦 المصفوفات (Arrays)</h2>
+        <p>
+          المصفوفة هي قائمة مرتبة من البيانات. يمكن للمصفوفة أن تحتوي على أي نوع من البيانات (أرقام، نصوص، كائنات، إلخ).
+        </p>
+        <pre class="code-block"><code><span class="comment">// 1. تعريف مصفوفة جديدة</span>
+const fruits = ['تفاح', 'موز', 'برتقال'];
+
+<span class="comment">// 2. الوصول لعناصر المصفوفة باستخدام الفهرس (Index) - يبدأ من 0</span>
+console.log(fruits[0]); <span class="comment">// تفاح</span>
+console.log(fruits[1]); <span class="comment">// موز</span>
+console.log(fruits.length); <span class="comment">// 3 (عدد العناصر)</span>
+
+<span class="comment">// 3. إضافة وحذف عناصر من أطراف المصفوفة</span>
+fruits.push('مانجو');     <span class="comment">// إضافة عنصر جديد في النهاية</span>
+console.log(fruits);      <span class="comment">// ['تفاح', 'موز', 'برتقال', 'مانجو']</span>
+
+const lastFruit = fruits.pop(); <span class="comment">// حذف وإرجاع آخر عنصر</span>
+console.log(lastFruit);   <span class="comment">// مانجو</span>
+console.log(fruits);      <span class="comment">// ['تفاح', 'موز', 'برتقال']</span>
+
+fruits.unshift('كرز');    <span class="comment">// إضافة عنصر في البداية</span>
+console.log(fruits);      <span class="comment">// ['كرز', 'تفاح', 'موز', 'برتقال']</span>
+
+fruits.shift();           <span class="comment">// حذف أول عنصر</span>
+console.log(fruits);      <span class="comment">// ['تفاح', 'موز', 'برتقال']</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🔄 دوال التكرار والتحول الحديثة (Array Methods)</h2>
+        <div class="info-box">
+          <p>💡 المصفوفات في جافاسكريبت تمتلك دوالاً قوية ومتقدمة تغنينا عن استخدام الحلقات التكرارية <code>for</code> التقليدية في كثير من الأحيان.</p>
+        </div>
+        <pre class="code-block"><code>const numbers = [1, 2, 3, 4, 5];
+
+<span class="comment">// 1️⃣ forEach: المرور على كل عنصر لتنفيذ عملية معينة</span>
+numbers.forEach(function(num) {
+  console.log(num * 2); <span class="comment">// يطبع: 2, 4, 6, 8, 10</span>
+});
+
+<span class="comment">// 2️⃣ map: إنشاء مصفوفة جديدة معدلة بناءً على المصفوفة الأصلية</span>
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); <span class="comment">// [2, 4, 6, 8, 10]</span>
+
+<span class="comment">// 3️⃣ filter: تصفية المصفوفة وإرجاع العناصر التي تحقق الشرط فقط</span>
+const evens = numbers.filter(num => num % 2 === 0);
+console.log(evens); <span class="comment">// [2, 4]</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📂 الكائنات (Objects)</h2>
+        <p>
+          الكائن هو هيكل بيانات غير مرتب يخزن البيانات في صورة <strong>مفتاح وقيمة (Key - Value Pairs)</strong>. يمثل كياناً حقيقياً مثل شخص أو منتج.
+        </p>
+        <pre class="code-block"><code><span class="comment">// 1. تعريف الكائن (Object Literal)</span>
+const user = {
+  firstName: 'أحمد',
+  age: 25,
+  isStudent: false,
+  skills: ['HTML', 'CSS', 'JS'],
+  <span class="comment">// دالة داخل الكائن (تسمى Method)</span>
+  sayHello: function() {
+    return `مرحباً، أنا اسمي ${this.firstName}!`;
+  }
+};
+
+<span class="comment">// 2. الوصول للبيانات بطريقة النقطة (Dot Notation) ✅ الأكثر شيوعاً</span>
+console.log(user.firstName); <span class="comment">// أحمد</span>
+console.log(user.skills[0]); <span class="comment">// HTML</span>
+console.log(user.sayHello()); <span class="comment">// مرحباً، أنا اسمي أحمد!</span>
+
+<span class="comment">// 3. الوصول بطريقة الأقواس المربعة (Bracket Notation)</span>
+console.log(user['age']); <span class="comment">// 25</span>
+<span class="comment">// مفيدة عندما يكون اسم المفتاح مخزناً داخل متغير:</span>
+const keyToGet = 'isStudent';
+console.log(user[keyToGet]); <span class="comment">// false</span>
+
+<span class="comment">// 4. تعديل وإضافة الخصائص</span>
+user.age = 26;            <span class="comment">// تعديل قيمة موجودة</span>
+user.country = 'مصر';      <span class="comment">// إضافة خاصية جديدة تماماً</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>👥 مصفوفة الكائنات (Array of Objects)</h2>
+        <p>
+          في المشاريع الحقيقية، تأتي البيانات دائماً على شكل مصفوفة تحتوي على كائنات متعددة (مثل قائمة المستخدمين أو المنتجات).
+        </p>
+        <pre class="code-block"><code>const students = [
+  { id: 1, name: 'سارة', score: 95 },
+  { id: 2, name: 'محمد', score: 78 },
+  { id: 3, name: 'خالد', score: 88 }
+];
+
+<span class="comment">// الوصول لاسم الطالب الأول</span>
+console.log(students[0].name); <span class="comment">// سارة</span>
+
+<span class="comment">// تصفية الطلاب الحاصلين على درجة أكبر من 80</span>
+const topStudents = students.filter(student => student.score > 80);
+console.log(topStudents);
+<span class="comment">/*
+  [
+    { id: 1, name: 'سارة', score: 95 },
+    { id: 3, name: 'خالد', score: 88 }
+  ]
+*/</span>
+
+<span class="comment">// الحصول على مصفوفة تحتوي على الأسماء فقط</span>
+const names = students.map(student => student.name);
+console.log(names); <span class="comment">// ['سارة', 'محمد', 'خالد']</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ المصفوفات قوائم مرتبة تبدأ من الفهرس 0.</li>
+            <li>✅ <code>push</code> و <code>pop</code> للتعامل مع نهاية المصفوفة.</li>
+            <li>✅ دوال <code>map</code> و <code>filter</code> و <code>forEach</code> لتكرار ومعالجة المصفوفات بسلاسة.</li>
+            <li>✅ الكائنات تخزن البيانات في شكل (مفتاح وقيمة).</li>
+            <li>✅ نصل لخصائص الكائنات عبر Dot Notation أو Bracket Notation.</li>
+            <li>✅ دمج المصفوفات مع الكائنات يمثل الهيكل الأساسي للبيانات في الويب.</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson4.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: الدوال والنطاق</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">5</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson6.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: DOM Manipulation ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار JavaScript</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

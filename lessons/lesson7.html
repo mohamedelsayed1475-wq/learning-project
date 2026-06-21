@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  إعلان نوع المستند للمتصفح بأنه HTML5 ليعمل بشكل صحيح ومعياري.
+  =====================================================
+-->
+<html lang="ar" dir="rtl">
+<!--
+  <html> = الجذر (Root).
+  - lang="ar": لغة المحتوى العربية.
+  - dir="rtl": اتجاه المحتوى من اليمين لليسار.
+-->
+<head>
+<!-- وسم الرأس الذي يحتوي على معلومات وصفية وتنسيقات لا تظهر للزائر مباشرة -->
+  <meta charset="UTF-8">
+  <!-- ترميز الحروف العالمي لضمان سلامة الأحرف العربية -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ضبط التجاوب والتناسق مع أحجام الشاشات المختلفة للأجهزة -->
+  <meta name="description" content="الدرس السابع: البنية الدلالية Semantic HTML - header nav main footer article section aside">
+  <!-- وصف الصفحة لمحركات البحث -->
+  <title>📖 الدرس 7: البنية الدلالية - تعلم HTML</title>
+  <!-- عنوان التبويب العلوي للمتصفح -->
+  <link rel="stylesheet" href="../style.css">
+  <!-- ربط ملف الاستايل CSS الخارجي -->
+</head>
+<body>
+<!-- وسم الجسم ويحتوي على كافة عناصر الصفحة المرئية للمستخدم -->
+
+  <header id="main-header">
+  <!--
+    <header>: عنصر دلالي يمثل رأس الصفحة للموقع بأكمله.
+  -->
+    <nav id="main-nav">
+    <!--
+      <nav>: عنصر دلالي يحدد روابط التنقل الرئيسية للموقع.
+    -->
+      <div class="nav-logo">
+      <!-- شعار الموقع -->
+        <a href="../index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم HTML</span>
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+      <!-- قائمة صفحات الموقع -->
+        <li class="nav-item"><a href="../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+      <!-- زر لفتح وإغلاق القائمة في الموبايل -->
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+  <!--
+    <main>: عنصر دلالي يمثل المحتوى الرئيسي والفريد لصفحة الدرس (مرة واحدة في الصفحة).
+  -->
+    <article class="lesson-article">
+    <!--
+      <article>: عنصر دلالي يمثل كود الدرس كموضوع كامل مستقل بذاته.
+    -->
+
+      <header class="lesson-header">
+      <!-- رأس المقال (العنوان والمعلومات الوصفية الخاصة بالدرس) -->
+        <div class="lesson-meta">
+          <span class="category-badge intermediate">الدرس السابع - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 15 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">🏗️ البنية الدلالية (Semantic HTML)</h1>
+        <p class="lesson-summary">
+          HTML5 أضافت وسوماً "ذكية" لها معنى ودلالة واضحة. تعلّم هذه الوسوم يجعل كودك أنظف، وأفضل لمحركات البحث، وأكثر سهولة في القراءة للمطورين الآخرين.
+        </p>
+      </header>
+
+      <section class="lesson-body">
+      <!--
+        <section>: عنصر دلالي يمثل قسماً فرعياً داخل موضوع الدرس.
+      -->
+
+        <h2>1. ما معنى "Semantic" (دلالي)؟</h2>
+        <p>
+          الفرق بين كود دلالي وغير دلالي:
+        </p>
+
+        <div class="tags-comparison">
+          <div class="tag-type-card" style="border-color:#dc3545;">
+            <h3 style="color:#dc3545;">❌ كود غير دلالي (قديم)</h3>
+            <code style="background:#fff0f0;">&lt;div id="header"&gt;...&lt;/div&gt;
+&lt;div id="nav"&gt;...&lt;/div&gt;
+&lt;div id="main"&gt;...&lt;/div&gt;
+&lt;div id="footer"&gt;...&lt;/div&gt;</code>
+            <p><small>المتصفح لا يعرف وظيفة كل div ويعتبرها حاويات فارغة بدون أي معنى دلالي.</small></p>
+          </div>
+          <div class="tag-type-card" style="border-color:#28a745;">
+            <h3 style="color:#28a745;">✅ كود دلالي (حديث - HTML5)</h3>
+            <code style="background:#f0fff0;">&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code>
+            <p><small>المتصفح ومحركات البحث وقارئات الشاشة تفهم فوراً وظيفة ومحتوى كل عنصر.</small></p>
+          </div>
+        </div>
+
+        <hr>
+
+        <h2>2. الوسوم الدلالية الأساسية</h2>
+
+        <dl class="explain-list">
+          <dt><code>&lt;header&gt;</code> — رأس الصفحة أو القسم</dt>
+          <dd>يحتوي عادةً على الشعار، اسم الموقع، قائمة التنقل الرئيسية، أو مقدمة وعنوان المقال/القسم.</dd>
+
+          <dt><code>&lt;nav&gt;</code> — قائمة التنقل</dt>
+          <dd>يُستخدم خصيصاً لاحتواء الروابط الانتقالية الرئيسية والفرعية داخل الموقع. لا تضع كل رابط بالصفحة هنا، بل فقط روابط التنقل الرئيسية.</dd>
+
+          <dt><code>&lt;main&gt;</code> — المحتوى الرئيسي</dt>
+          <dd>يحتوي على المحتوى الفعلي والفريد للصفحة الحالية والذي لا يتكرر في الصفحات الأخرى. يجب كتابته مرة واحدة فقط في الصفحة.</dd>
+
+          <dt><code>&lt;section&gt;</code> — قسم</dt>
+          <dd>يُقسّم المحتوى الطويل إلى أقسام أو فصول منطقية ذات موضوع مشترك. يفضل دائماً أن يبدأ كل قسم بعنوان (h2, h3...).</dd>
+
+          <dt><code>&lt;article&gt;</code> — مقال أو محتوى مستقل</dt>
+          <dd>يمثل كتلة محتوى مستقلة تماماً بذاتها ومفهومة حتى لو تم فصلها ونشرها في مكان آخر (مثل مقال إخباري، منشور مدونة، تعليق مستخدم، أو كارت منتج).</dd>
+
+          <dt><code>&lt;aside&gt;</code> — محتوى جانبي</dt>
+          <dd>يحتوي على معلومات جانبية أو ثانوية ليست أساسية، ولكنها ترتبط بالمحتوى الرئيسي (مثل شريط الروابط الجانبية، الإعلانات، الاقتباسات، أو معلومات الكاتب).</dd>
+
+          <dt><code>&lt;footer&gt;</code> — ذيل الصفحة أو القسم</dt>
+          <dd>يمثل تذييل الصفحة للموقع أو المقال، ويحتوي عادةً على حقوق الملكية الفكرية، روابط الاتصال والتواصل، روابط سياسة الخصوصية، إلخ.</dd>
+        </dl>
+
+        <hr>
+
+        <h2>3. هيكل صفحة كاملة باستخدام الوسوم الدلالية</h2>
+        <div class="code-explain-card">
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;موقعي الإخباري&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- رأس الموقع --&gt;
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;a href="/"&gt;الرئيسية&lt;/a&gt;
+      &lt;a href="/news"&gt;الأخبار&lt;/a&gt;
+      &lt;a href="/contact"&gt;التواصل&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;!-- المحتوى الرئيسي للموقع --&gt;
+  &lt;main&gt;
+
+    &lt;!-- قسم المقالات الإخبارية --&gt;
+    &lt;section&gt;
+      &lt;h2&gt;آخر الأخبار&lt;/h2&gt;
+
+      &lt;!-- مقال إخباري أول --&gt;
+      &lt;article&gt;
+        &lt;h3&gt;عنوان الخبر الأول&lt;/h3&gt;
+        &lt;p&gt;محتوى الخبر هنا...&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;!-- مقال إخباري ثاني --&gt;
+      &lt;article&gt;
+        &lt;h3&gt;عنوان الخبر الثاني&lt;/h3&gt;
+        &lt;p&gt;محتوى الخبر هنا...&lt;/p&gt;
+      &lt;/article&gt;
+    &lt;/section&gt;
+
+    &lt;!-- الشريط الجانبي للموقع --&gt;
+    &lt;aside&gt;
+      &lt;h3&gt;أكثر الأخبار قراءة&lt;/h3&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;خبر هام 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;خبر هام 2&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/aside>
+
+  &lt;/main&gt;
+
+  &lt;!-- ذيل الموقع --&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2024 موقعي. جميع الحقوق محفوظة.&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>لماذا الـ Semantic HTML غاية في الأهمية؟</strong><br>
+          • <strong>تحسين محركات البحث (SEO):</strong> جوجل يفهم هيكل موقعك ويصنفه بشكل أفضل وأسرع.<br>
+          • <strong>سهولة الوصول (Accessibility):</strong> تساعد قارئات الشاشة المكفوفين على فهم محتوى موقعك والتنقل داخله بذكاء.<br>
+          • <strong>نظافة الكود:</strong> تسهيل قراءة وفهم وتعديل الكود البرمجي للمطورين الآخرين معك بالمشروع.
+        </div>
+
+        <hr>
+
+        <h2>4. وسوم دلالية إضافية ومهمة</h2>
+        <div class="tags-comparison">
+          <div class="tag-type-card">
+            <h3><code>&lt;figure&gt;</code> و <code>&lt;figcaption&gt;</code></h3>
+            <p>يُستخدمان لتغليف صورة أو رسم توضيحي مع كتابة عنوان أو تعليق نصي يصفها ويكون ملحقاً بها مباشرة.</p>
+            <code>&lt;figure&gt;
+  &lt;img src="chart.png" alt="رسم بياني"&gt;
+  &lt;figcaption&gt;رسم بياني للمبيعات لعام 2024&lt;/figcaption&gt;
+&lt;/figure&gt;</code>
+          </div>
+          <div class="tag-type-card">
+            <h3><code>&lt;time&gt;</code></h3>
+            <p>يُستخدم لتمثيل التواريخ والأوقات بشكل دلالي تفهمه محركات البحث والمتصفحات الذكية.</p>
+            <code>&lt;time datetime="2024-06-07"&gt;7 يونيو 2024&lt;/time&gt;</code>
+            <!-- datetime: السمة المحددة للتاريخ البرمجي بصيغة YYYY-MM-DD -->
+          </div>
+          <div class="tag-type-card">
+            <h3><code>&lt;address&gt;</code></h3>
+            <p>يُستخدم لعرض معلومات الاتصال بالكاتب أو الشركة المالكة للموقع (مثل البريد، العنوان، رقم الهاتف).</p>
+            <code>&lt;address&gt;القاهرة، مصر&lt;/address&gt;</code>
+          </div>
+        </div>
+
+      </section>
+
+      <footer class="lesson-footer-nav">
+      <!-- روابط التنقل السفلية للدرس -->
+        <a href="lesson6.html" class="btn btn-secondary">⬅️ الدرس السابق</a>
+        <a href="lesson8.html" class="btn btn-primary">الدرس التالي: div و span والـ class و id ➡️</a>
+      </footer>
+
+    </article>
+  </main>
+
+  <footer id="main-footer" class="main-footer">
+  <!-- تذييل الصفحة -->
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 تعلم HTML - جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* تنسيقات CSS لصفحة الدرس */
+    .lesson-meta { margin-bottom: 15px; font-size: 0.9em; color: #666; }
+    .category-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-left: 10px; }
+    .category-badge.intermediate { background: #fff3e0; color: #ef6c00; }
+    .read-time { font-style: italic; }
+    .lesson-title { font-size: 2.2em; margin-top: 10px; margin-bottom: 15px; color: #1a1a1a; }
+    .lesson-summary { font-size: 1.2em; line-height: 1.6; color: #555; background: #fdfdfd; padding: 15px; border-right: 4px solid #007bff; }
+    .lesson-body h2 { font-size: 1.6em; margin-top: 35px; margin-bottom: 15px; color: #007bff; border-bottom: 2px solid #eaeaea; padding-bottom: 8px; }
+    .lesson-body p { font-size: 1.1em; line-height: 1.7; color: #333; margin-bottom: 15px; }
+    .code-explain-card { background: #272822; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto; }
+    .code-explain-card code { color: #f8f8f2; font-family: monospace; font-size: 0.95em; white-space: pre; }
+    .explain-list dt { font-weight: bold; font-size: 1.1em; color: #007bff; margin-top: 20px; }
+    .explain-list dd { margin-right: 20px; color: #555; margin-bottom: 10px; line-height: 1.7; }
+    .tags-comparison { display: flex; gap: 20px; margin: 25px 0; flex-wrap: wrap; }
+    .tag-type-card { flex: 1; min-width: 250px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa; }
+    .tag-type-card h3 { color: #333; margin-top: 0; font-size: 1em; }
+    .tag-type-card code { display: block; background: #eee; padding: 8px 12px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85em; white-space: pre; }
+    .tip-box { background: #fff8e1; border-right: 4px solid #ffc107; padding: 12px 16px; border-radius: 6px; margin: 15px 0; font-size: 1em; color: #333; line-height: 1.8; }
+    .lesson-footer-nav { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 15px; }
+  </style>
+
+  <script src="../script.js"></script>
+</body>
+</html>

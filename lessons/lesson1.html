@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  ده بيقول للمتصفح إن الصفحة دي مكتوبة بـ HTML5
+  لازم تكون أول سطر في أي صفحة HTML من غير استثناء
+  =====================================================
+-->
+
+<html lang="ar" dir="rtl">
+<!--
+  <html> = ده العنصر الجذر (Root Element)
+  يعني أصل وأب كل العناصر في الصفحة
+  كل حاجة في الصفحة لازم تكون جوا <html> و </html>
+
+  lang="ar" = بيقول إن لغة الصفحة عربية
+  مهم جداً لـ:
+  - محركات البحث (SEO) عشان يعرف الصفحة دي بالعربي
+  - قارئات الشاشة للمكفوفين عشان تنطق الكلمات صح
+  - المتصفح عشان يعرض الخطوط والاتجاه صح
+
+  dir="rtl" = اتجاه الكتابة Right To Left (من اليمين لليسار)
+  ده مهم جداً عشان اللغة العربية بتتكتب من اليمين
+-->
+
+<head>
+  <!--
+    <head> = رأس الصفحة
+    محتواه مش بيتشاف للزائر على الشاشة
+    بس بيحتوي على معلومات مهمة جداً للمتصفح ومحركات البحث
+    وروابط الملفات الخارجية زي CSS وJavaScript
+  -->
+
+  <meta charset="UTF-8">
+  <!--
+    <meta> = عنصر بيحتوي على معلومات (Metadata) عن الصفحة
+    وسم فارغ = مش محتاج إغلاق
+
+    charset="UTF-8"
+    charset = Character Set = مجموعة الحروف والرموز
+    UTF-8 = نظام ترميز عالمي بيدعم كل لغات العالم
+    بما فيها:
+    - العربية ✓
+    - الإنجليزية ✓
+    - الإيموجي 🎉 ✓
+    - الصينية والكورية وكل اللغات ✓
+
+    لو مش موجودة: الحروف العربية هتظهر كرموز غريبة هكذا ÙÙ
+    لازم تكون أول meta في الـ head
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    ده الـ meta المسؤول عن عرض الصفحة على الموبايل
+
+    name="viewport" = اسم المعلومة = viewport (نافذة العرض)
+
+    content = القيمة:
+    - width=device-width: عرض الصفحة = عرض شاشة الجهاز نفسه
+      بدونها: الصفحة هتبدو مصغرة جداً على الموبايل
+    - initial-scale=1.0: التكبير عند التحميل = 1 (طبيعي، مش مكبر ولا مصغر)
+
+    بدون الـ viewport: موقعك هيبان غريب ومضغوط على الموبايل!
+    دائماً حطها في كل صفحة
+  -->
+
+  <meta name="description" content="الدرس الأول: أساسيات HTML وهيكل الصفحة الأساسي للمبتدئين مع الشرح">
+  <!--
+    name="description" = وصف مختصر للصفحة
+    بيظهر في:
+    - نتائج بحث Google أسفل عنوان الصفحة
+    - لما تشارك الرابط على واتساب أو فيسبوك
+    مهم جداً لـ SEO - اجعله جذاباً ومختصراً (150-160 حرف)
+  -->
+
+  <title>📖 الدرس 1: أساسيات HTML - رحلة التعلم من الصفر</title>
+  <!--
+    <title> = عنوان الصفحة
+    بيظهر في:
+    1. تبويب المتصفح (فوق الصفحة)
+    2. نتائج Google (العنوان الأزرق الكبير)
+    3. لما تحفظ الصفحة في المفضلة
+    4. لما تشارك الرابط
+
+    مهم جداً لـ SEO - اجعله واضحاً وفيه الكلمات المفتاحية
+    الطول المثالي: 50-60 حرف
+  -->
+
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <!--
+    <link> = بيربط ملف خارجي بالصفحة
+    وسم فارغ = مش محتاج إغلاق
+
+    rel="icon" = نوع العلاقة = أيقونة
+    type="image/svg+xml" = نوع الملف = SVG
+    href="../assets/favicon.svg" = مسار الأيقونة
+    ../ = ارجع للمجلد السابق (لأن الملف ده جوا مجلد lessons)
+
+    الأيقونة دي اللي بتظهر جنب عنوان التبويب في المتصفح
+    بتسمى Favicon = Favorite Icon
+  -->
+
+  <link rel="stylesheet" href="../style.css">
+  <!--
+    <link> = ربط ملف CSS (التنسيق)
+
+    rel="stylesheet" = نوع العلاقة = ملف أنماط CSS
+    href="../style.css" = مسار الملف
+    ../ = ارجع للمجلد السابق عشان style.css في المجلد الرئيسي مش في lessons
+
+    CSS = Cascading Style Sheets
+    هو اللي بيتحكم في:
+    - الألوان
+    - الخطوط والأحجام
+    - المسافات والهوامش
+    - شكل وتصميم كل عنصر
+  -->
+
+</head>
+<!--
+  خلصنا <head>
+  دلوقتي هنبدأ <body> اللي هو المحتوى الفعلي المرئي
+-->
+
+<body>
+  <!--
+    <body> = جسم الصفحة
+    كل اللي الزائر هيشوفه ويتفاعل معه لازم يكون هنا
+    من بداية <body> لحد نهاية </body>
+  -->
+
+  <!-- ============================================================ -->
+  <!-- HEADER - رأس الصفحة وقائمة التنقل                            -->
+  <!-- ============================================================ -->
+  <!--
+    التعليقات دي (Comments) ملهاش تأثير على المتصفح
+    بس بتساعد المبرمج يقرأ ويفهم الكود بسهولة
+    تكتب Comment هكذا:
+    <!-- نص التعليق هنا - ->
+    ملاحظة: مش بتظهر للزائر خالص
+  -->
+
+  <header id="main-header">
+    <!--
+      <header> = رأس الصفحة أو القسم
+      عنصر Semantic (دلالي) في HTML5
+      معناه واضح من اسمه - المتصفح ومحركات البحث بيفهموا وظيفته
+
+      id="main-header"
+      id = Identifier = معرّف
+      لازم يكون فريد في الصفحة - مش هيتكرر في صفحة تانية هنا
+      بيستخدم لـ:
+      - تنسيق العنصر ده بشكل خاص في CSS بـ #main-header
+      - الوصول إليه في JavaScript بـ document.getElementById("main-header")
+    -->
+
+    <nav id="main-nav">
+      <!--
+        <nav> = Navigation = قائمة التنقل
+        عنصر Semantic يقول إن دي الروابط التنقلية الرئيسية
+        محركات البحث بتفهم إن دي القائمة الرئيسية للموقع
+        مش كل الروابط تحط في nav - بس روابط التنقل الأساسية
+      -->
+
+      <div class="nav-logo">
+        <!--
+          <div> = Division = قسم عام
+          مفيش معنى خاص - بس بيجمع عناصر مع بعض
+          class="nav-logo" = تصنيف (Class)
+          بيستخدم في CSS بالنقطة: .nav-logo { ... }
+          ممكن يتكرر في عناصر كتير في نفس الصفحة
+        -->
+
+        <a href="../index.html" id="logo-link">
+          <!--
+            <a> = Anchor = رابط تشعبي
+            ده أهم وسوم HTML - بيربط صفحات بعض
+
+            href="../index.html"
+            href = Hypertext Reference = مرجع النص التشعبي
+            هو وجهة الرابط - هيروح فين لما تضغط عليه؟
+            "../index.html" = ارجع للمجلد السابق وافتح index.html
+
+            id="logo-link" = معرف فريد للرابط ده
+          -->
+
+          <span class="logo-icon">🎓</span>
+          <!--
+            <span> = عنصر Inline (مضمّن)
+            زي div بس للنصوص والعناصر الصغيرة داخل السطر
+            مش بيكسر السطر ولا بيأخذ عرض كامل
+            class="logo-icon" = تصنيف للتنسيق
+          -->
+
+          <span class="logo-text">تعلم HTML</span>
+          <!--
+            span تاني للنص - بنفصل الأيقونة عن النص
+            عشان نقدر نعمل تنسيق مختلف لكل واحد في CSS
+          -->
+
+        </a>
+        <!-- </a> = نهاية الرابط - لازم تقفل كل وسم فتحته -->
+
+      </div>
+      <!-- </div> = نهاية div الـ nav-logo -->
+
+      <ul class="nav-menu" id="nav-menu">
+        <!--
+          <ul> = Unordered List = قائمة غير مرتبة (بالنقاط)
+          Unordered = مش فيها أرقام أو ترتيب
+
+          class="nav-menu" = تصنيف القائمة
+          id="nav-menu" = معرف فريد للوصول إليها بـ JavaScript
+        -->
+
+        <li class="nav-item">
+          <!--
+            <li> = List Item = عنصر في القائمة
+            لازم يكون جوا <ul> أو <ol> دايماً
+            class="nav-item" = تصنيف للعنصر
+          -->
+          <a href="../index.html" class="nav-link">🏠 الرئيسية</a>
+          <!--
+            class="nav-link" = تصنيف لكل روابط القائمة
+            بنستخدم نفس الـ class عشان نطبق نفس التنسيق عليهم كلهم
+          -->
+        </li>
+        <!-- </li> = نهاية عنصر القائمة -->
+
+        <li class="nav-item">
+          <a href="lesson1.html" class="nav-link active">📖 الدروس</a>
+          <!--
+            class="nav-link active"
+            عنصر واحد ممكن يكون ليه أكتر من class
+            بنفصل بينهم بمسافة
+            active = بيشير إن ده الصفحة الحالية
+            بيتغير لونه في CSS عشان الزائر يعرف هو فين
+          -->
+        </li>
+
+        <li class="nav-item">
+          <a href="../playground.html" class="nav-link">⚡ الملعب</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="../quiz.html" class="nav-link">🧪 الاختبارات</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="../cheatsheet.html" class="nav-link">📋 المرجع السريع</a>
+        </li>
+
+      </ul>
+      <!-- </ul> = نهاية قائمة التنقل -->
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <!--
+          <button> = زرار قابل للضغط
+          عنصر تفاعلي - المستخدم يقدر يضغط عليه
+
+          class="menu-toggle" = تصنيف للتنسيق
+          id="menu-toggle" = معرف فريد - JavaScript هتستخدمه
+
+          type="button"
+          type = نوع الزرار:
+          - type="button" = زرار عادي، مش بيعمل حاجة وحده
+          - type="submit" = بيرسل النموذج (form)
+          - type="reset" = بيمسح النموذج
+          دايماً حدد النوع عشان المتصفح ميعملش حاجة غلط
+
+          aria-label="فتح القائمة"
+          aria = Accessible Rich Internet Applications
+          بيضيف وصف للعنصر لقارئات الشاشة للمكفوفين
+          مهم جداً لإمكانية الوصول (Accessibility)
+          لأن الزرار ده فيه بس أيقونة ☰ ومفيش نص
+        -->
+        <span class="menu-icon">☰</span>
+        <!-- ☰ = أيقونة القائمة (Hamburger Menu) -->
+      </button>
+      <!-- </button> = نهاية الزرار -->
+
+    </nav>
+    <!-- </nav> = نهاية قائمة التنقل -->
+
+  </header>
+  <!-- </header> = نهاية رأس الصفحة -->
+
+
+  <!-- ============================================================ -->
+  <!-- MAIN CONTENT - محتوى الدرس الأول                             -->
+  <!-- ============================================================ -->
+
+  <main id="lesson-main" class="container">
+    <!--
+      <main> = المحتوى الرئيسي الفريد للصفحة
+      عنصر Semantic مهم جداً:
+      - لازم يكون واحد بس في كل الصفحة
+      - محركات البحث بتركز عليه لأنه المحتوى الأساسي
+      - قارئات الشاشة بتسمح للمستخدم يقفز ليه مباشرة
+
+      id="lesson-main" = معرف فريد للوصول إليه
+      class="container" = تصنيف لتحديد عرض المحتوى وتوسيطه
+      الـ container في CSS بيعمل max-width ويحط margin auto
+    -->
+
+    <article class="lesson-article">
+      <!--
+        <article> = مقال أو محتوى مستقل
+        عنصر Semantic - معناه إن المحتوى ده يقدر يتنشر بشكل مستقل
+        مناسب جداً هنا لأن كل درس محتوى مستقل بذاته
+        أفضل من div لأن معناه واضح
+      -->
+
+      <header class="lesson-header">
+        <!--
+          <header> جوا <article>؟
+          نعم! <header> ممكن تتكرر في الصفحة
+          بس مش كـ رأس الموقع الرئيسي
+          هنا ده رأس الدرس (المقال) بس
+          class="lesson-header" = تصنيف مختلف عن رأس الموقع
+        -->
+
+        <div class="lesson-meta">
+          <!--
+            div لتجميع المعلومات الميتا للدرس (مستوى + وقت القراءة)
+            class="lesson-meta" = meta = معلومات وصفية إضافية
+          -->
+
+          <span class="category-badge beginner">الدرس الأول - مبتدئ</span>
+          <!--
+            <span> لعرض شارة المستوى
+            class="category-badge beginner"
+            عندنا class متعدد:
+            - category-badge = التنسيق العام للشارة
+            - beginner = لون أخضر فاتح (مبتدئ)
+            لو كان intermediate هيبقى أصفر، لو advanced هيبقى أحمر
+          -->
+
+          <span class="read-time">⏱️ مدة القراءة: 10 دقائق</span>
+          <!-- span لعرض وقت القراءة المتوقع -->
+
+        </div>
+        <!-- </div> = نهاية lesson-meta -->
+
+        <h1 class="lesson-title">🏗️ أساسيات وهيكل لغة HTML</h1>
+        <!--
+          <h1> = Heading 1 = أكبر عنوان في الصفحة
+          في صفحة الدرس ده هو العنوان الرئيسي للدرس
+          لازم يكون واحد بس في كل صفحة - مهم جداً لـ SEO
+
+          class="lesson-title" = تنسيق خاص لعنوان الدرس
+        -->
+
+        <p class="lesson-summary">
+          <!--
+            <p> = Paragraph = فقرة نصية
+            بيضيف مسافة (margin) قبل وبعده تلقائياً
+            class="lesson-summary" = تنسيق ملخص الدرس
+          -->
+          في هذا الدرس، سنتعرف على مفهوم لغة HTML، وكيفية بناء هيكل الصفحة الأساسي، وما هي الوسوم (Tags) والسمات (Attributes) التي تتكون منها العناصر.
+        </p>
+
+      </header>
+      <!-- </header> = نهاية رأس الدرس -->
+
+
+      <section class="lesson-body">
+        <!--
+          <section> = قسم في الصفحة له موضوع مشترك
+          عنصر Semantic - أفضل من div لأن معناه واضح
+          هنا ده جسم محتوى الدرس
+
+          class="lesson-body" = تنسيق جسم الدرس
+        -->
+
+        <h2>1. ما هي لغة HTML؟</h2>
+        <!--
+          <h2> = Heading 2 = عنوان من المستوى الثاني
+          بيجي بعد h1 في التسلسل الهرمي (Hierarchy)
+          لا تقفز من h1 لـ h3 مباشرة - حافظ على الترتيب
+        -->
+
+        <p>
+          الاختصار <strong>HTML</strong> يعود لـ <strong>HyperText Markup Language</strong> (لغة ترميز النصوص التشعبية).
+          <!--
+            <strong> = نص مهم - بيعرضه بـ Bold (خط عريض)
+            مختلف عن <b>:
+            - <strong> له معنى دلالي = "هذا النص مهم دلالياً"
+            - <b> = مجرد Bold بدون معنى خاص
+            دايماً استخدم <strong> بدل <b>
+          -->
+          وهي ليست لغة برمجة بمعنى أنها تحتوي على منطق أو شروط (Logic)، بل هي <strong>لغة هيكلية</strong> تستخدم لتصميم وبناء هيكل صفحات الويب.
+        </p>
+
+        <p>
+          تخيل الموقع مثل مبنى قيد الإنشاء:
+        </p>
+
+        <ul>
+          <!--
+            <ul> = Unordered List = قائمة غير مرتبة
+            بيعرض عناصرها بنقاط (bullets) بشكل تلقائي
+            مناسب لعناصر مش لها ترتيب معين
+          -->
+          <li><strong>HTML</strong> هو الطوب والأعمدة والخرسانة (هيكل المبنى الأساسي).</li>
+          <!--
+            <li> = List Item = عنصر في القائمة
+            لازم يكون جوا <ul> أو <ol>
+          -->
+          <li><strong>CSS</strong> هو الدهان والديكور والستائر (التنسيق والألوان).</li>
+          <li><strong>JavaScript</strong> هو توصيلات الكهرباء والأبواب الأوتوماتيكية (الحركة والتفاعل).</li>
+        </ul>
+        <!-- </ul> = نهاية القائمة -->
+
+        <hr>
+        <!--
+          <hr> = Horizontal Rule = خط أفقي فاصل
+          وسم فارغ - مش محتاج إغلاق
+          بيرسم خط بيفصل بين الأجزاء المختلفة
+        -->
+
+        <h2>2. هيكل الصفحة الأساسي (Basic Structure)</h2>
+
+        <p>
+          كل صفحة ويب على الإنترنت تبدأ بهيكل أساسي ثابت لا يتغير. إليك الكود وشرح كل سطر فيه:
+        </p>
+
+        <div class="code-explain-card">
+          <!--
+            <div> لتغليف بطاقة الكود
+            class="code-explain-card" = تنسيق خاص (خلفية داكنة، كود جميل)
+          -->
+
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;عنوان صفحتي الأولى&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;أهلاً بك في عالم الويب!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <!--
+            <pre> = Preformatted Text = نص محافظ على تنسيقه
+            بيعرض المسافات والأسطر كما هي تماماً
+            بيستخدم مع <code> لعرض الكود
+
+            <code> = Code = كود برمجي
+            عنصر Semantic - بيقول إن المحتوى ده كود
+            بيعرضه بخط ثابت (Monospace) مثل Courier
+
+            &lt; = < (رمز أقل من) - لازم نكتبه هكذا في HTML
+            &gt; = > (رمز أكبر من) - لازم نكتبه هكذا
+            عشان المتصفح ميفهمش إنه وسم HTML
+          -->
+        </div>
+
+        <h3>شرح الأسطر بالتفصيل:</h3>
+        <!--
+          <h3> = Heading 3 = عنوان من المستوى الثالث
+          بيجي بعد h2 في التسلسل الهرمي
+        -->
+
+        <dl class="explain-list">
+          <!--
+            <dl> = Description List = قائمة وصفية/تعريفية
+            بتستخدم لعرض أزواج من (مصطلح : تعريف)
+            مكونة من:
+            - <dt> = Definition Term = المصطلح
+            - <dd> = Definition Description = التعريف/الشرح
+            class="explain-list" = تنسيق خاص
+          -->
+
+          <dt><code>&lt;!DOCTYPE html&gt;</code></dt>
+          <!--
+            <dt> = Definition Term = المصطلح
+            <code> = لعرض الكود بخط ثابت
+          -->
+          <dd>يخبر المتصفح أن هذه الصفحة مكتوبة باستخدام إصدار HTML5 الحديث ليعرضها بشكل صحيح.</dd>
+          <!--
+            <dd> = Definition Description = الشرح
+            بيأتي مباشرة بعد <dt>
+          -->
+
+          <dt><code>&lt;html&gt;</code></dt>
+          <dd>هو العنصر الحاضن الأكبر (Root)، وكل شيء في صفحتك يوضع بين <code>&lt;html&gt;</code> و <code>&lt;/html&gt;</code>.</dd>
+
+          <dt><code>&lt;head&gt;</code></dt>
+          <dd>يحتوي على معلومات خلفية للمتصفح ومحركات البحث (أكواد التنسيق، كلمات البحث، عنوان التبويب) ولا تظهر للمستخدم مباشرة.</dd>
+
+          <dt><code>&lt;body&gt;</code></dt>
+          <dd>يحتوي على كل المحتوى الذي يراه زائر الموقع فعلياً مثل العناوين، الفقرات، الصور والروابط.</dd>
+
+        </dl>
+        <!-- </dl> = نهاية قائمة التعريف -->
+
+        <hr>
+
+        <h2>3. ما هي الوسوم (Tags) والعناصر (Elements)؟</h2>
+
+        <p>
+          تتكون HTML من مجموعة من <strong>الوسوم (Tags)</strong>. يكتب الوسم عادة بوضعه داخل أوسمة المقارنة <code>&lt; &gt;</code>.
+          وهناك نوعين رئيسيين من الأوسمة:
+        </p>
+
+        <div class="tags-comparison">
+          <!--
+            <div> لتغليف مقارنة نوعي الوسوم
+            class="tags-comparison" = تنسيق عرض جنباً لجنب (flex)
+          -->
+
+          <div class="tag-type-card">
+            <!--
+              <div> لبطاقة النوع الأول
+              class="tag-type-card" = تنسيق البطاقة (حدود، خلفية)
+            -->
+            <h3>1. أوسمة ثنائية (عناصر مزدوجة)</h3>
+            <p>تتكون من وسم بداية ووسم نهاية وبينهما المحتوى:</p>
+            <code>&lt;p&gt;هذه فقرة&lt;/p&gt;</code>
+            <!--
+              هنا <code> بدون <pre> لأن الكود قصير في سطر واحد
+              مناسب أكثر للكود المضمّن (Inline Code)
+            -->
+            <p><small>لاحظ وجود علامة السلاش <code>/</code> في وسم النهاية.</small></p>
+            <!--
+              <small> = نص أصغر حجماً
+              مناسب للتعليقات الثانوية
+            -->
+          </div>
+
+          <div class="tag-type-card">
+            <h3>2. أوسمة أحادية (عناصر فارغة / Void)</h3>
+            <p>لا تحتاج لوسم نهاية ولا تحتوي على نص بداخلها، مثل وسم الصورة أو السطر الجديد:</p>
+            <code>&lt;br&gt;</code> أو <code>&lt;img src="image.png"&gt;</code>
+          </div>
+
+        </div>
+        <!-- </div> = نهاية tags-comparison -->
+
+        <hr>
+
+        <h2>4. ما هي السمات (Attributes)؟</h2>
+
+        <p>
+          السمات هي معلومات إضافية نضعها <strong>داخل وسم البداية فقط</strong> لتعريف خصائص العنصر.
+          تكتب دائماً على شكل <code>name="value"</code> (الاسم = القيمة بين علامتي تنصيص).
+        </p>
+
+        <p>مثال:</p>
+        <code>&lt;a href="https://google.com" target="_blank"&gt;زيارة جوجل&lt;/a&gt;</code>
+
+        <ul>
+          <li>السمة <code>href</code> تحدد الوجهة أو الرابط للموقع.</li>
+          <li>السمة <code>target="_blank"</code> تخبر المتصفح بفتح الرابط في صفحة أو تبويب جديد.</li>
+        </ul>
+
+      </section>
+      <!-- </section> = نهاية جسم الدرس -->
+
+      <footer class="lesson-footer-nav">
+        <!--
+          <footer> جوا <article>
+          ده footer الدرس (المقال) مش footer الموقع
+          بيحتوي على روابط التنقل بين الدروس
+          class="lesson-footer-nav" = تنسيق خاص لأزرار التنقل
+        -->
+        <a href="../index.html" class="btn btn-secondary">🏠 عودة للرئيسية</a>
+        <!--
+          <a> = رابط
+          class="btn btn-secondary" = تنسيق يخليه يبدو زي زرار
+          btn = الشكل الأساسي للزرار
+          btn-secondary = لون رمادي (ثانوي)
+        -->
+        <a href="lesson2.html" class="btn btn-primary">الدرس التالي: العناوين والفقرات ➡️</a>
+        <!--
+          btn-primary = اللون الأساسي (أزرق)
+          دايماً اجعل الزرار الرئيسي primary والثانوي secondary
+        -->
+      </footer>
+      <!-- </footer> = نهاية footer الدرس -->
+
+    </article>
+    <!-- </article> = نهاية مقال الدرس -->
+
+  </main>
+  <!-- </main> = نهاية المحتوى الرئيسي -->
+
+
+  <!-- ============================================================ -->
+  <!-- FOOTER - ذيل الصفحة الرئيسي                                  -->
+  <!-- ============================================================ -->
+
+  <footer id="main-footer" class="main-footer">
+    <!--
+      <footer> = ذيل الصفحة
+      عنصر Semantic - معناه واضح
+      بيحتوي عادة على:
+      - حقوق النشر (Copyright)
+      - روابط التواصل الاجتماعي
+      - روابط قانونية (سياسة الخصوصية)
+      - معلومات الشركة أو صاحب الموقع
+    -->
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 تعلم HTML - جميع الحقوق محفوظة
+          <!--
+            &copy; = © = رمز حقوق النشر (Copyright)
+            ده HTML Entity - طريقة كتابة رموز خاصة في HTML
+            أمثلة:
+            &copy; = ©
+            &amp; = &
+            &lt; = <
+            &gt; = >
+            &nbsp; = مسافة غير قابلة للكسر
+          -->
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- </footer> = نهاية ذيل الصفحة -->
+
+
+  <!-- ============================================================ -->
+  <!-- STYLES - تنسيقات خاصة بالصفحة دي بس                         -->
+  <!-- ============================================================ -->
+
+  <style>
+    /*
+      <style> = بيسمح بكتابة CSS مباشرة في الصفحة
+      بيجي في <head> أو <body>
+      الأفضل دايماً تحط الـ CSS في ملف خارجي style.css
+      بس هنا حاطين بعض الأنماط الخاصة بالدرس ده بس
+
+      في CSS:
+      التعليق يكتب هكذا: بدون تداخل
+      مثال الكلاس:  .اسم-الكلاس  { الخصائص }
+      مثال الـ id:  #اسم-الـ-id  { الخصائص }
+    */
+
+    .lesson-meta { margin-bottom: 15px; font-size: 0.9em; color: #666; }
+    /* margin-bottom: مسافة من الأسفل = 15px */
+    /* font-size: 0.9em = 90% من حجم الخط الأب */
+    /* color: #666 = رمادي متوسط */
+
+    .category-badge {
+      padding: 4px 8px;
+      /* padding: مسافة داخلية (4px فوق وتحت، 8px يمين وشمال) */
+      border-radius: 4px;
+      /* border-radius: استدارة الزوايا */
+      font-weight: bold;
+      background: #e3f2fd;
+      /* خلفية زرقاء فاتحة */
+      color: #0d47a1;
+      /* نص أزرق غامق */
+      margin-left: 10px;
+    }
+
+    .read-time { font-style: italic; }
+    /* italic = خط مائل */
+
+    .lesson-title { font-size: 2.2em; margin-top: 10px; margin-bottom: 15px; color: #1a1a1a; }
+    .lesson-summary { font-size: 1.2em; line-height: 1.6; color: #555; background: #fdfdfd; padding: 15px; border-right: 4px solid #007bff; }
+    /* line-height: ارتفاع السطر = 1.6 ضعف حجم الخط */
+    /* border-right: حد أيمن أزرق */
+
+    .lesson-body h2 { font-size: 1.6em; margin-top: 35px; margin-bottom: 15px; color: #007bff; border-bottom: 2px solid #eaeaea; padding-bottom: 8px; }
+    .lesson-body p { font-size: 1.1em; line-height: 1.7; color: #333; margin-bottom: 15px; }
+
+    .code-explain-card { background: #272822; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto; }
+    /* overflow-x: auto = لو الكود طويل يظهر شريط تمرير أفقي */
+    .code-explain-card code { color: #f8f8f2; font-family: monospace; font-size: 1em; }
+    /* monospace = خط ثابت العرض - مثالي للكود */
+
+    .explain-list dt { font-weight: bold; font-size: 1.1em; color: #333; margin-top: 15px; }
+    .explain-list dd { margin-right: 20px; color: #666; margin-bottom: 15px; line-height: 1.6; }
+    /* margin-right: مسافة من اليمين (RTL) = المسافة البادئة */
+
+    .tags-comparison { display: flex; gap: 20px; margin: 25px 0; flex-wrap: wrap; }
+    /* display: flex = تخطيط Flexbox (جنباً لجنب) */
+    /* gap: مسافة بين العناصر = 20px */
+    /* flex-wrap: wrap = لو مفيش مساحة ينزل تحت */
+
+    .tag-type-card { flex: 1; min-width: 250px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa; }
+    /* flex: 1 = يأخذ مساحة متساوية */
+    /* min-width: أقل عرض = 250px */
+
+    .tag-type-card h3 { color: #333; margin-top: 0; }
+    .tag-type-card code { display: block; background: #eee; padding: 8px 12px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 1em; }
+    /* display: block = يأخذ سطر كامل */
+
+    .lesson-footer-nav { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 15px; }
+    /* justify-content: space-between = واحد يمين وواحد شمال */
+  </style>
+
+  <script src="../script.js"></script>
+</body>
+<!-- </body> = نهاية جسم الصفحة -->
+
+</html>
+<!-- </html> = نهاية الصفحة - لازم تقفل كل وسم فتحته -->

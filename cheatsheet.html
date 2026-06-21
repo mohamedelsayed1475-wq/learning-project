@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  إعلان نوع المستند للمتصفح بأنه HTML5 لضمان عرض الصفحة بشكل سليم.
+  =====================================================
+-->
+<html lang="ar" dir="rtl">
+<!--
+  <html> = الجذر (Root).
+  - lang="ar": لغة محتوى الصفحة هي العربية.
+  - dir="rtl": اتجاه عناصر الصفحة من اليمين لليسار.
+-->
+<head>
+<!-- وسم الرأس الذي يحتوي على معلومات وصفية وتنسيقات لا تظهر للزائر مباشرة -->
+  <meta charset="UTF-8">
+  <!-- ترميز الحروف العالمي لضمان سلامة الأحرف العربية -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ضبط التجاوب والتناسق مع أحجام الشاشات المختلفة للأجهزة -->
+  <meta name="description" content="المرجع السريع الشامل لـ HTML - جميع الوسوم والسمات في مكان واحد">
+  <!-- وصف الصفحة لمحركات البحث -->
+  <title>📋 المرجع السريع الشامل - تعلم HTML</title>
+  <!-- عنوان التبويب العلوي للمتصفح -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <!-- أيقونة الموقع المفضلة -->
+  <link rel="stylesheet" href="style.css">
+  <!-- ربط ملف الاستايل CSS الخارجي -->
+</head>
+<body>
+<!-- وسم الجسم ويحتوي على كافة عناصر الصفحة المرئية للمستخدم -->
+
+  <header id="main-header">
+  <!-- رأس الموقع، يحتوي على شعار وقائمة التنقل -->
+    <nav id="main-nav">
+    <!-- حاوية روابط قائمة التنقل الرئيسية -->
+      <div class="nav-logo">
+      <!-- شعار الموقع -->
+        <a href="index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم الويب</span>
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+      <!-- قائمة صفحات الموقع -->
+        <li class="nav-item"><a href="index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="index.html#lessons" class="nav-link">📖 الدروس</a></li>
+        <li class="nav-item"><a href="playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="cheatsheet.html" class="nav-link active">📋 المرجع السريع</a></li>
+        <!-- class="active" لتمييز وسم المرجع السريع حالياً بالهيدر -->
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+      <!-- زر لفتح وإغلاق القائمة في الموبايل -->
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="cheatsheet-main" class="container">
+  <!-- المحتوى الرئيسي للمرجع السريع -->
+
+    <section class="cheatsheet-intro">
+    <!-- قسم الترويسة والتعريف بالمرجع السريع -->
+      <h1 class="page-title">📋 المرجع السريع الشامل لتطوير الويب</h1>
+      <p class="page-subtitle">كل الوسوم والسمات والخصائص والبرمجيات في مكان واحد — احتفظ بهذه الصفحة مرجعاً دائماً لك أثناء البرمجة.</p>
+      
+      <div class="lessons-tabs" style="margin-top: 25px; margin-bottom: 0;">
+        <button class="tab-btn active" id="btn-html-cheat" onclick="switchCheatTab('html')">مرجع HTML 🏗️</button>
+        <button class="tab-btn" id="btn-css-cheat" onclick="switchCheatTab('css')">مرجع CSS 🎨</button>
+        <button class="tab-btn" id="btn-js-cheat" onclick="switchCheatTab('js')">مرجع JavaScript ⚡</button>
+      </div>
+    </section>
+
+    <!-- فلتر البحث السريع -->
+    <div class="search-bar-wrap">
+      <input type="text" id="cheatsheet-search" placeholder="🔍 ابحث عن وسم... مثال: table أو img" class="cheatsheet-search-input" oninput="filterCards()">
+      <!--
+        <input type="text">: حقل نص عادي.
+        - id="cheatsheet-search": معرّف للوصول للمدخل عبر جافاسكريبت.
+        - oninput="filterCards()": حدث تشغيل الفلتر تلقائياً عند كتابة أي حرف للبحث دون الحاجة للضغط على أزرار.
+      -->
+    </div>
+
+    <div class="cheatsheet-grid" id="cheatsheet-grid">
+    <!-- شبكة بطاقات المرجع السريع -->
+
+      <!-- بنية الصفحة -->
+      <div class="cheat-card" data-tags="html head body doctype structure هيكل">
+      <!--
+        - class="cheat-card": كارت المرجع.
+        - data-tags="...": سمة بيانات مخصصة (Custom Data Attribute) تستخدمها جافاسكريبت لتسهيل البحث بالوسوم والكلمات الدلالية.
+      -->
+        <h2 class="cheat-title">🏗️ هيكل الصفحة الأساسي</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;!DOCTYPE html&gt;</code></dt>
+          <dd>إعلان نوع المستند للمتصفح بأنه HTML5.</dd>
+          <dt><code>&lt;html lang="ar"&gt;</code></dt>
+          <dd>جذر الصفحة الرئيسي الذي يغلف كافة العناصر، مع سمة تحديد لغة المحتوى.</dd>
+          <dt><code>&lt;head&gt;</code></dt>
+          <dd>رأس الصفحة ويحمل البيانات الوصفية والإعدادات غير المرئية للمستخدمين.</dd>
+          <dt><code>&lt;meta charset="UTF-8"&gt;</code></dt>
+          <dd>ترميز الحروف العالمي لضمان سلامة قراءة اللغة العربية والأحرف الخاصة.</dd>
+          <dt><code>&lt;meta name="viewport" ...&gt;</code></dt>
+          <dd>إعدادات شاشة العرض لجعل صفحات الويب تتجاوب وتتوافق مع مقاسات الموبايل.</dd>
+          <dt><code>&lt;title&gt;</code></dt>
+          <dd>عنوان التبويب العلوي للصفحة في المتصفح.</dd>
+          <dt><code>&lt;body&gt;</code></dt>
+          <dd>جسم الصفحة الذي يضم كافة العناصر المرئية كالفقرات والعناوين والصور.</dd>
+        </dl>
+      </div>
+
+      <!-- العناوين -->
+      <div class="cheat-card" data-tags="h1 h2 h3 h4 h5 h6 heading عنوان">
+        <h2 class="cheat-title">📝 العناوين</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;h1&gt;</code></dt>
+          <dd>العنوان الرئيسي والأهم بالصفحة — يجب استخدامه مرة واحدة فقط.</dd>
+          <dt><code>&lt;h2&gt;</code></dt>
+          <dd>عنوان فرعي من المستوى الثاني (لأقسام الصفحة الكبيرة).</dd>
+          <dt><code>&lt;h3&gt;</code></dt>
+          <dd>عنوان فرعي من المستوى الثالث (للأقسام الفرعية).</dd>
+          <dt><code>&lt;h4&gt; — &lt;h6&gt;</code></dt>
+          <dd>عناوين فرعية أصغر حجماً بالتدريج.</dd>
+        </dl>
+        <div class="cheat-note">💡 h1 مهم جداً لأرشفة محركات البحث (SEO) — اكتب واحداً فقط لكل صفحة.</div>
+      </div>
+
+      <!-- النصوص -->
+      <div class="cheat-card" data-tags="p strong em mark small del br code نص">
+        <h2 class="cheat-title">✍️ النصوص والتنسيق</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;p&gt;</code></dt>
+          <dd>فقرة نصية عادية.</dd>
+          <dt><code>&lt;strong&gt;</code></dt>
+          <dd>نص عريض ومهم لمحركات البحث وللزائر.</dd>
+          <dt><code>&lt;em&gt;</code></dt>
+          <dd>نص مائل للتأكيد اللفظي.</dd>
+          <dt><code>&lt;mark&gt;</code></dt>
+          <dd>نص مظلل بخلفية صفراء لجذب الانتباه.</dd>
+          <dt><code>&lt;small&gt;</code></dt>
+          <dd>نص أصغر حجماً (يستخدم عادة لحقوق الملكية الفكرية أو الشروط والأحكام).</dd>
+          <dt><code>&lt;del&gt;</code></dt>
+          <dd>نص يتوسطه خط مائل يوضح حذفه أو إلغاء العرض.</dd>
+          <dt><code>&lt;code&gt;</code></dt>
+          <dd>عرض نص مخصص كشفرة برمجية inline بخط ثابت.</dd>
+          <dt><code>&lt;br&gt;</code></dt>
+          <dd>وسم فارغ لكسر السطر والنزول لسطر جديد.</dd>
+          <dt><code>&lt;hr&gt;</code></dt>
+          <dd>خط أفقي فاصل للفصل بين المواضيع المختلفة.</dd>
+        </dl>
+      </div>
+
+      <!-- الروابط -->
+      <div class="cheat-card" data-tags="a href link target رابط">
+        <h2 class="cheat-title">🔗 الروابط</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;a href="URL"&gt;</code></dt>
+          <dd>وسم الرابط ومساره href يحدد الوجهة والهدف.</dd>
+          <dt><code>target="_blank"</code></dt>
+          <dd>سمة تفتح الرابط الخارجي في تبويب جديد للحفاظ على بقاء الزائر بموقعك.</dd>
+          <dt><code>href="page.html"</code></dt>
+          <dd>رابط نسبي يشير لصفحة داخلية بالمشروع.</dd>
+          <dt><code>href="#section-id"</code></dt>
+          <dd>رابط قفز داخلي ينتقل مباشرة لـ id عنصر في نفس الصفحة.</dd>
+          <dt><code>href="mailto:x@x.com"</code></dt>
+          <dd>رابط لفتح تطبيق البريد وإرسال رسالة مباشرة.</dd>
+          <dt><code>href="tel:+201234567"</code></dt>
+          <dd>رابط هاتف يتيح للزائر الاتصال مباشرة عند نقره بالهاتف.</dd>
+        </dl>
+      </div>
+
+      <!-- الصور -->
+      <div class="cheat-card" data-tags="img src alt width height figure صورة">
+        <h2 class="cheat-title">🖼️ الصور</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;img src="..." alt="..."&gt;</code></dt>
+          <dd>وسم عرض الصورة — وسم فارغ بلا حاجة لإغلاق.</dd>
+          <dt><code>src</code></dt>
+          <dd>سمة تحديد مسار الصورة أو رابطها الإلكتروني.</dd>
+          <dt><code>alt</code></dt>
+          <dd>سمة النص البديل لوصف الصورة لمحركات البحث وقارئات المكفوفين.</dd>
+          <dt><code>width / height</code></dt>
+          <dd>أبعاد الصورة للعرض والارتفاع بالبكسل.</dd>
+          <dt><code>&lt;figure&gt; + &lt;figcaption&gt;</code></dt>
+          <dd>تجميع الصورة وعنوانها الوصفي المكتوب أسفلها معاً بدلالة واضحة.</dd>
+        </dl>
+      </div>
+
+      <!-- القوائم -->
+      <div class="cheat-card" data-tags="ul ol li dl dt dd قائمة list">
+        <h2 class="cheat-title">📋 القوائم</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;ul&gt;</code></dt>
+          <dd>قائمة بنقاط غير مرتبة.</dd>
+          <dt><code>&lt;ol&gt;</code></dt>
+          <dd>قائمة مرقمة مرتبة تسلسلياً.</dd>
+          <dt><code>&lt;li&gt;</code></dt>
+          <dd>عنصر القائمة الفردي ويوضع داخل ul أو ol.</dd>
+          <dt><code>ol type="A"</code></dt>
+          <dd>تعديل نوع الترقيم ليصبح بالحروف الأبجدية الإنجليزية.</dd>
+          <dt><code>ol type="I"</code></dt>
+          <dd>تعديل نوع الترقيم ليصبح بالأرقام الرومانية.</dd>
+          <dt><code>&lt;dl&gt; / &lt;dt&gt; / &lt;dd&gt;</code></dt>
+          <dd>قائمة تعريفات ومصطلحات وشروحات مرافقة لها.</dd>
+        </dl>
+      </div>
+
+      <!-- الجداول -->
+      <div class="cheat-card" data-tags="table tr td th thead tbody tfoot colspan rowspan جدول">
+        <h2 class="cheat-title">📊 الجداول</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;table&gt;</code></dt>
+          <dd>الحاوية الأساسية للجدول والبيانات.</dd>
+          <dt><code>&lt;thead&gt;</code></dt>
+          <dd>رأس الجدول ويجمع الصفوف الخاصة بالعناوين.</dd>
+          <dt><code>&lt;tbody&gt;</code></dt>
+          <dd>جسم الجدول ويجمع صفوف البيانات الفعلية المكررة.</dd>
+          <dt><code>&lt;tfoot&gt;</code></dt>
+          <dd>تذييل الجدول ويستخدم لعرض الإجماليات أو الخلاصات.</dd>
+          <dt><code>&lt;tr&gt;</code></dt>
+          <dd>وسم الصف الأفقي بالجدول.</dd>
+          <dt><code>&lt;th&gt;</code></dt>
+          <dd>خلية عنوان العمود (تظهر غامقة ومتوسطة تلقائياً).</dd>
+          <dt><code>&lt;td&gt;</code></dt>
+          <dd>خلية بيانات عادية بالجدول.</dd>
+          <dt><code>colspan="2"</code></dt>
+          <dd>دمج الخلايا أفقياً لعرض عمودين بمساحة عمود واحد مدمج.</dd>
+          <dt><code>rowspan="2"</code></dt>
+          <dd>دمج الخلايا عمودياً لعرض صفين بمساحة صف واحد مدمج.</dd>
+        </dl>
+      </div>
+
+      <!-- النماذج -->
+      <div class="cheat-card" data-tags="form input button select textarea label نموذج">
+        <h2 class="cheat-title">📝 النماذج</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;form action method&gt;</code></dt>
+          <dd>الحاوية الأساسية للنموذج والمدخلات.</dd>
+          <dt><code>&lt;input type="text"&gt;</code></dt>
+          <dd>حقل إدخال نصوص عادي.</dd>
+          <dt><code>&lt;input type="email"&gt;</code></dt>
+          <dd>حقل إدخال بريد إلكتروني يتحقق المتصفح من صحة ترميزه تلقائياً.</dd>
+          <dt><code>&lt;input type="password"&gt;</code></dt>
+          <dd>حقل إدخال كلمة مرور يخفي الأحرف المدخلة لأسباب أمنية.</dd>
+          <dt><code>&lt;input type="checkbox"&gt;</code></dt>
+          <dd>مربع اختيار يتيح تحديد خيارات متعددة.</dd>
+          <dt><code>&lt;input type="radio"&gt;</code></dt>
+          <dd>زر راديو دائري يتيح خياراً واحداً فقط للمجموعة التي تملك نفس سمة name.</dd>
+          <dt><code>&lt;textarea&gt;</code></dt>
+          <dd>منطقة كتابة نص طويلة متعددة الأسطر.</dd>
+          <dt><code>&lt;select&gt; + &lt;option&gt;</code></dt>
+          <dd>القائمة المنسدلة والخيارات التابعة لها.</dd>
+          <dt><code>&lt;label for="id"&gt;</code></dt>
+          <dd>تسمية توضيحية لحقل الإدخال المقابل لزيادة سهولة النقر.</dd>
+          <dt><code>&lt;button type="submit"&gt;</code></dt>
+          <dd>زر إرسال بيانات النموذج للخادم.</dd>
+          <dt><code>required</code></dt>
+          <dd>سمة تمنع إرسال النموذج إذا ترك المستخدم الحقل فارغاً.</dd>
+          <dt><code>placeholder</code></dt>
+          <dd>نص تلميحي باهت يظهر داخل الحقل ويختفي عند الكتابة.</dd>
+        </dl>
+      </div>
+
+      <!-- البنية الدلالية -->
+      <div class="cheat-card" data-tags="semantic header nav main footer section article aside figure time دلالي">
+        <h2 class="cheat-title">🏗️ البنية الدلالية (HTML5)</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;header&gt;</code></dt>
+          <dd>رأس وتوثيق الصفحة أو القسم الخاص.</dd>
+          <dt><code>&lt;nav&gt;</code></dt>
+          <dd>تجميع روابط التصفح وقائمة التنقل الأساسية للموقع.</dd>
+          <dt><code>&lt;main&gt;</code></dt>
+          <dd>المحتوى الفريد والوحيد الأساسي بالصفحة.</dd>
+          <dt><code>&lt;section&gt;</code></dt>
+          <dd>تقسيم الصفحة لأقسام وفصول مستقلة وذات موضوع مشترك.</dd>
+          <dt><code>&lt;article&gt;</code></dt>
+          <dd>كتلة محتوى مستقلة بذاتها ومفهومة دون الاعتماد على البقية.</dd>
+          <dt><code>&lt;aside&gt;</code></dt>
+          <dd>شريط جانبي أو معلومات فرعية ملحقة للموضوع الرئيسي.</dd>
+          <dt><code>&lt;footer&gt;</code></dt>
+          <dd>تذييل الصفحة ومعلومات الاتصال وحقوق النشر.</dd>
+          <dt><code>&lt;figure&gt;</code></dt>
+          <dd>تغليف للرسوم البيانية والملفات التوضيحية والصور.</dd>
+          <dt><code>&lt;time datetime="..."&gt;</code></dt>
+          <dd>تمثيل التواريخ والأوقات لزيادة فهم محركات البحث.</dd>
+          <dt><code>&lt;address&gt;</code></dt>
+          <dd>بيانات الاتصال والتواصل بالكاتب أو الشركة.</dd>
+        </dl>
+      </div>
+
+      <!-- div و span -->
+      <div class="cheat-card" data-tags="div span class id block inline حاوي">
+        <h2 class="cheat-title">🎯 div و span و class و id</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;div&gt;</code></dt>
+          <dd>حاوية كتلية عامة تنزل لسطر جديد لتجميع العناصر.</dd>
+          <dt><code>&lt;span&gt;</code></dt>
+          <dd>حاوية مضمنة تبقى بنفس السطر وتلائم حجم محتواها الداخلي.</dd>
+          <dt><code>class="name"</code></dt>
+          <dd>فئة لتصنيف العناصر، يمكن تكرارها، ويتم استهدافها بـ CSS بالنقطة (.name).</dd>
+          <dt><code>id="name"</code></dt>
+          <dd>معرّف فريد لا يجوز تكراره بالصفحة، ويتم استهدافه بـ CSS بالهاش (#name).</dd>
+        </dl>
+        <div class="cheat-note">⚡ Block ينشئ سطراً جديداً ويأخذ العرض كله — Inline يبقى بالسطر بمساحة محتواه.</div>
+      </div>
+
+      <!-- وسوم متفرقة مفيدة -->
+      <div class="cheat-card" data-tags="pre blockquote abbr details summary iframe video audio متفرقة">
+        <h2 class="cheat-title">✨ وسوم مفيدة أخرى</h2>
+        <dl class="cheat-list">
+          <dt><code>&lt;pre&gt;</code></dt>
+          <dd>نص يحافظ على المسافات والأسطر كما كُتبت في الكود تماماً.</dd>
+          <dt><code>&lt;blockquote&gt;</code></dt>
+          <dd>اقتباس نصي طويل من مصدر خارجي يتم تهميشه جانباً.</dd>
+          <dt><code>&lt;abbr title="..."&gt;</code></dt>
+          <dd>اختصار يظهر معناه التفصيلي كتلميح عند تحريك الماوس فوقه.</dd>
+          <dt><code>&lt;details&gt; + &lt;summary&gt;</code></dt>
+          <dd>صندوق معلومات قابل للفتح والطي بلمسة واحدة دون جافاسكريبت.</dd>
+          <dt><code>&lt;iframe src="..."&gt;</code></dt>
+          <dd>تضمين صفحة ويب خارجية بالكامل داخل صفحتك (مثل الخرائط والفيديوهات).</dd>
+          <dt><code>&lt;video src="..."&gt;</code></dt>
+          <dd>عرض وتشغيل ملفات الفيديو مباشرة بالصفحة.</dd>
+          <dt><code>&lt;audio src="..."&gt;</code></dt>
+          <dd>تشغيل الملفات الصوتية مباشرة بالصفحة.</dd>
+        </dl>
+      </div>
+
+      <!-- السمات العامة -->
+      <div class="cheat-card" data-tags="attributes style title lang dir class id global سمات عامة">
+        <h2 class="cheat-title">⚙️ السمات العامة (Global Attributes)</h2>
+        <dl class="cheat-list">
+          <dt><code>class</code></dt>
+          <dd>تحديد فئة تصنيف العنصر لاستدعاء تنسيق CSS.</dd>
+          <dt><code>id</code></dt>
+          <dd>تحديد معرّف فريد لاستهدافه بـ CSS أو JavaScript.</dd>
+          <dt><code>style="..."</code></dt>
+          <dd>كتابة أكواد CSS وتنسيقات مباشرة للعنصر.</dd>
+          <dt><code>title="..."</code></dt>
+          <dd>نص تلميحي يظهر عند بقاء الماوس فوق العنصر ثانية.</dd>
+          <dt><code>lang="ar"</code></dt>
+          <dd>تحديد لغة العنصر المحددة بشكل خاص.</dd>
+          <dt><code>dir="rtl"</code></dt>
+          <dd>تحديد اتجاه المحتوى للعنصر بشكل خاص (rtl = يمين لليسار).</dd>
+          <dt><code>hidden</code></dt>
+          <dd>إخفاء العنصر بالكامل من واجهة العرض بالمتصفح.</dd>
+          <dt><code>tabindex</code></dt>
+          <dd>تحديد ترتيب تنقل مؤشر لوحة المفاتيح عبر زر Tab.</dd>
+          <dt><code>aria-label</code></dt>
+          <dd>إعطاء وصف وتسمية للعنصر مخصصة لقارئات المكفوفين الصوتية.</dd>
+        </dl>
+      </div>
+
+      <!-- =====================================================
+         بطاقات مرجع CSS (data-category="css")
+         ===================================================== -->
+
+      <!-- المحددات وطرق الكتابة -->
+      <div class="cheat-card" data-category="css" data-tags="selectors selector syntax class id inline internal external css محددات كتابة">
+        <h2 class="cheat-title">🎨 المحددات وطرق الكتابة</h2>
+        <dl class="cheat-list">
+          <dt><code>طرق الكتابة</code></dt>
+          <dd>
+            1. <strong>Inline:</strong> مباشرة في وسم HTML عبر سمة <code>style="..."</code>.<br>
+            2. <strong>Internal:</strong> داخل وسم <code>&lt;style&gt;</code> في الـ head.<br>
+            3. <strong>External:</strong> في ملف مستقل <code>.css</code> يتم ربطه بـ <code>&lt;link rel="stylesheet" ...&gt;</code>.
+          </dd>
+          <dt><code>المحددات (Selectors)</code></dt>
+          <dd>
+            - <strong>محدد العنصر:</strong> <code>h1 { }</code> لتحديد كافة وسوم h1.<br>
+            - <strong>محدد الكلاس:</strong> <code>.box { }</code> لتحديد العناصر ذات <code>class="box"</code>.<br>
+            - <strong>محدد الـ ID:</strong> <code>#header { }</code> لتحديد العنصر ذي <code>id="header"</code>.<br>
+            - <strong>المحدد العام:</strong> <code>* { }</code> لتحديد كافة عناصر الصفحة.
+          </dd>
+          <dt><code>أولوية التنسيق</code></dt>
+          <dd>الـ ID هو الأعلى أولوية، يليه الكلاس، ثم العنصر. للتخطي الإجباري نستخدم <code>!important</code>.</dd>
+        </dl>
+      </div>
+
+      <!-- الألوان والخلفيات -->
+      <div class="cheat-card" data-category="css" data-tags="color background image linear-gradient opacity rgb hex hsl ألوان خلفيات">
+        <h2 class="cheat-title">🎨 الألوان والخلفيات</h2>
+        <dl class="cheat-list">
+          <dt><code>تعريف الألوان</code></dt>
+          <dd>
+            - <strong>الأسماء:</strong> <code>red, blue, gold</code>.<br>
+            - <strong>الـ HEX:</strong> <code>#ff0000</code> (أحمر).<br>
+            - <strong>الـ RGB:</strong> <code>rgb(255, 0, 0)</code>.<br>
+            - <strong>الـ HSL:</strong> <code>hsl(0, 100%, 50%)</code> (درجة اللون، التشبع، الإضاءة).
+          </dd>
+          <dt><code>الخلفيات (Backgrounds)</code></dt>
+          <dd>
+            - <code>background-color</code>: لتحديد لون الخلفية.<br>
+            - <code>background-image</code>: لتحديد صورة خلفية <code>url('image.jpg')</code>.<br>
+            - <code>background-size</code>: تحديد مقاس الصورة (مثل <code>cover</code> لتغطية الحاوية).<br>
+            - <code>background-repeat</code>: تكرار الصورة أو منعه <code>no-repeat</code>.
+          </dd>
+          <dt><code>التدرجات والشفافية</code></dt>
+          <dd>
+            - <code>linear-gradient(direction, color1, color2)</code>: تدرج لوني خطي.<br>
+            - <code>opacity</code>: تحديد شفافية العنصر بالكامل (من 0 لـ 1).
+          </dd>
+        </dl>
+      </div>
+
+      <!-- النصوص والخطوط -->
+      <div class="cheat-card" data-category="css" data-tags="font size family weight color align line-height decoration نصوص خطوط">
+        <h2 class="cheat-title">✍️ النصوص والخطوط</h2>
+        <dl class="cheat-list">
+          <dt><code>خصائص الخطوط</code></dt>
+          <dd>
+            - <code>font-size</code>: حجم الخط (بـ <code>px</code> أو <code>rem</code> أو <code>em</code>).<br>
+            - <code>font-family</code>: نوع الخط المستعمل (مثل <code>Arial</code>, <code>Tahoma</code>).<br>
+            - <code>font-weight</code>: سمك الخط (مثل <code>bold</code> أو قيم رقمية كـ <code>400</code>, <code>700</code>).
+          </dd>
+          <dt><code>تنسيق النصوص</code></dt>
+          <dd>
+            - <code>color</code>: لون الخط.<br>
+            - <code>text-align</code>: محاذاة النص (<code>right</code>, <code>left</code>, <code>center</code>, <code>justify</code>).<br>
+            - <code>text-decoration</code>: زخرفة النص (مثل <code>underline</code> للسطر السفلي أو <code>none</code> لإزالة خطوط الروابط).<br>
+            - <code>line-height</code>: ارتفاع السطر لتحديد المسافة الرأسية بين السطور.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- نموذج الصندوق -->
+      <div class="cheat-card" data-category="css" data-tags="margin padding border box-sizing width height صندوق مسافات">
+        <h2 class="cheat-title">📦 نموذج الصندوق (Box Model)</h2>
+        <dl class="cheat-list">
+          <dt><code>مكونات الصندوق</code></dt>
+          <dd>
+            1. <strong>Content:</strong> المحتوى الفعلي (نص أو صورة).<br>
+            2. <strong>Padding:</strong> الهامش الداخلي (بين المحتوى والحدود).<br>
+            3. <strong>Border:</strong> حافة وإطار العنصر.<br>
+            4. <strong>Margin:</strong> الهامش الخارجي الفاصل بين العنصر والعناصر الأخرى.
+          </dd>
+          <dt><code>الحدود (Border)</code></dt>
+          <dd><code>border: 2px solid black;</code> (السمك، النوع، اللون). ويستخدم <code>border-radius</code> لعمل حواف دائرية.</dd>
+          <dt><code>box-sizing: border-box</code></dt>
+          <dd>خاصية مهمة جداً تجعل أبعاد العنصر (Width/Height) تشمل الهوامش الداخلية والحدود لسهولة الحساب ومنع تمدد العناصر.</dd>
+        </dl>
+      </div>
+
+      <!-- التموضع والعرض -->
+      <div class="cheat-card" data-category="css" data-tags="position display block inline relative absolute fixed sticky z-index تموضع عرض">
+        <h2 class="cheat-title">📌 التموضع والعرض</h2>
+        <dl class="cheat-list">
+          <dt><code>العرض (Display)</code></dt>
+          <dd>
+            - <code>block</code>: يأخذ السطر كاملاً (مثل div, p).<br>
+            - <code>inline</code>: يأخذ مساحة محتواه فقط ولا ينشئ سطراً جديداً (مثل span, a).<br>
+            - <code>inline-block</code>: كالعناصر السطرية ولكنه يقبل تحديد الطول والعرض والهوامش.<br>
+            - <code>none</code>: إخفاء العنصر تماماً من العرض.
+          </dd>
+          <dt><code>التموضع (Position)</code></dt>
+          <dd>
+            - <code>static</code>: طبيعي وتلقائي.<br>
+            - <code>relative</code>: نسبي لموقعه الأصلي.<br>
+            - <code>absolute</code>: مطلق لحاوية العنصر الأب ذات التموضع النسبي.<br>
+            - <code>fixed</code>: ثابت بالنسبة للشاشة لا يتحرك مع التمرير.<br>
+            - <code>sticky</code>: لاصق، يتحرك مع الصفحة ثم يثبت في موقع معين.
+          </dd>
+          <dt><code>ترتيب الطبقات (z-index)</code></dt>
+          <dd>يحدد العنصر الأكثر ارتفاعاً وتداخلاً بالأعلى (يقبل أرقام سالبة وموجبة، ويعمل فقط مع العناصر الموضعة).</dd>
+        </dl>
+      </div>
+
+      <!-- Flexbox & Grid -->
+      <div class="cheat-card" data-category="css" data-tags="flex grid justify align columns rows gap تخطيط مرن شبكة">
+        <h2 class="cheat-title">↔️ Flexbox & Grid</h2>
+        <dl class="cheat-list">
+          <dt><code>التخطيط المرن (Flexbox)</code></dt>
+          <dd>
+            - <code>display: flex;</code>: تفعيل النظام للحاوي.<br>
+            - <code>flex-direction</code>: اتجاه العناصر (<code>row</code> أفقياً أو <code>column</code> عمودياً).<br>
+            - <code>justify-content</code>: توزيع المحتوى أفقياً (<code>space-between, center, flex-start</code>).<br>
+            - <code>align-items</code>: محاذاة العناصر عمودياً (<code>center, stretch</code>).
+          </dd>
+          <dt><code>تخطيط الشبكة (Grid)</code></dt>
+          <dd>
+            - <code>display: grid;</code>: تفعيل النظام للشبكة.<br>
+            - <code>grid-template-columns</code>: تحديد الأعمدة (مثل <code>repeat(3, 1fr)</code>).<br>
+            - <code>grid-template-rows</code>: تحديد الصفوف.<br>
+            - <code>gap</code>: المسافة بين الخلايا في التخطيط.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- التصميم المتجاوب -->
+      <div class="cheat-card" data-category="css" data-tags="media query responsive mobile rem em viewport تجاوب متجاوب">
+        <h2 class="cheat-title">📱 التصميم المتجاوب</h2>
+        <dl class="cheat-list">
+          <dt><code>الاستعلامات الإعلامية (Media Queries)</code></dt>
+          <dd>
+            تستخدم لتطبيق تنسيقات مخصصة عند مقاسات شاشات محددة:<br>
+            <code>@media (max-width: 768px) { ... }</code> (يطبق على شاشات الجوال التي يقل عرضها عن 768 بكسل).
+          </dd>
+          <dt><code>الوحدات النسبية (Relative Units)</code></dt>
+          <dd>
+            - <code>rem</code>: نسبة لحجم الخط في العنصر الجذر (html).<br>
+            - <code>em</code>: نسبة لحجم خط العنصر الأب الحالي.<br>
+            - <code>%</code>: نسبة لعرض العنصر الأب.<br>
+            - <code>vw / vh</code>: نسبة مئوية من عرض / طول شاشة العرض (Viewport).
+          </dd>
+        </dl>
+      </div>
+
+      <!-- الحركات والتأثيرات -->
+      <div class="cheat-card" data-category="css" data-tags="transition transform animation keyframes shadow filter حركات تأثيرات">
+        <h2 class="cheat-title">🎬 الحركات والتأثيرات</h2>
+        <dl class="cheat-list">
+          <dt><code>الانتقالات (Transitions)</code></dt>
+          <dd>
+            تغيير الخصائص بنعومة وسلاسة عند حدوث تغيير (مثل hover):<br>
+            <code>transition: all 0.3s ease;</code> (الخصائص، المدة، سرعة الحركة).
+          </dd>
+          <dt><code>التحولات (Transforms)</code></dt>
+          <dd>
+            تغيير أبعاد أو موقع العنصر هندسياً:<br>
+            - <code>scale(1.2)</code>: تكبير حجم العنصر.<br>
+            - <code>rotate(45deg)</code>: تدوير العنصر 45 درجة.<br>
+            - <code>translate(x, y)</code>: إزاحة العنصر في الاتجاهين.
+          </dd>
+          <dt><code>الحركات (Animations)</code></dt>
+          <dd>
+            تعريف حركة مخصصة بـ <code>@keyframes my-move { ... }</code> ثم ربطها بالعنصر عبر خاصية <code>animation</code> مع تحديد المدة والتكرار.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- =====================================================
+         بطاقات مرجع JavaScript (data-category="js")
+         ===================================================== -->
+
+      <!-- أساسيات جافاسكريبت والمخرجات -->
+      <div class="cheat-card" data-category="js" data-tags="console alert script syntax comment جافاسكريبت أساسيات مخرجات">
+        <h2 class="cheat-title">⚡ أساسيات جافاسكريبت والمخرجات</h2>
+        <dl class="cheat-list">
+          <dt><code>إدراج الكود</code></dt>
+          <dd>
+            1. <strong>داخلي:</strong> داخل وسم <code>&lt;script&gt; ... &lt;/script&gt;</code>.<br>
+            2. <strong>خارجي:</strong> في ملف مستقل <code>.js</code> يربط عبر <code>&lt;script src="script.js"&gt;&lt;/script&gt;</code>.
+          </dd>
+          <dt><code>إخراج البيانات</code></dt>
+          <dd>
+            - <code>console.log(value)</code>: طباعة البيانات في كونسول المتصفح (مهم للمطور).<br>
+            - <code>alert(message)</code>: إظهار نافذة منبثقة للزائر.<br>
+            - <code>document.write(text)</code>: الكتابة مباشرة في الصفحة.
+          </dd>
+          <dt><code>التعليقات (Comments)</code></dt>
+          <dd>
+            - <code>// تعليق سطر واحد</code>.<br>
+            - <code>/* تعليق متعدد الأسطر */</code>.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- المتغيرات وأنواع البيانات -->
+      <div class="cheat-card" data-category="js" data-tags="let const var string number boolean object array data types متغيرات بيانات">
+        <h2 class="cheat-title">🔢 المتغيرات وأنواع البيانات</h2>
+        <dl class="cheat-list">
+          <dt><code>تعريف المتغيرات</code></dt>
+          <dd>
+            - <code>let age = 25;</code>: متغير يمكن تعديل قيمته لاحقاً (محدود النطاق).<br>
+            - <code>const PI = 3.14;</code>: ثابت لا يمكن تعديل قيمته بعد تعريفه.<br>
+            - <code>var name = "Ali";</code>: الطريقة القديمة (غير مفضلة حالياً بسبب النطاق).
+          </dd>
+          <dt><code>أنواع البيانات (Data Types)</code></dt>
+          <dd>
+            - <strong>String:</strong> نصوص <code>"Hello"</code>.<br>
+            - <strong>Number:</strong> أرقام صحيحة وعشرية <code>42</code>, <code>3.14</code>.<br>
+            - <strong>Boolean:</strong> منطقي <code>true</code> أو <code>false</code>.<br>
+            - <strong>Array:</strong> مصفوفة <code>[1, 2, 3]</code>.<br>
+            - <strong>Object:</strong> كائن يحتوي على خصائص <code>{ name: 'Ali', age: 25 }</code>.<br>
+            - <strong>Undefined:</strong> متغير تم تعريفه دون إعطائه قيمة.<br>
+            - <strong>Null:</strong> قيمة فارغة ومحددة عمداً.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- العمليات والمنطق -->
+      <div class="cheat-card" data-category="js" data-tags="operators arithmetic logical comparison assignment عمليات منطق">
+        <h2 class="cheat-title">➕ العمليات والمنطق</h2>
+        <dl class="cheat-list">
+          <dt><code>العمليات الحسابية</code></dt>
+          <dd>
+            - <code>+</code> (جمع / دمج نصوص).<br>
+            - <code>-</code> (طرح)، <code>*</code> (ضرب)، <code>/</code> (قسمة).<br>
+            - <code>%</code> (باقي القسمة).<br>
+            - <code>++</code> (زيادة بمقدار 1)، <code>--</code> (نقص بمقدار 1).
+          </dd>
+          <dt><code>المقارنات</code></dt>
+          <dd>
+            - <code>==</code> (تساوي القيمة فقط).<br>
+            - <code>===</code> (تساوي القيمة ونوع البيانات معاً - مفضل دائماً).<br>
+            - <code>!=</code> (لا يساوي)، <code>!==</code> (لا يساوي تماماً القيمة والنوع).<br>
+            - <code>&gt;, &lt;, &gt;=, &lt;=</code> (أكبر، أصغر، أكبر من أو يساوي، أصغر من أو يساوي).
+          </dd>
+          <dt><code>العمليات المنطقية</code></dt>
+          <dd>
+            - <code>&&</code>: و (AND) - يجب تحقق الشرطين معاً.<br>
+            - <code>||</code>: أو (OR) - يكفي تحقق أحد الشرطين.<br>
+            - <code>!</code>: ليس (NOT) - نفي الشرط وعكس قيمته.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- الشرط والتكرار -->
+      <div class="cheat-card" data-category="js" data-tags="if else switch loops for while break شرط تكرار">
+        <h2 class="cheat-title">🔄 الشرط والتكرار</h2>
+        <dl class="cheat-list">
+          <dt><code>الجمل الشرطية</code></dt>
+          <dd>
+            - <code>if (condition) { } else if { } else { }</code>.<br>
+            - <strong>الشرط المختصر (Ternary Operator):</strong><br>
+              <code>let result = (score &gt; 50) ? "ناجح" : "راسب";</code>
+          </dd>
+          <dt><code>التكرار (Loops)</code></dt>
+          <dd>
+            - <strong>For Loop:</strong> تكرار بعدد معلوم من المرات:<br>
+              <code>for (let i = 0; i &lt; 5; i++) { ... }</code><br>
+            - <strong>While Loop:</strong> تكرار مستمر طالما الشرط متحقق:<br>
+              <code>while (condition) { ... }</code>
+          </dd>
+          <dt><code>التحكم في المسار</code></dt>
+          <dd>
+            - <code>break</code>: إيقاف الحلقة والتكرار فوراً والخروج.<br>
+            - <code>continue</code>: تخطي الدورة الحالية والانتقال للدورة التالية مباشرة.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- الدوال -->
+      <div class="cheat-card" data-category="js" data-tags="function return parameter scope arrow دالة دوال">
+        <h2 class="cheat-title">🧩 الدوال (Functions)</h2>
+        <dl class="cheat-list">
+          <dt><code>تعريف دالة عادية</code></dt>
+          <dd>
+            <code>function sayHello(name) {</code><br>
+            <code>&nbsp;&nbsp;return "مرحباً " + name;</code><br>
+            <code>}</code><br>
+            - <code>name</code>: معامل (Parameter) يتم تمريره للدالة.<br>
+            - <code>return</code>: القيمة المرجعة التي تعيدها الدالة عند استدعائها.
+          </dd>
+          <dt><code>دوال السهم (Arrow Functions)</code></dt>
+          <dd>
+            طريقة حديثة ومختصرة لتعريف الدوال:<br>
+            <code>const sayHello = (name) => "مرحباً " + name;</code>
+          </dd>
+          <dt><code>النطاق (Scope)</code></dt>
+          <dd>
+            - <strong>Global Scope:</strong> المتغيرات المعرفة بالخارج متاحة في كل مكان.<br>
+            - <strong>Local Scope:</strong> المتغيرات المعرفة داخل دالة أو كتلة <code>{}</code> لا يمكن الوصول إليها من الخارج.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- المصفوفات والكائنات -->
+      <div class="cheat-card" data-category="js" data-tags="array push pop length slice map filter object properties methods مصفوفات كائنات">
+        <h2 class="cheat-title">🗂️ المصفوفات والكائنات</h2>
+        <dl class="cheat-list">
+          <dt><code>المصفوفات (Arrays)</code></dt>
+          <dd>
+            قائمة مرتبة من القيم:<br>
+            <code>let fruits = ["تفاح", "موز", "برتقال"];</code><br>
+            - <code>fruits[0]</code>: الوصول للعنصر الأول (تفاح).<br>
+            - <code>fruits.push("خوخ")</code>: إضافة عنصر جديد للنهاية.<br>
+            - <code>fruits.length</code>: معرفة عدد عناصر المصفوفة.
+          </dd>
+          <dt><code>الكائنات (Objects)</code></dt>
+          <dd>
+            مجموعة من الخصائص الممثلة بـ (مفتاح : قيمة):<br>
+            <code>let user = { name: "خالد", age: 30 };</code><br>
+            - <code>user.name</code>: الوصول لقيمة الاسم (خالد).<br>
+            - <code>user.age = 31;</code>: تعديل قيمة العمر.
+          </dd>
+        </dl>
+      </div>
+
+      <!-- التحكم بعناصر الصفحة والأحداث -->
+      <div class="cheat-card" data-category="js" data-tags="dom queryselector addeventlistener onclick textcontent innerhtml style أحداث تحكم">
+        <h2 class="cheat-title">🌳 التحكم بالصفحة والأحداث (DOM)</h2>
+        <dl class="cheat-list">
+          <dt><code>اختيار العناصر</code></dt>
+          <dd>
+            - <code>document.getElementById("my-id")</code>: تحديد عنصر بالـ ID.<br>
+            - <code>document.querySelector(".my-class")</code>: تحديد أول عنصر يطابق المحدد (كلاس أو وسم أو ID).<br>
+            - <code>document.querySelectorAll("p")</code>: تحديد كافة العناصر المطابقة.
+          </dd>
+          <dt><code>تعديل العناصر</code></dt>
+          <dd>
+            - <code>element.textContent = "نص جديد";</code>: تعديل النص الداخلي.<br>
+            - <code>element.innerHTML = "&lt;strong&gt;نص عريض&lt;/strong&gt;";</code>: تعديل محتوى HTML.<br>
+            - <code>element.style.color = "red";</code>: تعديل ستايل الـ CSS مباشرة.
+          </dd>
+          <dt><code>التعامل مع الأحداث</code></dt>
+          <dd>
+            جعل الصفحة تتفاعل مع نقرات وأفعال المستخدم:<br>
+            <code>element.addEventListener("click", function() {</code><br>
+            <code>&nbsp;&nbsp;alert("تم الضغط!");</code><br>
+            <code>});</code>
+          </dd>
+        </dl>
+      </div>
+
+      <!-- التخزين المحلي -->
+      <div class="cheat-card" data-category="js" data-tags="localstorage setitem getitem json stringify parse تخزين محلي">
+        <h2 class="cheat-title">💾 التخزين المحلي (LocalStorage)</h2>
+        <dl class="cheat-list">
+          <dt><code>حفظ وجلب البيانات</code></dt>
+          <dd>
+            لحفظ بيانات دائمة في متصفح المستخدم:<br>
+            - <code>localStorage.setItem("key", "value");</code>: حفظ قيمة.<br>
+            - <code>let val = localStorage.getItem("key");</code>: جلب قيمة.<br>
+            - <code>localStorage.removeItem("key");</code>: حذف قيمة محددة.<br>
+            - <code>localStorage.clear();</code>: مسح كافة البيانات المخزنة.
+          </dd>
+          <dt><code>التعامل مع البيانات المعقدة</code></dt>
+          <dd>
+            لأن التخزين المحلي يدعم النصوص فقط، نستخدم JSON لتحويل البيانات:<br>
+            - <strong>الحفظ:</strong> <code>localStorage.setItem("user", JSON.stringify(obj));</code> (يحول الكائن لنص).<br>
+            - <strong>الجلب:</strong> <code>let obj = JSON.parse(localStorage.getItem("user"));</code> (يعيد النص لكائن).
+          </dd>
+        </dl>
+      </div>
+
+    </div><!-- end cheatsheet-grid -->
+
+    <!-- المثال الشامل -->
+    <section class="full-example-section">
+      <h2 class="section-title">📄 مثال صفحة HTML كاملة ونموذجية</h2>
+      <div class="code-explain-card">
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;meta name="description" content="وصف الصفحة لمحركات البحث"&gt;
+  &lt;title&gt;اسم موقعي&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;a href="/"&gt;الرئيسية&lt;/a&gt;
+      &lt;a href="/about"&gt;من نحن&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;section id="hero"&gt;
+      &lt;h1&gt;مرحباً بك في موقعي&lt;/h1&gt;
+      &lt;p&gt;هذا موقع لتعليم &lt;strong&gt;HTML&lt;/strong&gt; من الصفر.&lt;/p&gt;
+      &lt;a href="lessons/lesson1.html" class="btn"&gt;ابدأ التعلم&lt;/a&gt;
+    &lt;/section&gt;
+
+    &lt;section id="features"&gt;
+      &lt;h2&gt;مميزات الموقع&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;دروس مجانية 100%&lt;/li&gt;
+        &lt;li&gt;شرح باللغة العربية&lt;/li&gt;
+        &lt;li&gt;أمثلة تفاعلية&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2024 موقعي. جميع الحقوق محفوظة.&lt;/p&gt;
+  &lt;/footer>
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="main-footer" class="main-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 تعلم HTML - جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var currentCategory = 'html';
+
+    document.addEventListener("DOMContentLoaded", function() {
+      switchCheatTab('html');
+    });
+
+    function switchCheatTab(category) {
+      currentCategory = category;
+      
+      // تحديث حالة الأزرار النشطة
+      var buttons = document.querySelectorAll(".lessons-tabs .tab-btn");
+      buttons.forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+      
+      var activeBtn = document.getElementById("btn-" + category + "-cheat");
+      if (activeBtn) {
+        activeBtn.classList.add("active");
+      }
+      
+      // تحديث نص تلميح البحث
+      var searchInput = document.getElementById("cheatsheet-search");
+      if (searchInput) {
+        if (category === 'html') {
+          searchInput.placeholder = "🔍 ابحث عن وسم... مثال: table أو img";
+        } else if (category === 'css') {
+          searchInput.placeholder = "🔍 ابحث عن خاصية... مثال: margin أو flex";
+        } else if (category === 'js') {
+          searchInput.placeholder = "🔍 ابحث عن دالة أو مفهوم... مثال: function أو array";
+        }
+      }
+      
+      filterCards();
+    }
+
+    // دالة للبحث والفلترة التلقائية للبطاقات بناءً على القسم وكلمة البحث
+    function filterCards() {
+      var query = document.getElementById("cheatsheet-search").value.toLowerCase();
+      var cards = document.querySelectorAll(".cheat-card");
+      cards.forEach(function(card) {
+        var category = card.getAttribute("data-category") || "html";
+        var text = card.textContent.toLowerCase();
+        var tags = (card.getAttribute("data-tags") || "").toLowerCase();
+        
+        var matchesCategory = (category === currentCategory);
+        var matchesQuery = (text.includes(query) || tags.includes(query));
+        
+        // إظهار الكارت إذا طابق القسم والبحث معاً، وإلا يتم إخفاؤه
+        card.style.display = (matchesCategory && matchesQuery) ? "block" : "none";
+      });
+    }
+  </script>
+
+  <style>
+    /* تنسيقات CSS للمرجع السريع */
+    .page-title { font-size: 2.4em; text-align: center; margin: 40px 0 10px; }
+    .page-subtitle { text-align: center; font-size: 1.15em; color: #555; max-width: 650px; margin: 0 auto 30px; }
+    .search-bar-wrap { max-width: 500px; margin: 0 auto 35px; }
+    .cheatsheet-search-input { width: 100%; padding: 13px 20px; border: 2px solid #007bff; border-radius: 30px; font-size: 1.05em; outline: none; box-sizing: border-box; font-family: inherit; transition: box-shadow 0.2s; }
+    .cheatsheet-search-input:focus { box-shadow: 0 0 0 3px rgba(0,123,255,0.2); }
+    .cheatsheet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
+    .cheat-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.07); padding: 22px 25px; border: 1px solid #e8ecf0; transition: transform 0.2s, box-shadow 0.2s; }
+    .cheat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+    .cheat-title { margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; border-bottom: 2px solid #007bff; padding-bottom: 8px; color: #1a1a1a; }
+    .cheat-list { margin: 0; padding: 0; }
+    .cheat-list dt { font-weight: bold; color: #007bff; margin-top: 10px; font-family: monospace; font-size: 0.95em; }
+    .cheat-list dd { margin: 2px 15px 8px 0; font-size: 0.9rem; color: #555; line-height: 1.5; }
+    .cheat-note { margin-top: 12px; font-size: 0.88em; color: #666; background: #fff8e1; padding: 8px 10px; border-radius: 6px; }
+    .full-example-section { margin-bottom: 60px; }
+    .full-example-section .section-title { font-size: 1.8em; margin-bottom: 20px; color: #007bff; }
+    .code-explain-card { background: #272822; padding: 25px; border-radius: 10px; overflow-x: auto; }
+    .code-explain-card code { color: #f8f8f2; font-family: 'Courier New', monospace; font-size: 0.95em; white-space: pre; }
+  </style>
+
+  <script src="script.js"></script>
+</body>
+</html>

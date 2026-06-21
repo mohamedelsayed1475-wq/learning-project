@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  ده بيقول للمتصفح إن الصفحة دي HTML5.
+  لازم يكون أول سطر في أي صفحة HTML بدون استثناء.
+  =====================================================
+-->
+<html lang="ar" dir="rtl">
+<!--
+  <html> = الجذر (Root) للصفحة وكل الكود يتكتب جواه.
+  - lang="ar": سمة بتعرف المتصفح ومحركات البحث ومترجم الصفحات إن لغة المحتوى هي العربية.
+  - dir="rtl": سمة اتجاه النص من اليمين لليسار (Right-to-Left)، مناسب للغة العربية.
+-->
+<head>
+<!--
+  <head> = وسم الرأس، بيحتوي على البيانات الوصفية (Metadata) والمعلومات
+  اللي مش بتظهر مباشرة في الصفحة للزائر، لكنها مهمة للمتصفح ومحركات البحث.
+-->
+  <meta charset="UTF-8">
+  <!--
+    <meta charset="UTF-8">: بيحدد ترميز الحروف العالمي (UTF-8)، وده بيضمن
+    إن الحروف العربية وعلامات التشكيل والإيموجي تظهر بشكل صحيح بدون رموز غريبة.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    <meta name="viewport" ...>: دي مسؤولة عن تجاوب الصفحة (Responsive Design).
+    بتخلي حجم الصفحة يتناسب تلقائياً مع شاشات الموبايل والتابلت والكمبيوتر.
+  -->
+  <meta name="description" content="الدرس الثالث: الروابط والصور في HTML - تعلم وسم a وimg والسمات المهمة">
+  <!--
+    <meta name="description" ...>: وصف مختصر لصفحة الويب يظهر في نتائج بحث جوجل.
+  -->
+  <title>📖 الدرس 3: الروابط والصور - تعلم HTML</title>
+  <!--
+    <title>: عنوان الصفحة اللي بيظهر فوق في تبويب المتصفح (Tab) وفي نتائج محركات البحث.
+  -->
+  <link rel="stylesheet" href="../style.css">
+  <!--
+    <link>: بيربط صفحة الـ HTML بملف تنسيق خارجي (CSS) لتزيين وتجميل الصفحة وتحديد الألوان والخطوط.
+    - rel="stylesheet": بيحدد نوع العلاقة (ملف تنسيق وألوان).
+    - href="../style.css": المسار النسبي لملف الـ CSS (الـ .. تعني الرجوع للمجلد الأب خطوة للوراء).
+  -->
+</head>
+<body>
+<!--
+  <body> = جسم الصفحة، أي حاجة بنكتبها هنا هي اللي بتظهر مباشرة قدام الزائر في المتصفح.
+-->
+
+  <header id="main-header">
+  <!--
+    <header>: عنصر دلالي (Semantic HTML) بيعبر عن رأس الموقع، وبداخله عادةً بيكون اللوجو وقائمة التنقل.
+    - id="main-header": معرف فريد وخاص برأس الموقع، بنستخدمه في التنسيق (CSS) أو التفاعل (JS).
+  -->
+    <nav id="main-nav">
+    <!--
+      <nav>: عنصر دلالي معناه "منطقة تنقل" (Navigation)، مخصص لاحتواء روابط التنقل الرئيسية في الموقع.
+      - id="main-nav": معرف فريد لقائمة التنقل لتنسيقها بشكل خاص.
+    -->
+      <div class="nav-logo">
+      <!--
+        <div>: حاوية عامة (Division) بتجمع عناصر مع بعضها عشان ننسقها سوى.
+        - class="nav-logo": فئة (Class) مستخدمة لتطبيق استايل اللوجو (الشعار) من ملف الـ CSS.
+      -->
+        <a href="../index.html" id="logo-link">
+        <!--
+          <a>: وسم الرابط (Anchor). بيعمل رابط ينقلك لصفحة تانية عند الضغط عليه.
+          - href="../index.html": السمة href (Hypertext Reference) بتحدد الوجهة، وهنا هي الصفحة الرئيسية.
+          - id="logo-link": معرف فريد لتنسيق رابط اللوجو.
+        -->
+          <span class="logo-icon">🎓</span>
+          <!--
+            <span>: عنصر سطري (Inline) بيستخدم لتحديد نص معين داخل جملة وتطبيق استايل خاص عليه دون النزول لسطر جديد.
+            - class="logo-icon": فئة لتنسيق الأيقونة التعبيرية.
+          -->
+          <span class="logo-text">تعلم HTML</span>
+          <!--
+            - class="logo-text": فئة لتنسيق نص الشعار.
+          -->
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+      <!--
+        <ul>: قائمة غير مرتبة (Unordered List) بتظهر في العادة كنقاط، وهنا مستخدمة كقائمة تنقل.
+        - class="nav-menu" و id="nav-menu": فئة ومعرف لتنسيق القائمة وجعلها متجاوبة مع الجوال.
+      -->
+        <li class="nav-item"><a href="../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <!--
+          <li>: عنصر داخل القائمة (List Item).
+          <a>: رابط يودي للصفحة الرئيسية.
+          - class="nav-link": فئة لتنسيق الروابط في الهيدر.
+        -->
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <!--
+          - class="nav-link active": تم إضافة الكلمة "active" عشان تميز الصفحة الحالية بلون مختلف في القائمة.
+        -->
+        <li class="nav-item"><a href="../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+      <!--
+        <button>: زر تفاعلي يمكن الضغط عليه. هنا مستخدم لإظهار/إخفاء القائمة في الجوال.
+        - class="menu-toggle" و id="menu-toggle": فئة ومعرف للتحكم بالزر وتنسيقه.
+        - type="button": بيحدد نوع الزر إنه زر عادي وليس لإرسال نموذج.
+        - aria-label="فتح القائمة": سمة إمكانية الوصول بتساعد برامج قراءة الشاشة للمكفوفين على فهم وظيفة الزر.
+      -->
+        <span class="menu-icon">☰</span>
+        <!-- أيقونة الهامبرغر الشهيرة للقوائم -->
+      </button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+  <!--
+    <main>: عنصر دلالي يحدد المحتوى الرئيسي والفريد للصفحة، ولا يصح تكراره في الصفحة الواحدة.
+    - id="lesson-main": معرف للمحتوى الرئيسي للدرس.
+    - class="container": حاوية بتضمن سنترة المحتوى في منتصف الشاشة مع ترك مسافة أمان على الجانبين.
+  -->
+    <article class="lesson-article">
+    <!--
+      <article>: عنصر دلالي بيمثل موضوع أو مقال مستقل بذاته ومفهوم حتى لو فصلناه عن باقي الموقع.
+      - class="lesson-article": فئة لتنسيق المقال وإضافة خلفية بيضاء وظل خفيف له.
+    -->
+
+      <header class="lesson-header">
+      <!--
+        <header>: رأس المقال أو الدرس، يحتوي على العنوان الرئيسي ومعلومات الدرس.
+      -->
+        <div class="lesson-meta">
+        <!-- حاوية تجمع معلومات جانبية عن الدرس كالصعوبة ووقت القراءة -->
+          <span class="category-badge beginner">الدرس الثالث - مبتدئ</span>
+          <!--
+            - class="category-badge beginner": شارة تحدد تصنيف وصعوبة الدرس.
+          -->
+          <span class="read-time">⏱️ مدة القراءة: 12 دقيقة</span>
+          <!-- مدة القراءة التقريبية -->
+        </div>
+        <h1 class="lesson-title">🔗 الروابط والصور في HTML</h1>
+        <!--
+          <h1>: العنوان الرئيسي والأهم في الصفحة (Heading 1). يجب استخدام عنوان h1 واحد فقط في الصفحة لتحسين الـ SEO.
+        -->
+        <p class="lesson-summary">
+        <!--
+          <p>: فقرة نصية (Paragraph).
+          - class="lesson-summary": فئة لتنسيق ملخص الدرس بحجم أكبر وإطار ملون جانبي لجذب الانتباه.
+        -->
+          الروابط والصور هما من أهم عناصر الويب. في هذا الدرس ستتعلم كيفية إنشاء روابط بين الصفحات وإضافة صور إلى صفحتك مع شرح جميع السمات المهمة.
+        </p>
+      </header>
+
+      <section class="lesson-body">
+      <!--
+        <section>: عنصر دلالي يمثل قسم مستقل داخل الصفحة له موضوع محدد.
+        - class="lesson-body": فئة لتنسيق الجزء اللي بيحتوي على شرح الدرس.
+      -->
+
+        <h2>1. وسم الرابط &lt;a&gt; (Anchor)</h2>
+        <!--
+          <h2>: عنوان فرعي من الدرجة الثانية (Heading 2)، بيقسم المحتوى لفقرات منظمة.
+        -->
+        <p>
+          وسم <code>&lt;a&gt;</code> هو وسم الربط (Anchor). يُستخدم لإنشاء روابط تنقلك من صفحة إلى أخرى أو إلى موقع آخر على الإنترنت.
+          <!--
+            <code>: وسم لتنسيق الكلمات كشفرة برمجية بخط عريض ومميز عن بقية النص.
+          -->
+        </p>
+
+        <div class="code-explain-card">
+        <!-- كارت تنسيق الكود البرمجي بخلفية داكنة ليشبه محرر الأكواد -->
+          <pre><code>&lt;!-- رابط لموقع خارجي --&gt;
+&lt;a href="https://www.google.com"&gt;اذهب إلى جوجل&lt;/a&gt;
+
+&lt;!-- رابط يفتح في تبويب جديد --&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;افتح جوجل في تبويب جديد&lt;/a&gt;
+
+&lt;!-- رابط لصفحة أخرى في نفس الموقع --&gt;
+&lt;a href="about.html"&gt;صفحة عني&lt;/a&gt;
+
+&lt;!-- رابط بريد إلكتروني --&gt;
+&lt;a href="mailto:info@example.com"&gt;راسلنا&lt;/a&gt;</code></pre>
+          <!--
+            <pre>: بيحافظ على المسافات والنزول لسطر جديد زي ما اتكتبت بالظبط في الكود (Preformatted Text).
+            <code>: وسم الكود البرمجي.
+            &lt; و &gt; هي كود لكتابة علامة أصغر من وأكبر من (< و >) في الصفحة بدون ما يعتبرها المتصفح وسم حقيقي.
+          -->
+        </div>
+
+        <h3>🔍 شرح السمات المهمة لوسم &lt;a&gt;:</h3>
+        <!--
+          <h3>: عنوان فرعي من الدرجة الثالثة (Heading 3).
+        -->
+        <dl class="explain-list">
+        <!--
+          <dl>: قائمة تعريفية (Description List) بتستخدم لعرض مصطلحات وشروحاتها.
+          - class="explain-list": فئة لتنسيق القائمة وإبعاد المصطلحات عن بعضها.
+        -->
+          <dt><code>href</code> (مطلوب)</dt>
+          <!--
+            <dt>: المصطلح المراد شرحه (Description Term).
+          -->
+          <dd>يحدد عنوان الوجهة URL. بدونها الرابط لن يعمل ولا يمكن الضغط عليه.</dd>
+          <!--
+            <dd>: شرح وتفصيل المصطلح (Description Details).
+          -->
+
+          <dt><code>target="_blank"</code></dt>
+          <dd>يفتح الرابط في تبويب جديد (New Tab). مفيد للروابط الخارجية حتى لا يغادر المستخدم موقعك الحالي.</dd>
+
+          <dt><code>title</code></dt>
+          <dd>يظهر كتلميح نصي صغير (Tooltip) عند وضع مؤشر الماوس فوق الرابط لفترة وجيزة.</dd>
+        </dl>
+
+        <div class="tip-box">
+        <!-- صندوق تلميحات باللون الأصفر لإعطاء معلومة إضافية قيمة -->
+          💡 <strong>الروابط النسبية والمطلقة:</strong><br>
+          <!--
+            <strong>: وسم لإعطاء أهمية للنص وتظليله بشكل عريض (Bold).
+            <br>: وسم فارغ للنزول لسطر جديد (Line Break).
+          -->
+          • <strong>مطلق (Absolute):</strong> <code>href="https://google.com"</code> — للمواقع الخارجية التي تبدأ بالبروتوكول.<br>
+          • <strong>نسبي (Relative):</strong> <code>href="about.html"</code> — للروابط الداخلية التي تؤدي لصفحات في نفس مشروعك.
+        </div>
+
+        <hr>
+        <!--
+          <hr>: خط أفقي فاصل (Horizontal Rule) بيستخدم للفصل بين المواضيع المختلفة في الصفحة.
+        -->
+
+        <h2>2. وسم الصورة &lt;img&gt;</h2>
+        <p>
+          وسم <code>&lt;img&gt;</code> يُستخدم لعرض الصور في الصفحة. وهو <strong>وسم فارغ (Void Element)</strong> بمعنى أنه لا يحتاج لوسم إغلاق <code>&lt;/img&gt;</code>، ويكتب هكذا فقط.
+          يجب دائماً إضافة سمة <code>alt</code> لوصف الصورة (مهم جداً لإمكانية الوصول ومحركات البحث).
+        </p>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;!-- صورة من الإنترنت --&gt;
+&lt;img src="https://via.placeholder.com/300x200" alt="وصف الصورة"&gt;
+
+&lt;!-- صورة من نفس المجلد --&gt;
+&lt;img src="photo.jpg" alt="صورتي الشخصية"&gt;
+
+&lt;!-- صورة بعرض وارتفاع محددين --&gt;
+&lt;img src="logo.png" alt="شعار الموقع" width="200" height="100"&gt;</code></pre>
+        </div>
+
+        <h3>🔍 شرح سمات &lt;img&gt;:</h3>
+        <dl class="explain-list">
+          <dt><code>src</code> (مطلوب)</dt>
+          <dd>مسار الصورة أو رابطها (Source). بدونه لن يعرف المتصفح أي صورة يعرض وسيفشل الوسم.</dd>
+
+          <dt><code>alt</code> (مطلوب أخلاقياً وتقنياً)</dt>
+          <dd>نص بديل (Alternative Text) يظهر إذا فشل تحميل الصورة، ويقرأه برنامج قارئ الشاشة لضعاف البصر، ومهم جداً لأرشفة محركات البحث.</dd>
+
+          <dt><code>width</code> و <code>height</code></dt>
+          <dd>تحديد العرض والارتفاع بالبكسل (أو بالنسبة المئوية). يساعد المتصفح في حجز مساحة للصورة لمنع قفز العناصر أثناء تحميل الصفحة.</dd>
+        </dl>
+
+        <hr>
+
+        <h2>3. تحويل الصورة إلى رابط</h2>
+        <p>يمكنك وضع وسم <code>&lt;img&gt;</code> كاملاً داخل وسم <code>&lt;a&gt;</code> لجعل الصورة قابلة للضغط والنقر عليها:</p>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;a href="https://www.google.com" target="_blank"&gt;
+  &lt;img src="google-logo.png" alt="شعار جوجل - اضغط للزيارة" width="150"&gt;
+&lt;/a&gt;</code></pre>
+        </div>
+
+        <hr>
+
+        <h2>4. مثال متكامل</h2>
+        <div class="code-explain-card">
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;صفحتي الشخصية&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;مرحباً بك في موقعي&lt;/h1&gt;
+  &lt;img src="photo.jpg" alt="صورتي الشخصية" width="300"&gt;
+  &lt;p&gt;يمكنك زيارة حسابي على: 
+    &lt;a href="https://github.com" target="_blank"&gt;GitHub&lt;/a&gt;
+  &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+      </section>
+
+      <footer class="lesson-footer-nav">
+      <!--
+        <footer>: تذييل الصفحة أو المقال، يحتوي هنا على أزرار الانتقال للدرس التالي أو السابق.
+      -->
+        <a href="lesson2.html" class="btn btn-secondary">⬅️ الدرس السابق</a>
+        <!-- رابط للرجوع للدرس الثاني -->
+        <a href="lesson4.html" class="btn btn-primary">الدرس التالي: القوائم ➡️</a>
+        <!-- رابط للذهاب للدرس الرابع -->
+      </footer>
+
+    </article>
+  </main>
+
+  <footer id="main-footer" class="main-footer">
+  <!--
+    <footer>: تذييل الموقع الرئيسي يحتوي على حقوق النشر ومعلومات التواصل.
+    - id="main-footer": معرف فريد لتذييل الصفحة لتنسيقه.
+    - class="main-footer": فئة لتطبيق استايل التذييل من ملف الـ CSS.
+  -->
+    <div class="container">
+    <!-- حاوية السنترة والمحاذاة -->
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 تعلم HTML - جميع الحقوق محفوظة</p>
+        <!--
+          &copy;: هو كود خاص لعرض رمز حقوق الملكية والنشر © بشكل صحيح.
+        -->
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /*
+      <style>: وسم داخلي لكتابة أكواد الـ CSS الخاصة بصفحة الدرس بشكل مباشر ومحدد.
+    */
+    .lesson-meta { margin-bottom: 15px; font-size: 0.9em; color: #666; }
+    .category-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; background: #e3f2fd; color: #0d47a1; margin-left: 10px; }
+    .read-time { font-style: italic; }
+    .lesson-title { font-size: 2.2em; margin-top: 10px; margin-bottom: 15px; color: #1a1a1a; }
+    .lesson-summary { font-size: 1.2em; line-height: 1.6; color: #555; background: #fdfdfd; padding: 15px; border-right: 4px solid #007bff; }
+    .lesson-body h2 { font-size: 1.6em; margin-top: 35px; margin-bottom: 15px; color: #007bff; border-bottom: 2px solid #eaeaea; padding-bottom: 8px; }
+    .lesson-body p { font-size: 1.1em; line-height: 1.7; color: #333; margin-bottom: 15px; }
+    .code-explain-card { background: #272822; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto; }
+    .code-explain-card code { color: #f8f8f2; font-family: monospace; font-size: 1em; white-space: pre; }
+    .explain-list dt { font-weight: bold; font-size: 1.1em; color: #333; margin-top: 15px; }
+    .explain-list dd { margin-right: 20px; color: #666; margin-bottom: 15px; line-height: 1.6; }
+    .tip-box { background: #fff8e1; border-right: 4px solid #ffc107; padding: 12px 16px; border-radius: 6px; margin: 15px 0; font-size: 1em; color: #333; line-height: 1.7; }
+    .lesson-footer-nav { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 15px; }
+  </style>
+
+  <script src="../script.js"></script>
+</body>
+</html>

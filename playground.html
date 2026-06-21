@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!-- 
+  =====================================================
+  DOCTYPE html  
+  هنا بنعرف المتصفح إن دي صفحة HTML5
+  =====================================================
+-->
+
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ملعب HTML التفاعلي - اكتب كود HTML وجربه مباشرة مع الشرح">
+  <title>⚡ ملعب HTML التفاعلي - اكتب وجرب الكود مباشرة</title>
+  
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HEADER - رأس الصفحة وقائمة التنقل                            -->
+  <!-- ============================================================ -->
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم HTML</span>
+        </a>
+      </div>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">🏠 الرئيسية</a>
+        </li>
+        <li class="nav-item">
+          <a href="lessons/lesson1.html" class="nav-link">📖 الدروس</a>
+        </li>
+        <li class="nav-item">
+          <a href="playground.html" class="nav-link active">⚡ الملعب</a>
+        </li>
+        <li class="nav-item">
+          <a href="quiz.html" class="nav-link">🧪 الاختبارات</a>
+        </li>
+        <li class="nav-item">
+          <a href="cheatsheet.html" class="nav-link">📋 المرجع السريع</a>
+        </li>
+      </ul>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- MAIN CONTENT - المحتوى الرئيسي للملعب                         -->
+  <!-- ============================================================ -->
+  <main id="playground-main" class="container">
+
+    <section class="playground-intro">
+      <h1 class="page-title">⚡ ملعب HTML التفاعلي</h1>
+      <p class="page-subtitle">
+        هنا تقدر تكتب أي كود HTML اتعلمته، وتشوف النتيجة فوراً في الجزء المقابل! جرب تغير النصوص وتضيف وسوم جديدة.
+      </p>
+    </section>
+
+    <!-- منطقة العمل الرئيسية -->
+    <section class="playground-workspace">
+      
+      <!-- النصف الأول: المحرر (Editor) -->
+      <div class="workspace-card editor-section">
+        <div class="card-header">
+          <h2 class="card-title">📝 اكتب الكود هنا</h2>
+          <div class="editor-actions">
+            <button type="button" class="action-btn" onclick="clearEditor()">🧹 مسح</button>
+            <button type="button" class="action-btn" onclick="resetEditor()">🔄 إعادة تعيين</button>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <label for="interactive-code-editor" class="sr-only">محرر كود HTML</label>
+          <textarea id="interactive-code-editor" class="code-textarea" spellcheck="false" placeholder="اكتب كود HTML هنا...">
+<h1>مرحباً بك في ملعب HTML! 👋</h1>
+<p>هذا النص مكتوب داخل فقرة <code>&lt;p&gt;</code>.</p>
+
+<h3>أشياء يمكنك القيام بها هنا:</h3>
+<ul>
+  <li>تغيير هذا النص وكتابة ما تريد.</li>
+  <li>إضافة صور باستخدام وسم <code>&lt;img&gt;</code>.</li>
+  <li>إضافة روابط باستخدام وسم <code>&lt;a&gt;</code>.</li>
+</ul>
+
+<button type="button" onclick="alert('أحسنت! لقد قمت بتشغيل الكود بنجاح!')">اضغط عليّ 🎉</button>
+</textarea>
+          
+          <button type="button" class="btn btn-primary run-button" onclick="updateOutput()">
+            ▶️ تشغيل الكود وعرض النتيجة
+          </button>
+        </div>
+      </div>
+
+      <!-- النصف الثاني: النتيجة (Live Output) -->
+      <div class="workspace-card output-section">
+        <div class="card-header">
+          <h2 class="card-title">🖥️ النتيجة الفورية</h2>
+        </div>
+        <div class="card-body output-container">
+          <iframe id="live-output-frame" class="live-iframe" title="معاينة كود HTML">
+          </iframe>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- قسم النصائح ومقترحات التحديات -->
+    <section class="playground-challenges">
+      <h2>💡 تحديات سريعة للتجربة:</h2>
+      
+      <div class="challenges-grid">
+        
+        <div class="challenge-item">
+          <h3>1. تغيير العنوان</h3>
+          <p>غير النص الموجود داخل وسم <code>&lt;h1&gt;</code> واكتب اسمك الثنائي.</p>
+        </div>
+
+        <div class="challenge-item">
+          <h3>2. إضافة رابط جديد</h3>
+          <p>أضف رابطاً يفتح موقع Google في تبويب جديد باستخدام: <br>
+          <code>&lt;a href="https://google.com" target="_blank"&gt;اذهب إلى جوجل&lt;/a&gt;</code></p>
+        </div>
+
+        <div class="challenge-item">
+          <h3>3. إضافة صورة</h3>
+          <p>أضف صورة باستخدام وسم الصورة مع نص بديل: <br>
+          <code>&lt;img src="https://picsum.photos/200" alt="صورة عشوائية"&gt;</code></p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER - ذيل الصفحة                                          -->
+  <!-- ============================================================ -->
+  <footer id="main-footer" class="main-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 تعلم HTML - جميع الحقوق محفوظة
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- SCRIPTS                                                      -->
+  <!-- ============================================================ -->
+  <script src="script.js"></script>
+
+  <script>
+    function updateOutput() {
+      var code = document.getElementById("interactive-code-editor").value;
+      var iframe = document.getElementById("live-output-frame");
+      var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      
+      iframeDoc.open();
+      iframeDoc.write('<html lang="ar" dir="rtl"><head><style>body { font-family: sans-serif; padding: 15px; margin: 0; color: #333; line-height: 1.6; } button { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; } button:hover { background: #0056b3; }</style></head><body>' + code + '</body></html>');
+      iframeDoc.close();
+    }
+
+    function clearEditor() {
+      document.getElementById("interactive-code-editor").value = "";
+      updateOutput();
+    }
+
+    function resetEditor() {
+      document.getElementById("interactive-code-editor").value = `<h1>مرحباً بك في ملعب HTML! 👋</h1>
+<p>هذا النص مكتوب داخل فقرة <code>&lt;p&gt;</code>.</p>
+
+<h3>أشياء يمكنك القيام بها هنا:</h3>
+<ul>
+  <li>تغيير هذا النص وكتابة ما تريد.</li>
+  <li>إضافة صور باستخدام وسم <code>&lt;img&gt;</code>.</li>
+  <li>إضافة روابط باستخدام وسم <code>&lt;a&gt;</code>.</li>
+</ul>
+
+<button type="button" onclick="alert('أحسنت! لقد قمت بتشغيل الكود بنجاح!')">اضغط عليّ 🎉</button>`;
+      updateOutput();
+    }
+
+    window.onload = function() {
+      updateOutput();
+    };
+  </script>
+
+</body>
+</html>

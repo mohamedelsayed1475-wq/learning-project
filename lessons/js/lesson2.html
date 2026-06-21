@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الثاني JavaScript: المتغيرات وأنواع البيانات - let وconst وvar">
+  <title>📖 JS - الدرس 2: المتغيرات وأنواع البيانات | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge beginner" style="background:rgba(234,179,8,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3);">JavaScript - الدرس الثاني - مبتدئ</span>
+          <span class="read-time">⏱️ مدة القراءة: 15 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">📦 المتغيرات وأنواع البيانات</h1>
+        <p class="lesson-description">
+          المتغيرات هي أوعية لحفظ البيانات في الذاكرة. تعلم كيف تُعرِّف المتغيرات
+          بـ let وconst وvar، وتفهم أنواع البيانات الأساسية في JavaScript!
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>📦 ما هو المتغير؟</h2>
+        <div class="info-box">
+          <p>💡 المتغير = صندوق له اسم يحفظ فيه قيمة ما</p>
+          <p>تخيل أن لديك صناديق: صندوق اسمه "userName" يحفظ "أحمد"، وصندوق اسمه "age" يحفظ 25</p>
+        </div>
+        <pre class="code-block"><code><span class="comment">// تعريف متغير بـ let (الأكثر استخداماً)</span>
+let userName = 'أحمد';
+<span class="comment">/*
+  let = الكلمة الأساسية لتعريف متغير
+  userName = اسم المتغير (اخترناه نحن)
+  = تعني التعيين (assignment)
+  'أحمد' = القيمة المحفوظة
+*/</span>
+
+<span class="comment">// يمكن تغيير قيمة let لاحقاً</span>
+userName = 'محمد';  <span class="comment">// ✅ مسموح</span>
+console.log(userName);  <span class="comment">// 'محمد'</span>
+
+<span class="comment">// تعريف ثابت بـ const</span>
+const PI = 3.14159;
+<span class="comment">/*
+  const = constant = ثابت لا يتغير
+  لا يمكن إعادة تعيينه بعد التعريف
+*/</span>
+
+<span class="comment">// PI = 3.0;  ❌ خطأ! const لا يتغير</span>
+
+<span class="comment">// var - القديمة (تجنبها في المشاريع الجديدة)</span>
+var oldWay = 'قديم';
+<span class="comment">/*
+  var كانت تُستخدم قديماً
+  لها مشاكل في النطاق (Scope)
+  ✅ استخدم let وconst دائماً
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🔢 أنواع البيانات البدائية</h2>
+        <pre class="code-block"><code><span class="comment">// 1. String (نص)</span>
+let name = 'أحمد';           <span class="comment">// بين علامات تنصيص مفردة</span>
+let greeting = "مرحباً";    <span class="comment">// أو مزدوجة</span>
+let message = `مرحباً ${name}!`; <span class="comment">// Template Literal - الأقواس الخلفية</span>
+<span class="comment">/*
+  Template Literal مميز لأنه:
+  - يقبل متغيرات بين ${}
+  - يقبل أسطر متعددة بدون \n
+*/</span>
+
+<span class="comment">// 2. Number (رقم)</span>
+let age = 25;          <span class="comment">// عدد صحيح</span>
+let price = 99.99;     <span class="comment">// عدد عشري</span>
+let negative = -10;    <span class="comment">// سالب</span>
+let big = 1_000_000;   <span class="comment">// يمكن كتابة الشرطة السفلية للوضوح</span>
+
+<span class="comment">// 3. Boolean (منطقي)</span>
+let isLoggedIn = true;   <span class="comment">// صح</span>
+let isAdmin = false;     <span class="comment">// خطأ</span>
+<span class="comment">// مفيد للشروط والقرارات</span>
+
+<span class="comment">// 4. undefined (غير معرّف)</span>
+let x;
+console.log(x);  <span class="comment">// undefined - معرّف لكن لا قيمة</span>
+
+<span class="comment">// 5. null (فارغ متعمد)</span>
+let user = null;  <span class="comment">// فارغ عن قصد - "لا يوجد مستخدم"</span>
+<span class="comment">/*
+  الفرق: undefined = ما اتحدد
+          null = حددنا إنه فارغ
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🔍 الكشف عن نوع البيانات</h2>
+        <pre class="code-block"><code><span class="comment">// typeof يعيد نوع المتغير كنص</span>
+console.log(typeof 'أحمد');   <span class="comment">// "string"</span>
+console.log(typeof 42);       <span class="comment">// "number"</span>
+console.log(typeof true);     <span class="comment">// "boolean"</span>
+console.log(typeof undefined);<span class="comment">// "undefined"</span>
+console.log(typeof null);     <span class="comment">// "object" ← خطأ مشهور في JS!</span>
+console.log(typeof []);       <span class="comment">// "object"</span>
+console.log(typeof {});       <span class="comment">// "object"</span>
+console.log(typeof function(){});<span class="comment">// "function"</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🔄 تحويل أنواع البيانات</h2>
+        <pre class="code-block"><code><span class="comment">// نص إلى رقم</span>
+let str = '42';
+let num = Number(str);      <span class="comment">// 42 (رقم)</span>
+let num2 = parseInt(str);   <span class="comment">// 42 (عدد صحيح)</span>
+let num3 = parseFloat('3.14'); <span class="comment">// 3.14 (عشري)</span>
+let num4 = +str;            <span class="comment">// 42 (اختصار)</span>
+
+console.log(Number('hello')); <span class="comment">// NaN = Not a Number</span>
+<span class="comment">// NaN تعني "ليس رقماً"</span>
+
+<span class="comment">// رقم إلى نص</span>
+let n = 42;
+let s1 = String(n);   <span class="comment">// "42"</span>
+let s2 = n.toString();<span class="comment">// "42"</span>
+let s3 = `${n}`;      <span class="comment">// "42"</span>
+let s4 = n + '';      <span class="comment">// "42" (ضم مع نص فارغ)</span>
+
+<span class="comment">// إلى Boolean</span>
+Boolean(0);       <span class="comment">// false (الصفر = false)</span>
+Boolean('');      <span class="comment">// false (نص فارغ = false)</span>
+Boolean(null);    <span class="comment">// false</span>
+Boolean(undefined);<span class="comment">// false</span>
+Boolean(42);      <span class="comment">// true (أي رقم غير صفر)</span>
+Boolean('نص');    <span class="comment">// true (أي نص غير فارغ)</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ let للمتغيرات القابلة للتغيير، const للثوابت</li>
+            <li>✅ أنواع البيانات: String وNumber وBoolean وundefined وnull</li>
+            <li>✅ Template Literals لدمج النصوص والمتغيرات بـ ${}</li>
+            <li>✅ typeof لمعرفة نوع المتغير</li>
+            <li>✅ Number() وString() وBoolean() لتحويل الأنواع</li>
+            <li>✅ NaN يعني "ليس رقماً" وهو نتيجة تحويل فاشل</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson1.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: المقدمة</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">2</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson3.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: الشروط والتكرار ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار JavaScript</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

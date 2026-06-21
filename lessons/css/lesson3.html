@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الثالث من مسار CSS: Box Model - الهوامش والحدود والمسافات الداخلية">
+  <title>📖 CSS - الدرس 3: نموذج الصندوق | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge beginner" style="background:rgba(14,165,233,0.15);color:#38bdf8;border-color:rgba(56,189,248,0.3);">CSS - الدرس الثالث - مبتدئ</span>
+          <span class="read-time">⏱️ مدة القراءة: 14 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">📦 نموذج الصندوق - Box Model</h1>
+        <p class="lesson-description">
+          Box Model هو المفهوم الأساسي الأهم في CSS. كل عنصر HTML هو صندوق له أربع طبقات.
+          فهم هذا المفهوم يحل 90% من مشاكل التخطيط!
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>📦 ما هو Box Model؟</h2>
+        <p>كل عنصر في HTML يُعامَل كصندوق مستطيل يتكون من أربع طبقات من الداخل للخارج:</p>
+        <div class="info-box">
+          <p>🟦 <strong>Content</strong> - المحتوى الفعلي (النص أو الصورة)</p>
+          <p>🟩 <strong>Padding</strong> - المسافة الداخلية بين المحتوى والحدود</p>
+          <p>🟨 <strong>Border</strong> - الحدود حول العنصر</p>
+          <p>🟥 <strong>Margin</strong> - المسافة الخارجية بين العنصر والعناصر الأخرى</p>
+        </div>
+        <pre class="code-block"><code><span class="comment">/*
+  تصور الـ Box Model:
+  ┌─────────────────────────────┐  ← Margin (خارجي)
+  │   ┌─────────────────────┐   │  ← Border (حدود)
+  │   │   ┌─────────────┐   │   │  ← Padding (داخلي)
+  │   │   │   Content   │   │   │  ← Content (المحتوى)
+  │   │   └─────────────┘   │   │
+  │   └─────────────────────┘   │
+  └─────────────────────────────┘
+*/</span>
+
+<span class="selector">.card</span> {
+  <span class="comment">/* 1️⃣ المحتوى (Content) - يتحدد بـ width وheight */</span>
+  <span class="property">width</span>: <span class="value">300px</span>;   <span class="comment">/* عرض منطقة المحتوى */</span>
+  <span class="property">height</span>: <span class="value">200px</span>;  <span class="comment">/* ارتفاع منطقة المحتوى */</span>
+
+  <span class="comment">/* 2️⃣ الـ Padding - المسافة الداخلية */</span>
+  <span class="property">padding</span>: <span class="value">20px</span>;
+  <span class="comment">/* 20px على كل الجوانب الأربعة */</span>
+
+  <span class="comment">/* 3️⃣ الـ Border - الحدود */</span>
+  <span class="property">border</span>: <span class="value">2px solid #2563eb</span>;
+  <span class="comment">/*
+    2px = سمك الحدود
+    solid = نوع الحدود (صلبة)
+    #2563eb = لون الحدود
+  */</span>
+
+  <span class="comment">/* 4️⃣ الـ Margin - المسافة الخارجية */</span>
+  <span class="property">margin</span>: <span class="value">16px</span>;
+  <span class="comment">/* 16px مسافة من الخارج على كل الجوانب */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📐 Padding بالتفصيل</h2>
+        <pre class="code-block"><code><span class="selector">.box</span> {
+  <span class="comment">/* طريقة 1: نفس القيمة للجوانب الأربعة */</span>
+  <span class="property">padding</span>: <span class="value">20px</span>;
+  <span class="comment">/* top=20, right=20, bottom=20, left=20 */</span>
+
+  <span class="comment">/* طريقة 2: قيمتان - أعلى/أسفل ويمين/يسار */</span>
+  <span class="property">padding</span>: <span class="value">10px 20px</span>;
+  <span class="comment">/* top=10, right=20, bottom=10, left=20 */</span>
+
+  <span class="comment">/* طريقة 3: ثلاث قيم - أعلى، يمين/يسار، أسفل */</span>
+  <span class="property">padding</span>: <span class="value">10px 20px 15px</span>;
+  <span class="comment">/* top=10, right=20, bottom=15, left=20 */</span>
+
+  <span class="comment">/* طريقة 4: أربع قيم - اتجاه عقارب الساعة */</span>
+  <span class="property">padding</span>: <span class="value">10px 20px 15px 25px</span>;
+  <span class="comment">/* top=10, right=20, bottom=15, left=25 */</span>
+  <span class="comment">/* تذكر: أعلى، يمين، أسفل، يسار (TRBL) */</span>
+
+  <span class="comment">/* طريقة 5: كل جانب منفرداً */</span>
+  <span class="property">padding-top</span>: <span class="value">10px</span>;
+  <span class="property">padding-right</span>: <span class="value">20px</span>;
+  <span class="property">padding-bottom</span>: <span class="value">15px</span>;
+  <span class="property">padding-left</span>: <span class="value">25px</span>;
+}
+
+<span class="comment">/* نفس القواعد تنطبق على Margin */</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🔲 Border بالتفصيل</h2>
+        <pre class="code-block"><code><span class="selector">.bordered</span> {
+  <span class="comment">/* الصيغة المختصرة: سمك، نوع، لون */</span>
+  <span class="property">border</span>: <span class="value">2px solid #2563eb</span>;
+
+  <span class="comment">/* أو كل خاصية منفردة */</span>
+  <span class="property">border-width</span>: <span class="value">2px</span>;
+  <span class="property">border-style</span>: <span class="value">solid</span>;    <span class="comment">/* خط صلب */</span>
+  <span class="property">border-color</span>: <span class="value">#2563eb</span>;
+
+  <span class="comment">/*
+    أنواع الحدود (border-style):
+    solid  = خط صلب ───────
+    dashed = خط متقطع - - - -
+    dotted = نقاط ............
+    double = خط مزدوج ═══════
+    none   = لا حدود
+  */</span>
+
+  <span class="comment">/* حدود جانب معين فقط */</span>
+  <span class="property">border-bottom</span>: <span class="value">3px solid #2563eb</span>;
+  <span class="comment">/* حدود سفلية فقط - شائع للروابط والعناوين */</span>
+
+  <span class="comment">/* تدوير الزوايا */</span>
+  <span class="property">border-radius</span>: <span class="value">8px</span>;
+  <span class="comment">/* زوايا دائرية بنصف قطر 8px */</span>
+
+  <span class="property">border-radius</span>: <span class="value">50%</span>;
+  <span class="comment">/* دائرة كاملة - لو العنصر مربع! */</span>
+
+  <span class="property">border-radius</span>: <span class="value">20px 0 20px 0</span>;
+  <span class="comment">/* تدوير غير متماثل - شكل مثير للاهتمام */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>⚠️ box-sizing: border-box</h2>
+        <pre class="code-block"><code><span class="comment">/*
+  المشكلة الشائعة:
+  العرض الكلي = width + padding + border + margin
+  
+  مثال:
+  width: 300px + padding: 20px*2 + border: 2px*2
+  = 300 + 40 + 4 = 344px إجمالي!
+  
+  هذا يسبب مشاكل في التخطيط!
+*/</span>
+
+<span class="comment">/* الحل: box-sizing: border-box */</span>
+<span class="selector">*</span> {
+  <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+}
+<span class="comment">/*
+  مع border-box:
+  width = المقاس الكلي شامل padding وborder
+  
+  مثال:
+  width: 300px = المقاس النهائي 300px بالضبط!
+  (الـ padding والـ border يُطرحان من المحتوى)
+  
+  ✅ ضعها دائماً في بداية كل مشروع CSS!
+*/</span>
+
+<span class="comment">/* تقدر تضيف عليها هذا للتوافق الأفضل */</span>
+<span class="selector">*, *::before, *::after</span> {
+  <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📏 Width وHeight وoverflow</h2>
+        <pre class="code-block"><code><span class="selector">.container</span> {
+  <span class="comment">/* عرض ثابت */</span>
+  <span class="property">width</span>: <span class="value">1200px</span>;
+
+  <span class="comment">/* عرض نسبي */</span>
+  <span class="property">width</span>: <span class="value">80%</span>;    <span class="comment">/* 80% من عرض الأب */</span>
+  <span class="property">width</span>: <span class="value">100vw</span>;  <span class="comment">/* 100% من عرض المتصفح */</span>
+
+  <span class="comment">/* حد أقصى وأدنى للعرض */</span>
+  <span class="property">max-width</span>: <span class="value">1200px</span>; <span class="comment">/* لا يتجاوز 1200px */</span>
+  <span class="property">min-width</span>: <span class="value">320px</span>;  <span class="comment">/* لا يقل عن 320px */</span>
+
+  <span class="comment">/* توسيط العنصر أفقياً */</span>
+  <span class="property">margin</span>: <span class="value">0 auto</span>;
+  <span class="comment">/* 0 = margin أعلى/أسفل، auto = margin يمين/يسار تلقائياً متساوية */</span>
+}
+
+<span class="selector">.text-box</span> {
+  <span class="property">width</span>: <span class="value">200px</span>;
+  <span class="property">height</span>: <span class="value">100px</span>;
+
+  <span class="comment">/* ماذا لو المحتوى أكبر من الصندوق؟ */</span>
+  <span class="property">overflow</span>: <span class="value">hidden</span>;   <span class="comment">/* إخفاء الزائد */</span>
+  <span class="property">overflow</span>: <span class="value">scroll</span>;   <span class="comment">/* شريط تمرير دائماً */</span>
+  <span class="property">overflow</span>: <span class="value">auto</span>;     <span class="comment">/* شريط تمرير عند الحاجة فقط ✅ */</span>
+  <span class="property">overflow</span>: <span class="value">visible</span>; <span class="comment">/* يظهر خارج الصندوق (افتراضي) */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ Box Model: Content، Padding، Border، Margin من الداخل للخارج</li>
+            <li>✅ طرق كتابة Padding وMargin: قيمة واحدة أو قيم متعددة</li>
+            <li>✅ خصائص Border: width وstyle وcolor وradius</li>
+            <li>✅ box-sizing: border-box لحل مشاكل الأبعاد</li>
+            <li>✅ Width وHeight وoverflow للتحكم في المساحة</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson2.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: الألوان</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">3</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson4.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: التموضع ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار CSS</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

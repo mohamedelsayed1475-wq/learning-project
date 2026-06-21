@@ -1,0 +1,1012 @@
+/* 
+  =====================================================
+  STYLE.CSS
+  ملف التنسيق الأساسي للموقع التعليمي
+  =====================================================
+*/
+
+/* تعريف المتغيرات لتسهيل تعديل الألوان والتصميم */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --secondary-color: #6c757d;
+  --bg-color: #ffffff;
+  --card-bg: #f8f9fa;
+  --text-color: #212529;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+/* التنسيق العام للصفحة */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* الهيدر وقائمة التنقل */
+#main-header {
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-logo a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* أزرار مخصصة */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* هيرو سكشن القسم الترحيبي */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-badge span {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  margin: 20px 0;
+  line-height: 1.2;
+}
+
+.highlight {
+  color: var(--primary-color);
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.code-preview {
+  background-color: #272822;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.code-header {
+  background-color: #1e1e1e;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.file-name {
+  color: #8e8e8e;
+  font-size: 0.85rem;
+  font-family: monospace;
+  margin-right: auto;
+}
+
+.code-block {
+  margin: 0;
+  padding: 20px;
+}
+
+.code-block code {
+  color: #f8f8f2;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* شبكة الدروس */
+.lessons-section {
+  background-color: #f4f6f9;
+  padding: 60px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.lesson-card {
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+}
+
+.lesson-card-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.lesson-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.lesson-icon {
+  font-size: 1.5rem;
+}
+
+.lesson-badge {
+  margin-right: auto;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.lesson-badge.beginner { background-color: #e8f5e9; color: #2e7d32; }
+.lesson-badge.intermediate { background-color: #fff3e0; color: #ef6c00; }
+.lesson-badge.advanced { background-color: #ffebee; color: #c62828; }
+
+.lesson-card-body {
+  padding: 20px;
+  flex: 1;
+}
+
+.lesson-card-body h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.lesson-topics {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+}
+
+.lesson-topics li {
+  padding: 5px 0;
+  position: relative;
+  padding-right: 15px;
+}
+
+.lesson-topics li::before {
+  content: "•";
+  color: var(--primary-color);
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+}
+
+.lesson-card-footer {
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.lesson-duration {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.lesson-btn {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.lesson-btn:hover {
+  color: var(--primary-hover);
+}
+
+/* ملعب الأكواد */
+.playground-section {
+  padding: 60px 0;
+}
+
+.playground-demo {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.playground-editor, .playground-output {
+  flex: 1;
+  min-width: 300px;
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.editor-header, .output-header {
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: bold;
+}
+
+.code-textarea {
+  width: 100%;
+  height: 250px;
+  padding: 15px;
+  box-sizing: border-box;
+  border: none;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  resize: vertical;
+  outline: none;
+}
+
+.live-iframe, .output-iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
+  background: white;
+}
+
+.workspace-card {
+  margin-bottom: 30px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f1f3f5;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  padding: 4px 10px;
+  background: white;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.run-btn, .run-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 0;
+}
+
+/* المرجع السريع */
+.cheatsheet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.cheat-card {
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.cheat-title {
+  margin-top: 0;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.cheat-list {
+  margin: 15px 0 0 0;
+}
+
+.cheat-list dt {
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-top: 10px;
+}
+
+.cheat-list dd {
+  margin: 2px 15px 10px 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.cheatsheet-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* تتبع التقدم */
+.progress-section {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+}
+
+.progress-tracker {
+  background: white;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.overall-progress {
+  margin-bottom: 30px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  background-color: #e9ecef;
+  height: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color: #28a745;
+  width: 0%;
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.lessons-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.progress-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.progress-item-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.progress-item-status.not-started { background-color: #e9ecef; color: #495057; }
+.progress-item-status.completed { background-color: #d4edda; color: #155724; }
+
+/* قسم الأسئلة الشائعة */
+.faq-section {
+  padding: 60px 0;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq-item {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.faq-question {
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  outline: none;
+  list-style: none; /* إخفاء المثلث الافتراضي */
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-answer {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+/* الاشتراك في التحديثات */
+.newsletter-section {
+  background-color: #e3f2fd;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.newsletter-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-title {
+  margin-bottom: 10px;
+}
+
+.newsletter-description {
+  color: #0d47a1;
+  margin-bottom: 30px;
+}
+
+.newsletter-form .form-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.email-input {
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  border: 1px solid #ced4da;
+  outline: none;
+  width: 60%;
+  font-size: 1rem;
+}
+
+.subscribe-btn {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.subscribe-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.form-note {
+  color: var(--text-muted);
+}
+
+/* ذيل الصفحة */
+.main-footer {
+  background-color: #212529;
+  color: #f8f9fa;
+  padding: 60px 0 20px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-heading {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: white;
+  padding-right: 5px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social-link {
+  color: #adb5bd;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.social-link:hover {
+  color: white;
+}
+
+.footer-divider {
+  border: 0;
+  border-top: 1px solid #343a40;
+  margin-bottom: 20px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.made-with span {
+  color: #e25555;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* استجابة الشاشات الصغيرة */
+@media (max-width: 768px) {
+  #main-nav {
+    flex-wrap: wrap;
+  }
+  .nav-menu {
+    display: none; /* سيتم تفعيله بجافاسكريبت أو CSS متقدم */
+    width: 100%;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 10px;
+  }
+  .nav-menu.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .hero-section {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .hero-stats {
+    justify-content: center;
+  }
+  .hero-buttons {
+    justify-content: center;
+  }
+  .email-input {
+    width: 100%;
+  }
+  .newsletter-form .form-group {
+    flex-direction: column;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* =====================================================
+   تنسيقات صندوق الشرح التفصيلي للاختبار
+   ===================================================== */
+
+/* حاوية feedback الخام — مخفية بالبداية */
+.feedback-msg {
+  display: none;
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: fadeSlideDown 0.35s ease;
+}
+
+/* تظهر عند إضافة class active */
+.feedback-msg.active {
+  display: block;
+}
+
+/* أنيميشن ظهور ناعم */
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* شريط النتيجة — صحيح */
+.feedback-banner.correct-banner {
+  background: linear-gradient(135deg, #1a7a4a, #28a745);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 10px 10px 0 0;
+  letter-spacing: 0.3px;
+}
+
+/* شريط النتيجة — خاطئ */
+.feedback-banner.wrong-banner {
+  background: linear-gradient(135deg, #9b1c1c, #dc3545);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 10px 10px 0 0;
+  letter-spacing: 0.3px;
+}
+
+/* صندوق الشرح التفصيلي */
+.explanation-box {
+  background: #f0f6ff;
+  border: 1px solid #c7d9f5;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 18px 22px;
+  direction: rtl;
+  text-align: right;
+}
+
+/* رأس الشرح */
+.explanation-header {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1a3c6b;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #c7d9f5;
+  padding-bottom: 8px;
+}
+
+/* سبب الاختيار الصحيح */
+.explanation-correct {
+  background: #e8f8ee;
+  border-right: 4px solid #28a745;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #1a5c30;
+  margin: 10px 0 14px;
+}
+
+/* قائمة شرح الخيارات */
+.explanation-options-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.explanation-options-list li {
+  background: #fff;
+  border: 1px solid #dde8f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  color: #2d3748;
+  line-height: 1.7;
+}
+
+.explanation-options-list li strong {
+  color: #1a3c6b;
+}
+
+.explanation-options-list li em {
+  color: #555;
+  font-style: italic;
+  font-size: 0.88rem;
+}
+
+.explanation-options-list li code {
+  background: #e8edf5;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.88rem;
+  color: #c0392b;
+}
+
+/* =====================================================
+   تنسيقات التبويبات التفاعلية (Tabs) للدروس والتقدم
+   ===================================================== */
+
+.lessons-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 30px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.tab-btn:hover {
+  border-color: var(--primary-color);
+  background-color: #f0f7ff;
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* محتوى التبويبات */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: grid;
+}
+
+/* شبكة أشرطة التقدم */
+.progress-bars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 35px;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+}
+
+.progress-bars-grid .overall-progress {
+  margin-bottom: 0;
+}
+
+/* تبويبات التقدم */
+.progress-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 15px;
+}
+
+.progress-tab-btn {
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.progress-tab-btn:hover {
+  color: var(--primary-color);
+  background-color: #f8f9fa;
+}
+
+.progress-tab-btn.active {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: #e3f2fd;
+}
+
+/* محتوى تقدم الدروس */
+.progress-content {
+  display: none;
+}
+
+.progress-content.active {
+  display: flex;
+  flex-direction: column;
+}
+

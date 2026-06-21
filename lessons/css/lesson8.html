@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الثامن CSS: الانتقالات والتأثيرات الحركية - CSS Transitions and Animations">
+  <title>📖 CSS - الدرس 8: الانتقالات والحركات | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge advanced" style="background:rgba(14,165,233,0.15);color:#38bdf8;border-color:rgba(56,189,248,0.3);">CSS - الدرس الثامن - متقدم</span>
+          <span class="read-time">⏱️ مدة القراءة: 16 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">🎬 الانتقالات، التحويلات والحركات (Transitions & Animations)</h1>
+        <p class="lesson-description">
+          أضف الحياة لصفحتك! تعلم كيف تصمم حركات سلسة وتأثيرات بصرية رائعة تجعل تجربة المستخدم مبهرة باستخدام الانتقالات والحركات.
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>🔄 الانتقالات (CSS Transitions)</h2>
+        <p>
+          تسمح لك الانتقالات بتغيير قيم الخصائص بسلاسة وبشكل تدريجي (على مدى فترة زمنية محددة)، بدلاً من التغير المفاجئ.
+        </p>
+        <pre class="code-block"><code><span class="selector">.btn</span> {
+  <span class="property">background-color</span>: <span class="value">#3b82f6</span>; <span class="comment">/* اللون الأساسي أزرق */</span>
+  <span class="property">color</span>: <span class="value">white</span>;
+  <span class="property">padding</span>: <span class="value">10px 20px</span>;
+  <span class="property">border</span>: <span class="value">none</span>;
+  <span class="property">border-radius</span>: <span class="value">5px</span>;
+  <span class="property">cursor</span>: <span class="value">pointer</span>;
+
+  <span class="comment">/* 🔄 تفعيل الانتقال السلس للون الخلفية */</span>
+  <span class="property">transition-property</span>: <span class="value">background-color</span>; <span class="comment">/* الخاصية التي نريد تحريكها */</span>
+  <span class="property">transition-duration</span>: <span class="value">0.3s</span>;              <span class="comment">/* مدة الحركة (0.3 ثانية) */</span>
+  <span class="property">transition-timing-function</span>: <span class="value">ease-in-out</span>; <span class="comment">/* سرعة الحركة في البداية والنهاية */</span>
+  <span class="property">transition-delay</span>: <span class="value">0s</span>;                    <span class="comment">/* تأخير بدء الحركة */</span>
+
+  <span class="comment">/* 🚀 الصيغة المختصرة (Shorthand) - الأكثر استخداماً */</span>
+  <span class="property">transition</span>: <span class="value">background-color 0.3s ease-in-out</span>;
+
+  <span class="comment">/* لتحريك كافة الخصائص التي تتغير */</span>
+  <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="comment">/* تأثير التحويم */</span>
+<span class="selector">.btn:hover</span> {
+  <span class="property">background-color</span>: <span class="value">#1d4ed8</span>; <span class="comment">/* سيتغير اللون بسلاسة خلال 0.3 ثانية */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📐 التحويلات (CSS Transforms)</h2>
+        <p>
+          تتيح لك خاصية <code>transform</code> إمكانية تغيير شكل العناصر، تدويرها، تكبيرها أو إزاحتها في الفضاء ثنائي الأبعاد (2D) أو ثلاثي الأبعاد (3D).
+        </p>
+        <pre class="code-block"><code><span class="selector">.card</span> {
+  <span class="property">width</span>: <span class="value">200px</span>;
+  <span class="property">height</span>: <span class="value">200px</span>;
+  <span class="property">background</span>: <span class="value">#ec4899</span>;
+  <span class="property">transition</span>: <span class="value">transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)</span>; <span class="comment">/* حركة ارتدادية رائعة */</span>
+}
+
+<span class="selector">.card:hover</span> {
+  <span class="comment">/* 📐 بعض دوال التحويل الشائعة: */</span>
+  
+  <span class="property">transform</span>: <span class="value">scale(1.1)</span>;          <span class="comment">/* تكبير العنصر بنسبة 10% */</span>
+  
+  <span class="property">transform</span>: <span class="value">rotate(15deg)</span>;       <span class="comment">/* تدوير العنصر بمقدار 15 درجة باتجاه عقارب الساعة */</span>
+  
+  <span class="property">transform</span>: <span class="value">translateY(-10px)</span>;   <span class="comment">/* إزاحة العنصر للأعلى بمقدار 10 بكسل (تأثير رفع ذكي) */</span>
+  
+  <span class="property">transform</span>: <span class="value">skewX(-10deg)</span>;      <span class="comment">/* إمالة العنصر أفقياً */</span>
+
+  <span class="comment">/* 💫 دمج تحويلات متعددة معاً: */</span>
+  <span class="property">transform</span>: <span class="value">translateY(-10px) scale(1.05) rotate(5deg)</span>;
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎬 الحركات الإبداعية (CSS Animations & @keyframes)</h2>
+        <p>
+          تمنحك الحركات تحكماً كاملاً في الحركة عبر نقاط زمنية متعددة بدون الحاجة لتفاعل المستخدم (مثل التحويم). نقوم بتعريف الحركة باستخدام <code>@keyframes</code> ثم نطبقها على العنصر.
+        </p>
+        <pre class="code-block"><code><span class="comment">/* 1️⃣ تعريف الحركة ونقاطها الزمنية */</span>
+<span class="keyword">@keyframes</span> <span class="value">bounceAndColor</span> {
+  <span class="comment">/* نقطة البداية (0%) */</span>
+  <span class="value">0%</span> {
+    <span class="property">transform</span>: <span class="value">translateY(0)</span>;
+    <span class="property">background-color</span>: <span class="value">#3b82f6</span>;
+  }
+  
+  <span class="comment">/* منتصف الحركة (50%) */</span>
+  <span class="value">50%</span> {
+    <span class="property">transform</span>: <span class="value">translateY(-30px)</span>; <span class="comment">/* القفز للأعلى */</span>
+    <span class="property">background-color</span>: <span class="value">#10b981</span>;    <span class="comment">/* تغير اللون للأخضر */</span>
+  }
+  
+  <span class="comment">/* نهاية الحركة (100%) */</span>
+  <span class="value">100%</span> {
+    <span class="property">transform</span>: <span class="value">translateY(0)</span>;     <span class="comment">/* العودة للأسفل */</span>
+    <span class="property">background-color</span>: <span class="value">#3b82f6</span>;
+  }
+}
+
+<span class="comment">/* 2️⃣ تطبيق الحركة على العنصر */</span>
+<span class="selector">.animated-ball</span> {
+  <span class="property">width</span>: <span class="value">60px</span>;
+  <span class="property">height</span>: <span class="value">60px</span>;
+  <span class="property">border-radius</span>: <span class="value">50%</span>;
+  
+  <span class="comment">/* خصائص الحركة المفصلة: */</span>
+  <span class="property">animation-name</span>: <span class="value">bounceAndColor</span>;   <span class="comment">/* اسم الحركة المعرفة بـ @keyframes */</span>
+  <span class="property">animation-duration</span>: <span class="value">2s</span>;           <span class="comment">/* مدة الدورة الواحدة للحركة */</span>
+  <span class="property">animation-timing-function</span>: <span class="value">ease</span>;  <span class="comment">/* نمط السرعة */</span>
+  <span class="property">animation-iteration-count</span>: <span class="value">infinite</span>; <span class="comment">/* عدد مرات التكرار (تكرار مستمر) */</span>
+  <span class="property">animation-direction</span>: <span class="value">normal</span>;     <span class="comment">/* اتجاه الحركة */</span>
+  
+  <span class="comment">/* 🚀 الصيغة المختصرة (Shorthand): */</span>
+  <span class="property">animation</span>: <span class="value">bounceAndColor 2s ease infinite</span>;
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ الانتقالات (Transitions) تسمح بتغيير الخصائص بنعومة بدلاً من القفز المفاجئ.</li>
+            <li>✅ خاصية <code>transform</code> تُغيّر موضع وحجم ودوران العناصر.</li>
+            <li>✅ ندمج <code>transition</code> مع <code>transform</code> للحصول على حركات تحويم مذهلة.</li>
+            <li>✅ الحركات (Animations) المعرفة بـ <code>@keyframes</code> تُنشئ حركات معقدة ومستمرة دون تدخل المستخدم.</li>
+            <li>✅ يمكن تحديد مسار الحركة بدقة بالكامل من 0% حتى 100%.</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson7.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: استعلامات الوسائط</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">8</span><span class="total-lessons">/ 8</span></div>
+        <a href="../../index.html" class="nav-btn next-btn" id="nav-home">🏠 الرئيسية</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار CSS</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

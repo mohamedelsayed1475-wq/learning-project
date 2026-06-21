@@ -1,0 +1,2162 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!-- 
+  =====================================================
+  DOCTYPE html  
+  ده بيقول للمتصفح إن الصفحة دي مكتوبة بـ HTML5
+  لازم تكون أول سطر في أي صفحة HTML
+  =====================================================
+-->
+
+<html lang="ar" dir="rtl">
+<!--
+  <html> = ده العنصر الجذر (Root Element) - أصل كل الصفحة
+  lang="ar" = بيقول إن لغة الصفحة عربية (مهم لـ SEO وقارئات الشاشة)
+  dir="rtl" = اتجاه الكتابة من اليمين لليسار (Right To Left) عشان العربية
+-->
+
+<head>
+  <!--
+    <head> = رأس الصفحة
+    مش بيتشاف للمستخدم
+    بس بيحتوي على معلومات مهمة جداً عن الصفحة
+  -->
+
+  <meta charset="UTF-8">
+  <!--
+    <meta> = عنصر بيحتوي على معلومات (Metadata) عن الصفحة
+    charset="UTF-8" = نظام الترميز اللي بيخلي الصفحة تعرض كل اللغات صح
+    بما فيها العربية والرموز والإيموجي 🎉
+    لو مش موجودة ممكن الحروف تظهر غلط
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    viewport = بيتحكم في إزاي الصفحة بتتعرض على الموبايل
+    width=device-width = عرض الصفحة = عرض الجهاز
+    initial-scale=1.0 = التكبير الابتدائي = 1 (طبيعي مش مكبر ولا مصغر)
+    ده مهم جداً عشان الصفحة تبان كويس على الموبايل
+  -->
+
+  <meta name="description" content="تعلم HTML و CSS و JavaScript من الصفر مع شرح كل سطر بالعربي - مشروع تعليمي متكامل للويب">
+  <!--
+    description = وصف الصفحة اللي بيظهر في نتائج Google
+    مهم جداً لـ SEO (تحسين محركات البحث)
+  -->
+
+  <meta name="author" content="Web Learning Project">
+  <!--
+    author = اسم صاحب أو منشئ الصفحة
+  -->
+
+  <meta name="keywords" content="تعلم HTML, تعلم CSS, تعلم JavaScript, تطوير الويب للمبتدئين, تعليم البرمجة بالعربي">
+  <!--
+    keywords = الكلمات المفتاحية للصفحة - مهمة لـ SEO
+  -->
+
+  <title>🎓 تعلم تطوير الويب من الصفر - HTML, CSS, JavaScript</title>
+  <!--
+    <title> = عنوان الصفحة
+    بيظهر في:
+    1. تبويب المتصفح (Browser Tab)
+    2. نتائج Google
+    3. لما تحفظ الصفحة في المفضلة
+  -->
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <!--
+    <link> = بيربط ملف خارجي بالصفحة
+    rel="icon" = نوع العلاقة = أيقونة
+    type="image/png" = نوع الملف = صورة PNG
+    href="assets/favicon.png" = مكان الملف (المسار)
+    ده الأيقونة الصغيرة اللي بتظهر جنب العنوان في التبويب
+  -->
+
+  <link rel="stylesheet" href="style.css">
+  <!--
+    rel="stylesheet" = ده ملف CSS (التنسيق)
+    href="style.css" = اسم ومسار الملف
+    CSS بيتحكم في شكل وألوان وتنسيق الصفحة
+  -->
+
+</head>
+<!--
+  خلصنا جزء <head>
+  دلوقتي هنبدأ جزء <body> اللي هو المحتوى الفعلي اللي المستخدم بيشوفه
+-->
+
+<body>
+  <!--
+    <body> = جسم الصفحة
+    كل اللي هيشوفه المستخدم لازم يكون جوا هنا
+    من هنا لحد </body>
+  -->
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: HEADER - رأس الموقع الرئيسي                       -->
+  <!-- ============================================================ -->
+
+  <header id="main-header">
+    <!--
+      <header> = رأس الصفحة أو القسم
+      ده عنصر Semantic (دلالي) = بيعني معناه واضح من اسمه
+      id="main-header" = معرف فريد لهذا العنصر - مش مكررش أبداً في الصفحة
+    -->
+
+    <nav id="main-nav">
+      <!--
+        <nav> = Navigation = قائمة التنقل
+        عنصر Semantic بيقول إن دي قائمة للتنقل بين صفحات الموقع
+      -->
+
+      <div class="nav-logo">
+        <!--
+          <div> = Division = قسم عام
+          مفيش معنى خاص - بس بيستخدم لتجميع عناصر مع بعض
+          class="nav-logo" = اسم التصنيف (Class) - ممكن يتكرر في صفح كتير
+        -->
+
+        <a href="index.html" id="logo-link">
+          <!--
+            <a> = Anchor = رابط
+            href="index.html" = الرابط اللي هيروح ليه لما تضغط عليه
+            ده هيروح لصفحة index.html (الصفحة الرئيسية)
+          -->
+          <span class="logo-icon">🎓</span>
+          <!--
+            <span> = زي div بس للنصوص والعناصر السطرية (Inline)
+            بيستخدم لتنسيق جزء من النص
+          -->
+          <span class="logo-text">تعلم الويب</span>
+        </a>
+        <!-- </a> = نهاية الرابط -->
+
+      </div>
+      <!-- </div> = نهاية div الـ logo -->
+
+      <ul class="nav-menu" id="nav-menu">
+        <!--
+          <ul> = Unordered List = قائمة غير مرتبة (نقاط)
+          class="nav-menu" = اسم التصنيف
+          id="nav-menu" = معرف فريد
+        -->
+
+        <li class="nav-item">
+          <!--
+            <li> = List Item = عنصر في القائمة
+            لازم يكون جوا <ul> أو <ol>
+          -->
+          <a href="index.html" class="nav-link active">🏠 الرئيسية</a>
+          <!--
+            class="nav-link active"
+            ممكن العنصر يبقى ليه أكتر من class
+            بنفصل بينهم بمسافة
+            active = بيقول إن ده الصفحة الحالية
+          -->
+        </li>
+
+        <li class="nav-item">
+          <a href="#lessons" class="nav-link">📖 الدروس</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="playground.html" class="nav-link">⚡ الملعب</a>
+          <!-- الملعب = Playground - مكان التجربة -->
+        </li>
+
+        <li class="nav-item">
+          <a href="quiz.html" class="nav-link">🧪 الاختبارات</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="cheatsheet.html" class="nav-link">📋 المرجع السريع</a>
+        </li>
+
+      </ul>
+      <!-- </ul> = نهاية قائمة التنقل -->
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <!--
+          <button> = زرار
+          type="button" = نوع الزرار (button = عادي، submit = إرسال فورم، reset = مسح)
+          aria-label = وصف للزرار لقارئات الشاشة (مهم للـ Accessibility)
+        -->
+        <span class="menu-icon">☰</span>
+      </button>
+
+    </nav>
+    <!-- </nav> = نهاية قائمة التنقل -->
+
+  </header>
+  <!-- </header> = نهاية رأس الصفحة -->
+
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: HERO SECTION - القسم الترحيبي الرئيسي            -->
+  <!-- ============================================================ -->
+
+  <section id="hero" class="hero-section">
+    <!--
+      <section> = قسم في الصفحة له موضوع محدد
+      عنصر Semantic - أفضل من div لأن معناه واضح
+      id="hero" = معرف فريد
+    -->
+
+    <div class="hero-content">
+
+      <div class="hero-badge">
+        <span>🆕 محدث 2024</span>
+      </div>
+
+      <h1 id="hero-title" class="hero-title">
+        <!--
+          <h1> = Heading 1 = أكبر عنوان في الصفحة
+          لازم يكون واحد بس في كل صفحة! (مهم جداً لـ SEO)
+          العناوين من h1 لـ h6 تتدرج في الحجم والأهمية
+        -->
+        تعلم <span class="highlight">تطوير الويب</span> من الصفر
+        <br>
+        <!--
+          <br> = Break = سطر جديد
+          عنصر فارغ (Void Element) = مش محتاج إغلاق
+        -->
+        مع شرح كل سطر كود! 🚀
+      </h1>
+
+      <p class="hero-description">
+        <!--
+          <p> = Paragraph = فقرة نصية
+          بيعمل سطر فاضي قبلها وبعدها تلقائياً
+        -->
+        مرحباً بك في أشمل مشروع تعليمي لتطوير الويب (HTML & CSS & JS) بالعربي!
+        <br>
+        هتتعلم كل حاجة من الصفر خطوة بخطوة مع شرح كل سطر كود بالتفصيل 💪
+      </p>
+
+      <div class="hero-stats">
+        <!--
+          هنا بنعرض إحصائيات المشروع
+          <div> بتستخدم لتجميع عناصر الإحصائيات مع بعض
+        -->
+
+        <div class="stat-item">
+          <strong class="stat-number">30+</strong>
+          <!--
+            <strong> = نص مهم - بيعمل Bold (تسميك)
+            مختلف عن <b> لأن ليه معنى دلالي (Semantic)
+          -->
+          <span class="stat-label">درس كامل</span>
+        </div>
+
+        <div class="stat-item">
+          <strong class="stat-number">200+</strong>
+          <span class="stat-label">مثال عملي</span>
+        </div>
+
+        <div class="stat-item">
+          <strong class="stat-number">100+</strong>
+          <span class="stat-label">تمرين تفاعلي</span>
+        </div>
+
+        <div class="stat-item">
+          <strong class="stat-number">3 🏆</strong>
+          <span class="stat-label">شهادات إتمام</span>
+        </div>
+
+      </div>
+      <!-- </div> = نهاية hero-stats -->
+
+      <div class="hero-buttons">
+
+        <a href="#lessons" class="btn btn-primary" id="start-btn">
+          <!--
+            <a> مع class="btn" = بنحوله يبدو زي زرار
+            ده أسلوب شائع جداً في المواقع
+          -->
+          🎯 ابدأ التعلم الآن
+        </a>
+
+        <a href="playground.html" class="btn btn-secondary" id="playground-btn">
+          ⚡ جرب الكود مباشرة
+        </a>
+
+      </div>
+      <!-- </div> = نهاية hero-buttons -->
+
+    </div>
+    <!-- </div> = نهاية hero-content -->
+
+    <div class="hero-image">
+      <div class="code-preview">
+        <!--
+          ده عنصر بيعرض مثال كود بشكل جميل
+        -->
+        <div class="code-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="file-name">index.html</span>
+        </div>
+
+        <pre class="code-block">
+          <!--
+            <pre> = Preformatted Text = نص محافظ على التنسيق
+            بيعرض المسافات والأسطر كما هي
+            بيستخدم عادة لعرض الكود
+          -->
+          <code>
+            <!--
+              <code> = بيعلم المتصفح إن ده كود برمجي
+              عنصر Semantic
+            -->
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;صفحتي الأولى&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;مرحباً بالعالم!&lt;/h1&gt;
+    &lt;p&gt;أول صفحة HTML&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code>
+        </pre>
+
+      </div>
+    </div>
+    <!-- </div> = نهاية hero-image -->
+
+  </section>
+  <!-- </section> = نهاية hero section -->
+
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: LESSONS OVERVIEW - نظرة عامة على الدروس          -->
+  <!-- ============================================================ -->
+
+  <section id="lessons" class="lessons-section">
+
+    <div class="container">
+      <!--
+        <div class="container"> = حاوية لتحديد عرض المحتوى
+        بيستخدم كتير في كل المواقع
+      -->
+
+      <div class="section-header">
+
+        <h2 class="section-title">📚 الدروس الكاملة</h2>
+        <!--
+          <h2> = Heading 2 = ثاني أكبر عنوان
+          بيجي بعد h1 في التسلسل الهرمي
+        -->
+
+        <p class="section-subtitle">
+          رحلة تعليمية منظمة من الصفر حتى الاحتراف
+        </p>
+
+      </div>
+      <!-- </div> = نهاية section-header -->
+
+      <div class="lessons-tabs">
+        <button class="tab-btn active" onclick="switchLessonsTab('html')">HTML 🏗️</button>
+        <button class="tab-btn" onclick="switchLessonsTab('css')">CSS 🎨</button>
+        <button class="tab-btn" onclick="switchLessonsTab('js')">JavaScript ⚡</button>
+      </div>
+
+      <!-- =================== HTML LESSONS GRID =================== -->
+      <div class="lessons-grid tab-content active" id="html-lessons">
+
+        <!-- =================== LESSON 1 =================== -->
+        <article class="lesson-card" id="lesson-card-1">
+          <!--
+            <article> = مقال أو محتوى مستقل
+            عنصر Semantic - أفضل من div هنا لأن كل درس محتوى مستقل
+          -->
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">01</span>
+            <span class="lesson-icon">🏗️</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">
+              <!--
+                <h3> = Heading 3 = ثالث أكبر عنوان
+              -->
+              أساسيات HTML
+            </h3>
+
+            <p class="lesson-description">
+              تعلم ما هي HTML، هيكل الصفحة، العناصر، الوسوم، والسمات من الصفر الكامل
+            </p>
+
+            <ul class="lesson-topics">
+              <!--
+                قائمة بمواضيع الدرس
+              -->
+              <li>ما هي HTML؟</li>
+              <li>هيكل الصفحة الأساسي</li>
+              <li>العناصر والوسوم</li>
+              <li>السمات (Attributes)</li>
+              <li>أول صفحة HTML</li>
+            </ul>
+
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 30 دقيقة</span>
+            <a href="lessons/lesson1.html" class="lesson-btn" id="lesson1-btn">
+              ابدأ الدرس ←
+            </a>
+          </div>
+
+        </article>
+        <!-- </article> = نهاية بطاقة الدرس الأول -->
+
+
+        <!-- =================== LESSON 2 =================== -->
+        <article class="lesson-card" id="lesson-card-2">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">02</span>
+            <span class="lesson-icon">📝</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">العناوين والنصوص</h3>
+            <p class="lesson-description">
+              كل شيء عن العناوين h1-h6، الفقرات، التنسيق النصي، والخطوط
+            </p>
+            <ul class="lesson-topics">
+              <li>العناوين h1 إلى h6</li>
+              <li>الفقرات paragraph</li>
+              <li>التسميك والمائل</li>
+              <li>النص المهم والمميز</li>
+              <li>السطر الجديد والخط الفاصل</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 25 دقيقة</span>
+            <a href="lessons/lesson2.html" class="lesson-btn" id="lesson2-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 3 =================== -->
+        <article class="lesson-card" id="lesson-card-3">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">03</span>
+            <span class="lesson-icon">🔗</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">الروابط والصور</h3>
+            <p class="lesson-description">
+              تعلم كيف تضيف روابط وصور لصفحتك بطريقة احترافية
+            </p>
+            <ul class="lesson-topics">
+              <li>رابط href الخارجي والداخلي</li>
+              <li>فتح الرابط في تبويب جديد</li>
+              <li>إضافة صور img</li>
+              <li>نص بديل alt للصور</li>
+              <li>روابط على الصور</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 30 دقيقة</span>
+            <a href="lessons/lesson3.html" class="lesson-btn" id="lesson3-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 4 =================== -->
+        <article class="lesson-card" id="lesson-card-4">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">04</span>
+            <span class="lesson-icon">📋</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">القوائم</h3>
+            <p class="lesson-description">
+              قوائم منظمة وغير منظمة ووصفية - مع أمثلة عملية
+            </p>
+            <ul class="lesson-topics">
+              <li>القائمة غير المرتبة ul</li>
+              <li>القائمة المرتبة ol</li>
+              <li>القائمة الوصفية dl</li>
+              <li>القوائم المتداخلة</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 20 دقيقة</span>
+            <a href="lessons/lesson4.html" class="lesson-btn" id="lesson4-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 5 =================== -->
+        <article class="lesson-card" id="lesson-card-5">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">05</span>
+            <span class="lesson-icon">📊</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">الجداول</h3>
+            <p class="lesson-description">
+              إنشاء جداول منظمة وجميلة لعرض البيانات
+            </p>
+            <ul class="lesson-topics">
+              <li>هيكل الجدول table</li>
+              <li>الصفوف tr والخلايا td</li>
+              <li>رأس الجدول th</li>
+              <li>تحديد الأعمدة colgroup</li>
+              <li>دمج الخلايا colspan وrowspan</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 35 دقيقة</span>
+            <a href="lessons/lesson5.html" class="lesson-btn" id="lesson5-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 6 =================== -->
+        <article class="lesson-card" id="lesson-card-6">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">06</span>
+            <span class="lesson-icon">📝</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">النماذج والمدخلات</h3>
+            <p class="lesson-description">
+              إنشاء فورم احترافي مع كل أنواع المدخلات المختلفة
+            </p>
+            <ul class="lesson-topics">
+              <li>هيكل الفورم form</li>
+              <li>حقول النص input</li>
+              <li>القوائم المنسدلة select</li>
+              <li>مربعات الاختيار checkbox وradio</li>
+              <li>زرار الإرسال submit</li>
+              <li>التحقق validation</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 45 دقيقة</span>
+            <a href="lessons/lesson6.html" class="lesson-btn" id="lesson6-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 7 =================== -->
+        <article class="lesson-card" id="lesson-card-7">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">07</span>
+            <span class="lesson-icon">🎯</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">HTML الدلالي (Semantic HTML)</h3>
+            <p class="lesson-description">
+              استخدام العناصر الصحيحة في المكان الصحيح - الطريقة الاحترافية
+            </p>
+            <ul class="lesson-topics">
+              <li>header و footer</li>
+              <li>main و aside</li>
+              <li>article و section</li>
+              <li>nav و figure</li>
+              <li>لماذا الـ Semantic مهم؟</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 30 دقيقة</span>
+            <a href="lessons/lesson7.html" class="lesson-btn" id="lesson7-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 8 =================== -->
+        <article class="lesson-card" id="lesson-card-8">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">08</span>
+            <span class="lesson-icon">🎬</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">الوسائط المتعددة</h3>
+            <p class="lesson-description">
+              إضافة فيديو وصوت وخرائط وأكواد مضمنة في صفحتك
+            </p>
+            <ul class="lesson-topics">
+              <li>فيديو video</li>
+              <li>صوت audio</li>
+              <li>iframe للمحتوى المضمن</li>
+              <li>YouTube وخرائط Google</li>
+              <li>عنصر canvas</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 35 دقيقة</span>
+            <a href="lessons/lesson8.html" class="lesson-btn" id="lesson8-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 9 =================== -->
+        <article class="lesson-card" id="lesson-card-9">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">09</span>
+            <span class="lesson-icon">🗂️</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">div و span والتنظيم</h3>
+            <p class="lesson-description">
+              تنظيم صفحتك بشكل احترافي باستخدام الحاويات
+            </p>
+            <ul class="lesson-topics">
+              <li>الفرق بين div وspan</li>
+              <li>Block vs Inline Elements</li>
+              <li>تنظيم الصفحة</li>
+              <li>الـ id والـ class</li>
+              <li>هيكل صفحة احترافية</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 25 دقيقة</span>
+            <a href="lessons/lesson9.html" class="lesson-btn" id="lesson9-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 10 =================== -->
+        <article class="lesson-card" id="lesson-card-10">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">10</span>
+            <span class="lesson-icon">♿</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">إمكانية الوصول (Accessibility)</h3>
+            <p class="lesson-description">
+              اجعل موقعك مناسباً للجميع بما فيهم ذوي الاحتياجات الخاصة
+            </p>
+            <ul class="lesson-topics">
+              <li>سمات ARIA</li>
+              <li>alt للصور</li>
+              <li>label للمدخلات</li>
+              <li>tabindex</li>
+              <li>قارئات الشاشة</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 40 دقيقة</span>
+            <a href="lessons/lesson10.html" class="lesson-btn" id="lesson10-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 11 =================== -->
+        <article class="lesson-card" id="lesson-card-11">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">11</span>
+            <span class="lesson-icon">🔍</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">SEO وتحسين محركات البحث</h3>
+            <p class="lesson-description">
+              اجعل موقعك يظهر في Google باستخدام HTML الصحيح
+            </p>
+            <ul class="lesson-topics">
+              <li>Meta Tags المهمة</li>
+              <li>Open Graph لمواقع التواصل</li>
+              <li>Schema Markup</li>
+              <li>هيكل العناوين الصحيح</li>
+              <li>سرعة التحميل</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 40 دقيقة</span>
+            <a href="lessons/lesson11.html" class="lesson-btn" id="lesson11-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 12 =================== -->
+        <article class="lesson-card" id="lesson-card-12">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">12</span>
+            <span class="lesson-icon">📱</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">HTML5 الحديثة</h3>
+            <p class="lesson-description">
+              أحدث مميزات HTML5 التي يجب أن تعرفها
+            </p>
+            <ul class="lesson-topics">
+              <li>Custom Data Attributes</li>
+              <li>Details وSummary</li>
+              <li>Progress وMeter</li>
+              <li>Template Element</li>
+              <li>Web Components</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 45 دقيقة</span>
+            <a href="lessons/lesson12.html" class="lesson-btn" id="lesson12-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+
+        <!-- =================== LESSON 13 =================== -->
+        <article class="lesson-card" id="lesson-card-13">
+
+          <div class="lesson-card-header">
+            <span class="lesson-number">13</span>
+            <span class="lesson-icon">🏗️</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">مشروع كامل: بناء موقع احترافي</h3>
+            <p class="lesson-description">
+              نبني موقع شخصي كامل من الصفر خطوة بخطوة بكل ما تعلمناه
+            </p>
+            <ul class="lesson-topics">
+              <li>تخطيط الموقع</li>
+              <li>صفحة رئيسية Home</li>
+              <li>صفحة عني About</li>
+              <li>صفحة مشاريعي</li>
+              <li>صفحة تواصل Contact</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 60 دقيقة</span>
+            <a href="lessons/lesson13.html" class="lesson-btn" id="lesson13-btn">ابدأ الدرس ←</a>
+          </div>
+
+        </article>
+
+      </div>
+      <!-- </div> = نهاية lessons-grid -->
+
+      <!-- =================== CSS LESSONS GRID =================== -->
+      <div class="lessons-grid tab-content" id="css-lessons" style="display: none;">
+
+        <!-- CSS Lesson 1 -->
+        <article class="lesson-card" id="lesson-card-css-1">
+          <div class="lesson-card-header">
+            <span class="lesson-number">01</span>
+            <span class="lesson-icon">🎨</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">أساسيات CSS والمحددات</h3>
+            <p class="lesson-description">تعلم ما هي CSS وطرق كتابتها ومحددات العناصر بالتفصيل لتصميم هيكل موقعك</p>
+            <ul class="lesson-topics">
+              <li>ما هي CSS؟</li>
+              <li>طرق كتابة التنسيق (Inline, Internal, External)</li>
+              <li>المحددات الأساسية (Selectors)</li>
+              <li>الأولوية والوراثة في الأنماط</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 30 دقيقة</span>
+            <a href="lessons/css/lesson1.html" class="lesson-btn" id="css-lesson1-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- CSS Lesson 2 -->
+        <article class="lesson-card" id="lesson-card-css-2">
+          <div class="lesson-card-header">
+            <span class="lesson-number">02</span>
+            <span class="lesson-icon">✍️</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">الألوان والخلفيات والنصوص</h3>
+            <p class="lesson-description">تعلم كيف تتحكم في ألوان موقعك وتنسيق النصوص والخطوط بشكل احترافي</p>
+            <ul class="lesson-topics">
+              <li>أنظمة الألوان (HEX, RGB, HSL)</li>
+              <li>خصائص الخلفيات (Backgrounds)</li>
+              <li>تنسيق النصوص والخطوط (Typography)</li>
+              <li>استخدام خطوط Google الخارجية</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 25 دقيقة</span>
+            <a href="lessons/css/lesson2.html" class="lesson-btn" id="css-lesson2-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- CSS Lesson 3 -->
+        <article class="lesson-card" id="lesson-card-css-3">
+          <div class="lesson-card-header">
+            <span class="lesson-number">03</span>
+            <span class="lesson-icon">📦</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">نموذج الصندوق (Box Model)</h3>
+            <p class="lesson-description">تعلم أساس توزيع المساحات والهوامش والحدود حول العناصر وتصميم أبعادها</p>
+            <ul class="lesson-topics">
+              <li>الهوامش الخارجية Margin</li>
+              <li>الحدود والحواف Border</li>
+              <li>الهوامش الداخلية Padding</li>
+              <li>box-sizing والتحكم بالحجم الفعلي</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 35 دقيقة</span>
+            <a href="lessons/css/lesson3.html" class="lesson-btn" id="css-lesson3-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- CSS Lesson 4 -->
+        <article class="lesson-card" id="lesson-card-css-4">
+          <div class="lesson-card-header">
+            <span class="lesson-number">04</span>
+            <span class="lesson-icon">📌</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">العرض والتموضع (Display & Position)</h3>
+            <p class="lesson-description">تعلم كيف تتحكم في طريقة عرض العناصر وموقعها الدقيق في شاشة المتصفح</p>
+            <ul class="lesson-topics">
+              <li>أنواع العرض (block, inline, inline-block)</li>
+              <li>التموضع (relative, absolute, fixed, sticky)</li>
+              <li>خاصية التداخل وترتيب الطبقات z-index</li>
+              <li>إخفاء العناصر بـ display: none</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 40 دقيقة</span>
+            <a href="lessons/css/lesson4.html" class="lesson-btn" id="css-lesson4-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- CSS Lesson 5 -->
+        <article class="lesson-card" id="lesson-card-css-5">
+          <div class="lesson-card-header">
+            <span class="lesson-number">05</span>
+            <span class="lesson-icon">↔️</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">التخطيط المرن (Flexbox Layout)</h3>
+            <p class="lesson-description">أقوى نظام لتوزيع ومحاذاة العناصر في سطر واحد أو عمود واحد بشكل مرن</p>
+            <ul class="lesson-topics">
+              <li>حاوي Flex وعناصره</li>
+              <li>المحاذاة (justify-content, align-items)</li>
+              <li>اتجاه العناصر وترتيبها (flex-direction)</li>
+              <li>المسافات الفاصلة (gap, grow, shrink)</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 45 دقيقة</span>
+            <a href="lessons/css/lesson5.html" class="lesson-btn" id="css-lesson5-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- CSS Lesson 6 -->
+        <article class="lesson-card" id="lesson-card-css-6">
+          <div class="lesson-card-header">
+            <span class="lesson-number">06</span>
+            <span class="lesson-icon">🕸️</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">شبكة التنسيق (CSS Grid Layout)</h3>
+            <p class="lesson-description">تصميم وتخطيط صفحات الويب ثنائية الأبعاد (صفوف وأعمدة معاً) بدقة واحترافية</p>
+            <ul class="lesson-topics">
+              <li>حاوي الشبكة Grid Container</li>
+              <li>تحديد الأعمدة والصفوف (grid-template)</li>
+              <li>دمج الخلايا والمساحات (grid-column/row)</li>
+              <li>توزيع العناصر الديناميكي</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 45 دقيقة</span>
+            <a href="lessons/css/lesson6.html" class="lesson-btn" id="css-lesson6-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- CSS Lesson 7 -->
+        <article class="lesson-card" id="lesson-card-css-7">
+          <div class="lesson-card-header">
+            <span class="lesson-number">07</span>
+            <span class="lesson-icon">📱</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">التصميم المتجاوب (Responsive Design)</h3>
+            <p class="lesson-description">جعل موقعك يتجاوب ويتوافق مع مقاسات الهواتف والشاشات المختلفة</p>
+            <ul class="lesson-topics">
+              <li>مبدأ الهاتف أولاً (Mobile-First)</li>
+              <li>الاستعلامات الإعلامية (Media Queries)</li>
+              <li>الوحدات النسبية الحديثة (rem, em, vh, vw)</li>
+              <li>تصميم تخطيطات مرنة متجاوبة</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 40 دقيقة</span>
+            <a href="lessons/css/lesson7.html" class="lesson-btn" id="css-lesson7-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- CSS Lesson 8 -->
+        <article class="lesson-card" id="lesson-card-css-8">
+          <div class="lesson-card-header">
+            <span class="lesson-number">08</span>
+            <span class="lesson-icon">🎬</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">الحركات والانتقالات والتأثيرات</h3>
+            <p class="lesson-description">بث الحياة في صفحتك من خلال إضافة حركات وانتقالات وتحولات تفاعلية مذهلة</p>
+            <ul class="lesson-topics">
+              <li>الانتقالات التلقائية CSS Transitions</li>
+              <li>التحولات ثنائية وثلاثية الأبعاد CSS Transforms</li>
+              <li>إنشاء حركات مخصصة بـ `@keyframes`</li>
+              <li>تأثيرات الظلال والشفافية والفلاتر</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 50 دقيقة</span>
+            <a href="lessons/css/lesson8.html" class="lesson-btn" id="css-lesson8-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- =================== JAVASCRIPT LESSONS GRID =================== -->
+      <div class="lessons-grid tab-content" id="js-lessons" style="display: none;">
+
+        <!-- JS Lesson 1 -->
+        <article class="lesson-card" id="lesson-card-js-1">
+          <div class="lesson-card-header">
+            <span class="lesson-number">01</span>
+            <span class="lesson-icon">⚡</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">مقدمة جافاسكريبت والأساسيات</h3>
+            <p class="lesson-description">فهم لغة جافاسكريبت وطرق تشغيلها وكتابة أول جملة برمجية تفاعلية</p>
+            <ul class="lesson-topics">
+              <li>ما هي JavaScript ودورها التفاعلي؟</li>
+              <li>توصيل الكود بالصفحة وسم script</li>
+              <li>مخرجات الكود (console.log, alert)</li>
+              <li>كتابة أول برنامج جافاسكريبت</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 30 دقيقة</span>
+            <a href="lessons/js/lesson1.html" class="lesson-btn" id="js-lesson1-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- JS Lesson 2 -->
+        <article class="lesson-card" id="lesson-card-js-2">
+          <div class="lesson-card-header">
+            <span class="lesson-number">02</span>
+            <span class="lesson-icon">🔢</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">المتغيرات وأنواع البيانات</h3>
+            <p class="lesson-description">تعلم كيفية تخزين البيانات واستخدام المتغيرات وفهم الأنواع المختلفة للقيم</p>
+            <ul class="lesson-topics">
+              <li>تعريف المتغيرات (let, const, var)</li>
+              <li>أنواع البيانات (String, Number, Boolean, Objects)</li>
+              <li>العمليات الأساسية على النصوص والأرقام</li>
+              <li>تحويل أنواع البيانات (Data Type Conversion)</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 35 دقيقة</span>
+            <a href="lessons/js/lesson2.html" class="lesson-btn" id="js-lesson2-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- JS Lesson 3 -->
+        <article class="lesson-card" id="lesson-card-js-3">
+          <div class="lesson-card-header">
+            <span class="lesson-number">03</span>
+            <span class="lesson-icon">🔄</span>
+            <span class="lesson-badge beginner">مبتدئ</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">العمليات والشرط والتكرار</h3>
+            <p class="lesson-description">التحكم في مسار تشغيل برنامجك وصنع القرارات البرمجية وتكرار المهام</p>
+            <ul class="lesson-topics">
+              <li>العمليات الحسابية والمنطقية</li>
+              <li>الجمل الشرطية (if, else if, else, switch)</li>
+              <li>حلقات التكرار (for, while)</li>
+              <li>التحكم في التكرار (break, continue)</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 40 دقيقة</span>
+            <a href="lessons/js/lesson3.html" class="lesson-btn" id="js-lesson3-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- JS Lesson 4 -->
+        <article class="lesson-card" id="lesson-card-js-4">
+          <div class="lesson-card-header">
+            <span class="lesson-number">04</span>
+            <span class="lesson-icon">🧩</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">الدوال والنطاق (Functions & Scope)</h3>
+            <p class="lesson-description">تنظيم كودك وتقسيمه لقطع قابلة لإعادة الاستخدام بذكاء وسرعة</p>
+            <ul class="lesson-topics">
+              <li>تعريف واستدعاء الدوال</li>
+              <li>المعاملات والقيم المسترجعة (Return)</li>
+              <li>دوال السهم الحديثة (Arrow Functions)</li>
+              <li>النطاق العام والخاص بالمتغيرات (Scope)</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 40 دقيقة</span>
+            <a href="lessons/js/lesson4.html" class="lesson-btn" id="js-lesson4-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- JS Lesson 5 -->
+        <article class="lesson-card" id="lesson-card-js-5">
+          <div class="lesson-card-header">
+            <span class="lesson-number">05</span>
+            <span class="lesson-icon">🗂️</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">المصفوفات والكائنات (Arrays & Objects)</h3>
+            <p class="lesson-description">فهم تنظيم وحفظ البيانات المعقدة في تراكيب متكاملة وسهلة البحث</p>
+            <ul class="lesson-topics">
+              <li>إنشاء المصفوفات والتعامل مع عناصرها</li>
+              <li>دوال المصفوفات الشائعة (push, pop, splice)</li>
+              <li>الكائنات وخصائصها وطرقها (Objects)</li>
+              <li>المصفوفات والكائنات المتداخلة</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 45 دقيقة</span>
+            <a href="lessons/js/lesson5.html" class="lesson-btn" id="js-lesson5-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- JS Lesson 6 -->
+        <article class="lesson-card" id="lesson-card-js-6">
+          <div class="lesson-card-header">
+            <span class="lesson-number">06</span>
+            <span class="lesson-icon">🌳</span>
+            <span class="lesson-badge intermediate">متوسط</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">التحكم بعناصر الصفحة (DOM Manipulation)</h3>
+            <p class="lesson-description">ربط جافاسكريبت بصفحة الويب والتحكم وتغيير عناصر HTML وسلاسل الـ CSS ديناميكياً</p>
+            <ul class="lesson-topics">
+              <li>فهم شجرة الـ DOM</li>
+              <li>اختيار العناصر (getElementById, querySelector)</li>
+              <li>تحديث المحتوى (textContent, innerHTML)</li>
+              <li>تعديل الستايل والكلاسات بـ JS</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 50 دقيقة</span>
+            <a href="lessons/js/lesson6.html" class="lesson-btn" id="js-lesson6-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- JS Lesson 7 -->
+        <article class="lesson-card" id="lesson-card-js-7">
+          <div class="lesson-card-header">
+            <span class="lesson-number">07</span>
+            <span class="lesson-icon">🖱️</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">التعامل مع الأحداث (Event Handling)</h3>
+            <p class="lesson-description">جعل موقعك يتفاعل مع نقرات المستخدم وحركة الماوس وإرسال النماذج بنقرة زر</p>
+            <ul class="lesson-topics">
+              <li>مستمع الأحداث addEventListener</li>
+              <li>أحداث الماوس ولوحة المفاتيح والصفحة</li>
+              <li>معامل الحدث (event object)</li>
+              <li>تخطي إرسال النماذج (preventDefault)</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 45 دقيقة</span>
+            <a href="lessons/js/lesson7.html" class="lesson-btn" id="js-lesson7-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+        <!-- JS Lesson 8 -->
+        <article class="lesson-card" id="lesson-card-js-8">
+          <div class="lesson-card-header">
+            <span class="lesson-number">08</span>
+            <span class="lesson-icon">💾</span>
+            <span class="lesson-badge advanced">متقدم</span>
+          </div>
+          <div class="lesson-card-body">
+            <h3 class="lesson-title">التخزين المحلي وبناء المشاريع</h3>
+            <p class="lesson-description">حفظ بيانات الزوار بشكل دائم في المتصفح وبناء مشروع حقيقي متكامل</p>
+            <ul class="lesson-topics">
+              <li>تخزين وجلب البيانات بـ LocalStorage</li>
+              <li>فهم صيغة تبادل البيانات JSON</li>
+              <li>مشروع متكامل: تطبيق إدارة مهام (To-Do App)</li>
+              <li>حفظ البيانات وتحديثها ديناميكياً</li>
+            </ul>
+          </div>
+          <div class="lesson-card-footer">
+            <span class="lesson-duration">⏱️ 60 دقيقة</span>
+            <a href="lessons/js/lesson8.html" class="lesson-btn" id="js-lesson8-btn">ابدأ الدرس ←</a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+    <!-- </div> = نهاية container -->
+
+  </section>
+  <!-- </section> = نهاية lessons section -->
+
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: PLAYGROUND PREVIEW - معاينة الملعب               -->
+  <!-- ============================================================ -->
+
+  <section id="playground-preview" class="playground-section">
+
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">⚡ جرب الكود مباشرة</h2>
+        <p class="section-subtitle">اكتب HTML وشوف النتيجة فوراً!</p>
+      </div>
+
+      <div class="playground-demo">
+
+        <div class="playground-editor">
+          <div class="editor-header">
+            <span class="editor-title">📝 اكتب الكود هنا</span>
+          </div>
+
+          <textarea id="code-editor" class="code-textarea" spellcheck="false" placeholder="اكتب الأكواد (HTML, CSS, JS) هنا...">
+<h1>مرحباً بالعالم! 🌍</h1>
+<p>أنا بتعلم تطوير الويب الآن (HTML, CSS, JS)</p>
+<button onclick="changeColor()">اضغط لتغيير لون الخلفية 🎨</button>
+
+<style>
+  body { text-align: center; font-family: sans-serif; padding-top: 30px; transition: background-color 0.4s ease; }
+  h1 { color: #007bff; }
+  button { padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+  button:hover { background: #0056b3; }
+</style>
+
+<script>
+  function changeColor() {
+    var colors = ['#f39c12', '#2ecc71', '#9b59b6', '#3498db', '#e74c3c', '#1abc9c'];
+    var rand = colors[Math.floor(Math.random() * colors.length)];
+    document.body.style.backgroundColor = rand;
+  }
+</script>
+          </textarea>
+          <!--
+            <textarea> = منطقة نص كبيرة
+            spellcheck="false" = إيقاف التدقيق الإملائي
+            placeholder = النص اللي بيظهر لما الـ textarea فاضية
+          -->
+
+          <button type="button" class="run-btn" id="run-btn" onclick="runCode()">
+            ▶️ تشغيل
+          </button>
+          <!--
+            onclick="runCode()" = بيشغل دالة JavaScript لما تضغط الزرار
+          -->
+
+        </div>
+
+        <div class="playground-output">
+          <div class="output-header">
+            <span class="output-title">🖥️ النتيجة</span>
+          </div>
+
+          <iframe id="output-frame" class="output-iframe" title="HTML Output">
+          </iframe>
+          <!--
+            <iframe> = Inline Frame = إطار مضمن
+            بيعرض صفحة أو محتوى داخل الصفحة الحالية
+            هنستخدمه لعرض نتيجة الكود
+          -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5: HTML CHEATSHEET PREVIEW - مرجع سريع              -->
+  <!-- ============================================================ -->
+
+  <section id="cheatsheet-preview" class="cheatsheet-section">
+
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">📋 المرجع السريع</h2>
+        <p class="section-subtitle">أهم وسوم HTML في مكان واحد</p>
+      </div>
+
+      <div class="cheatsheet-grid">
+
+        <!-- بطاقة العناصر الأساسية -->
+        <div class="cheat-card" id="cheat-basic">
+          <h3 class="cheat-title">🏗️ العناصر الأساسية</h3>
+          <dl class="cheat-list">
+            <!--
+              <dl> = Description List = قائمة وصفية
+              بتستخدم لقوائم المصطلحات والتعريفات
+            -->
+            <dt><code>&lt;html&gt;</code></dt>
+            <!--
+              <dt> = Description Term = مصطلح
+              <code> = لعرض الكود inline
+            -->
+            <dd>العنصر الجذر للصفحة</dd>
+            <!--
+              <dd> = Description Definition = تعريف المصطلح
+            -->
+
+            <dt><code>&lt;head&gt;</code></dt>
+            <dd>معلومات الصفحة (غير مرئية)</dd>
+
+            <dt><code>&lt;body&gt;</code></dt>
+            <dd>محتوى الصفحة المرئي</dd>
+
+            <dt><code>&lt;title&gt;</code></dt>
+            <dd>عنوان التبويب</dd>
+
+            <dt><code>&lt;meta&gt;</code></dt>
+            <dd>معلومات وصفية</dd>
+
+            <dt><code>&lt;link&gt;</code></dt>
+            <dd>ربط ملفات خارجية</dd>
+
+          </dl>
+        </div>
+
+        <!-- بطاقة النصوص -->
+        <div class="cheat-card" id="cheat-text">
+          <h3 class="cheat-title">📝 النصوص</h3>
+          <dl class="cheat-list">
+
+            <dt><code>&lt;h1&gt; - &lt;h6&gt;</code></dt>
+            <dd>العناوين من الأكبر للأصغر</dd>
+
+            <dt><code>&lt;p&gt;</code></dt>
+            <dd>فقرة نصية</dd>
+
+            <dt><code>&lt;strong&gt;</code></dt>
+            <dd>نص مهم (تسميك)</dd>
+
+            <dt><code>&lt;em&gt;</code></dt>
+            <dd>نص مؤكد (مائل)</dd>
+
+            <dt><code>&lt;br&gt;</code></dt>
+            <dd>سطر جديد</dd>
+
+            <dt><code>&lt;hr&gt;</code></dt>
+            <dd>خط أفقي فاصل</dd>
+
+            <dt><code>&lt;mark&gt;</code></dt>
+            <dd>تمييز النص</dd>
+
+            <dt><code>&lt;del&gt;</code></dt>
+            <dd>نص محذوف (شطب)</dd>
+
+          </dl>
+        </div>
+
+        <!-- بطاقة الروابط والصور -->
+        <div class="cheat-card" id="cheat-links">
+          <h3 class="cheat-title">🔗 الروابط والصور</h3>
+          <dl class="cheat-list">
+
+            <dt><code>&lt;a href=""&gt;</code></dt>
+            <dd>رابط تشعبي</dd>
+
+            <dt><code>target="_blank"</code></dt>
+            <dd>فتح في تبويب جديد</dd>
+
+            <dt><code>&lt;img src="" alt=""&gt;</code></dt>
+            <dd>إضافة صورة</dd>
+
+            <dt><code>alt=""</code></dt>
+            <dd>نص بديل للصورة</dd>
+
+            <dt><code>width="" height=""</code></dt>
+            <dd>أبعاد الصورة</dd>
+
+          </dl>
+        </div>
+
+        <!-- بطاقة القوائم -->
+        <div class="cheat-card" id="cheat-lists">
+          <h3 class="cheat-title">📋 القوائم</h3>
+          <dl class="cheat-list">
+
+            <dt><code>&lt;ul&gt;</code></dt>
+            <dd>قائمة غير مرتبة (نقاط)</dd>
+
+            <dt><code>&lt;ol&gt;</code></dt>
+            <dd>قائمة مرتبة (أرقام)</dd>
+
+            <dt><code>&lt;li&gt;</code></dt>
+            <dd>عنصر في القائمة</dd>
+
+            <dt><code>&lt;dl&gt;</code></dt>
+            <dd>قائمة وصفية</dd>
+
+            <dt><code>&lt;dt&gt;</code></dt>
+            <dd>مصطلح</dd>
+
+            <dt><code>&lt;dd&gt;</code></dt>
+            <dd>تعريف المصطلح</dd>
+
+          </dl>
+        </div>
+
+        <!-- بطاقة الجداول -->
+        <div class="cheat-card" id="cheat-tables">
+          <h3 class="cheat-title">📊 الجداول</h3>
+          <dl class="cheat-list">
+
+            <dt><code>&lt;table&gt;</code></dt>
+            <dd>بداية الجدول</dd>
+
+            <dt><code>&lt;tr&gt;</code></dt>
+            <dd>صف في الجدول</dd>
+
+            <dt><code>&lt;th&gt;</code></dt>
+            <dd>خلية رأس الجدول</dd>
+
+            <dt><code>&lt;td&gt;</code></dt>
+            <dd>خلية بيانات</dd>
+
+            <dt><code>colspan=""</code></dt>
+            <dd>دمج أعمدة</dd>
+
+            <dt><code>rowspan=""</code></dt>
+            <dd>دمج صفوف</dd>
+
+          </dl>
+        </div>
+
+        <!-- بطاقة النماذج -->
+        <div class="cheat-card" id="cheat-forms">
+          <h3 class="cheat-title">📝 النماذج</h3>
+          <dl class="cheat-list">
+
+            <dt><code>&lt;form&gt;</code></dt>
+            <dd>بداية النموذج</dd>
+
+            <dt><code>&lt;input type=""&gt;</code></dt>
+            <dd>حقل مدخل</dd>
+
+            <dt><code>&lt;label&gt;</code></dt>
+            <dd>تسمية الحقل</dd>
+
+            <dt><code>&lt;textarea&gt;</code></dt>
+            <dd>منطقة نص كبيرة</dd>
+
+            <dt><code>&lt;select&gt;</code></dt>
+            <dd>قائمة منسدلة</dd>
+
+            <dt><code>&lt;button&gt;</code></dt>
+            <dd>زرار</dd>
+
+          </dl>
+        </div>
+
+        <!-- بطاقة Semantic HTML -->
+        <div class="cheat-card" id="cheat-semantic">
+          <h3 class="cheat-title">🎯 Semantic HTML</h3>
+          <dl class="cheat-list">
+
+            <dt><code>&lt;header&gt;</code></dt>
+            <dd>رأس الصفحة أو القسم</dd>
+
+            <dt><code>&lt;nav&gt;</code></dt>
+            <dd>قائمة التنقل</dd>
+
+            <dt><code>&lt;main&gt;</code></dt>
+            <dd>المحتوى الرئيسي</dd>
+
+            <dt><code>&lt;section&gt;</code></dt>
+            <dd>قسم من الصفحة</dd>
+
+            <dt><code>&lt;article&gt;</code></dt>
+            <dd>مقال أو محتوى مستقل</dd>
+
+            <dt><code>&lt;aside&gt;</code></dt>
+            <dd>محتوى جانبي</dd>
+
+            <dt><code>&lt;footer&gt;</code></dt>
+            <dd>ذيل الصفحة</dd>
+
+          </dl>
+        </div>
+
+        <!-- بطاقة الوسائط -->
+        <div class="cheat-card" id="cheat-media">
+          <h3 class="cheat-title">🎬 الوسائط</h3>
+          <dl class="cheat-list">
+
+            <dt><code>&lt;video&gt;</code></dt>
+            <dd>تضمين فيديو</dd>
+
+            <dt><code>&lt;audio&gt;</code></dt>
+            <dd>تضمين صوت</dd>
+
+            <dt><code>&lt;iframe&gt;</code></dt>
+            <dd>إطار مضمن</dd>
+
+            <dt><code>&lt;source&gt;</code></dt>
+            <dd>مصدر الوسائط</dd>
+
+            <dt><code>&lt;figure&gt;</code></dt>
+            <dd>حاوية للصور مع تسمية</dd>
+
+            <dt><code>&lt;figcaption&gt;</code></dt>
+            <dd>تسمية الصورة</dd>
+
+          </dl>
+        </div>
+
+      </div>
+      <!-- </div> = نهاية cheatsheet-grid -->
+
+      <div class="cheatsheet-cta">
+        <a href="cheatsheet.html" class="btn btn-primary" id="full-cheatsheet-btn">
+          📋 المرجع الكامل
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6: PROGRESS TRACKER - متابعة التقدم                 -->
+  <!-- ============================================================ -->
+
+  <section id="progress-section" class="progress-section">
+
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">📈 تتبع تقدمك</h2>
+        <p class="section-subtitle">شوف قديه اتعلمت!</p>
+      </div>
+
+      <div class="progress-tracker" id="progress-tracker">
+
+        <div class="progress-bars-grid">
+          <div class="overall-progress" id="html-progress-box">
+            <div class="progress-header">
+              <span class="progress-label">🏗️ تقدم مسار HTML</span>
+              <span class="progress-percent" id="html-percent">0%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="html-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="overall-progress" id="css-progress-box">
+            <div class="progress-header">
+              <span class="progress-label">🎨 تقدم مسار CSS</span>
+              <span class="progress-percent" id="css-percent">0%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="css-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="overall-progress" id="js-progress-box">
+            <div class="progress-header">
+              <span class="progress-label">⚡ تقدم مسار JavaScript</span>
+              <span class="progress-percent" id="js-percent">0%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="js-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-tabs">
+          <button class="progress-tab-btn active" onclick="switchProgressTab('html')">دروس HTML</button>
+          <button class="progress-tab-btn" onclick="switchProgressTab('css')">دروس CSS</button>
+          <button class="progress-tab-btn" onclick="switchProgressTab('js')">دروس JS</button>
+        </div>
+
+        <!-- HTML Progress List -->
+        <div class="lessons-progress-list progress-content active" id="html-progress-list">
+          <div class="progress-item" id="progress-html-1">
+            <span class="progress-item-name">الدرس 1: أساسيات HTML</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-2">
+            <span class="progress-item-name">الدرس 2: العناوين والنصوص</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-3">
+            <span class="progress-item-name">الدرس 3: الروابط والصور</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-4">
+            <span class="progress-item-name">الدرس 4: القوائم</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-5">
+            <span class="progress-item-name">الدرس 5: الجداول</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-6">
+            <span class="progress-item-name">الدرس 6: النماذج والمدخلات</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-7">
+            <span class="progress-item-name">الدرس 7: HTML الدلالي (Semantic)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-8">
+            <span class="progress-item-name">الدرس 8: الوسائط المتعددة</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-9">
+            <span class="progress-item-name">الدرس 9: div و span والتنظيم</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-10">
+            <span class="progress-item-name">الدرس 10: إمكانية الوصول (Accessibility)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-11">
+            <span class="progress-item-name">الدرس 11: SEO وتحسين محركات البحث</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-12">
+            <span class="progress-item-name">الدرس 12: HTML5 الحديثة</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-html-13">
+            <span class="progress-item-name">الدرس 13: المشروع الكامل</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+        </div>
+
+        <!-- CSS Progress List -->
+        <div class="lessons-progress-list progress-content" id="css-progress-list" style="display:none;">
+          <div class="progress-item" id="progress-css-1">
+            <span class="progress-item-name">الدرس 1: أساسيات CSS والمحددات</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-css-2">
+            <span class="progress-item-name">الدرس 2: الألوان والخلفيات والنصوص</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-css-3">
+            <span class="progress-item-name">الدرس 3: نموذج الصندوق (Box Model)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-css-4">
+            <span class="progress-item-name">الدرس 4: العرض والتموضع (Display & Position)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-css-5">
+            <span class="progress-item-name">الدرس 5: التخطيط المرن (Flexbox Layout)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-css-6">
+            <span class="progress-item-name">الدرس 6: شبكة التنسيق (CSS Grid Layout)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-css-7">
+            <span class="progress-item-name">الدرس 7: التصميم المتجاوب (Responsive Design)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-css-8">
+            <span class="progress-item-name">الدرس 8: الحركات والانتقالات والتأثيرات</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+        </div>
+
+        <!-- JS Progress List -->
+        <div class="lessons-progress-list progress-content" id="js-progress-list" style="display:none;">
+          <div class="progress-item" id="progress-js-1">
+            <span class="progress-item-name">الدرس 1: مقدمة جافاسكريبت والأساسيات</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-js-2">
+            <span class="progress-item-name">الدرس 2: المتغيرات وأنواع البيانات</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-js-3">
+            <span class="progress-item-name">الدرس 3: العمليات والشرط والتكرار</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-js-4">
+            <span class="progress-item-name">الدرس 4: الدوال والنطاق (Functions & Scope)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-js-5">
+            <span class="progress-item-name">الدرس 5: المصفوفات والكائنات (Arrays & Objects)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-js-6">
+            <span class="progress-item-name">الدرس 6: التحكم بعناصر الصفحة (DOM Manipulation)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-js-7">
+            <span class="progress-item-name">الدرس 7: التعامل مع الأحداث (Event Handling)</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+
+          <div class="progress-item" id="progress-js-8">
+            <span class="progress-item-name">الدرس 8: التخزين المحلي وبناء المشاريع</span>
+            <span class="progress-item-status not-started">لم يبدأ</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7: FAQ - الأسئلة الشائعة                            -->
+  <!-- ============================================================ -->
+
+  <section id="faq" class="faq-section">
+
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">❓ أسئلة شائعة</h2>
+        <p class="section-subtitle">أكتر الأسئلة اللي بيسألها المبتدئين</p>
+      </div>
+
+      <div class="faq-list" id="faq-list">
+
+        <details class="faq-item" id="faq-1">
+          <!--
+            <details> = عنصر HTML5 يعمل Accordion (توسع وانكماش)
+            من غير JavaScript!
+          -->
+          <summary class="faq-question">
+            <!--
+              <summary> = ملخص أو عنوان الـ details
+              ده اللي بيظهر دايماً - والباقي بيظهر بعد الضغط
+            -->
+            ما هو الفرق بين HTML و CSS و JavaScript؟
+          </summary>
+          <div class="faq-answer">
+            <p>
+              <strong>HTML</strong> = هيكل الصفحة (زي العظام في الجسم)
+              <br>
+              <strong>CSS</strong> = تنسيق وشكل الصفحة (زي الملابس)
+              <br>
+              <strong>JavaScript</strong> = التفاعلية والحركة (زي العضلات)
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item" id="faq-2">
+          <summary class="faq-question">
+            هل HTML لغة برمجة؟
+          </summary>
+          <div class="faq-answer">
+            <p>
+              لا! HTML مش لغة برمجة. هي لغة ترميز (Markup Language).
+              الفرق إن البرمجة بتتحكم في المنطق والعمليات،
+              أما HTML فبس بتوصف وتنظم المحتوى.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item" id="faq-3">
+          <summary class="faq-question">
+            قديه بياخد وقت أتعلم HTML؟
+          </summary>
+          <div class="faq-answer">
+            <p>
+              الأساسيات ممكن تتعلمها في <strong>أسبوع أو اتنين</strong> لو بتذاكر يومياً.
+              لكن عشان تبقى محترف فعلياً مع CSS و JavaScript محتاج <strong>3-6 شهور</strong>.
+              المهم الاستمرار والتطبيق!
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item" id="faq-4">
+          <summary class="faq-question">
+            محتاج برنامج معين عشان أكتب HTML?
+          </summary>
+          <div class="faq-answer">
+            <p>
+              مش محتاج أي برنامج خاص! ممكن تكتب HTML في Notepad العادي.
+              لكن بنفضل تستخدم <strong>VS Code</strong> (مجاني) لأنه بيساعدك كتير.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item" id="faq-5">
+          <summary class="faq-question">
+            إيه بعد HTML؟
+          </summary>
+          <div class="faq-answer">
+            <p>
+              بعد HTML تعلم <strong>CSS</strong> للتنسيق، 
+              بعدين <strong>JavaScript</strong> للتفاعلية،
+              وبعدين تختار: Front-end Framework زي React أو Vue،
+              أو Back-end زي Node.js أو Python.
+            </p>
+          </div>
+        </details>
+
+      </div>
+      <!-- </div> = نهاية faq-list -->
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- SECTION 8: NEWSLETTER - الاشتراك في التحديثات              -->
+  <!-- ============================================================ -->
+
+  <section id="newsletter" class="newsletter-section">
+
+    <div class="container">
+
+      <div class="newsletter-content">
+
+        <h2 class="newsletter-title">🔔 ابق محدثاً</h2>
+        <p class="newsletter-description">
+          اشترك وهتوصلك كل الدروس الجديدة والتحديثات
+        </p>
+
+        <form action="#" method="post" id="newsletter-form" class="newsletter-form" novalidate>
+          <!--
+            <form> = نموذج HTML
+            action="#" = المكان اللي هيبعت ليه البيانات (# = نفس الصفحة)
+            method="post" = طريقة إرسال البيانات (post = أمان أكتر)
+            novalidate = إيقاف التحقق التلقائي للمتصفح (هنتحكم فيه بـ JavaScript)
+          -->
+
+          <div class="form-group">
+
+            <label for="email-input" class="sr-only">
+              <!--
+                <label> = تسمية حقل المدخل
+                for="email-input" = بيربطها بالـ input اللي ليه id="email-input"
+                class="sr-only" = مخفي بصرياً لكن مرئي لقارئات الشاشة (Screen Reader)
+              -->
+              البريد الإلكتروني
+            </label>
+
+            <input
+              type="email"
+              id="email-input"
+              name="email"
+              class="email-input"
+              placeholder="example@email.com"
+              required
+              autocomplete="email"
+            >
+            <!--
+              type="email" = حقل بريد إلكتروني (بيتحقق تلقائياً)
+              id="email-input" = معرف فريد (مرتبط بالـ label)
+              name="email" = اسم الحقل لما بيتبعت للسيرفر
+              placeholder = نص توضيحي بيختفي لما تبدأ الكتابة
+              required = حقل مطلوب (إجباري)
+              autocomplete="email" = بيقترح إيميلات محفوظة
+            -->
+
+            <button type="submit" class="subscribe-btn" id="subscribe-btn">
+              اشترك الآن 🔔
+            </button>
+
+          </div>
+
+          <p class="form-note">
+            <small>
+              <!--
+                <small> = نص صغير (للملاحظات والتحذيرات الصغيرة)
+              -->
+              🔒 لن نرسل لك أي رسائل غير مرغوب فيها. يمكنك إلغاء الاشتراك في أي وقت.
+            </small>
+          </p>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- FOOTER - ذيل الصفحة                                          -->
+  <!-- ============================================================ -->
+
+  <footer id="main-footer" class="main-footer">
+    <!--
+      <footer> = ذيل الصفحة أو القسم
+      عنصر Semantic - بيحتوي على:
+      - حقوق النشر
+      - روابط مهمة
+      - معلومات الاتصال
+      - الشبكات الاجتماعية
+    -->
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- عمود عن المشروع -->
+        <div class="footer-column" id="footer-about">
+          <h3 class="footer-heading">🎓 تعلم HTML</h3>
+          <p class="footer-description">
+            مشروع تعليمي مجاني لتعلم HTML من الصفر بالعربي مع شرح كل سطر
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="GitHub">GitHub</a>
+            <a href="#" class="social-link" aria-label="Twitter">Twitter</a>
+            <a href="#" class="social-link" aria-label="YouTube">YouTube</a>
+          </div>
+        </div>
+
+        <!-- عمود الدروس -->
+        <div class="footer-column" id="footer-lessons">
+          <h3 class="footer-heading">📚 الدروس</h3>
+          <ul class="footer-links">
+            <li><a href="lessons/lesson1.html">الدرس 1: أساسيات HTML</a></li>
+            <li><a href="lessons/lesson2.html">الدرس 2: العناوين والنصوص</a></li>
+            <li><a href="lessons/lesson3.html">الدرس 3: الروابط والصور</a></li>
+            <li><a href="lessons/lesson4.html">الدرس 4: القوائم</a></li>
+            <li><a href="lessons/lesson5.html">الدرس 5: الجداول</a></li>
+          </ul>
+        </div>
+
+        <!-- عمود الأدوات -->
+        <div class="footer-column" id="footer-tools">
+          <h3 class="footer-heading">🛠️ الأدوات</h3>
+          <ul class="footer-links">
+            <li><a href="playground.html">⚡ الملعب التفاعلي</a></li>
+            <li><a href="quiz.html">🧪 الاختبارات</a></li>
+            <li><a href="cheatsheet.html">📋 المرجع السريع</a></li>
+            <li><a href="projects.html">🏗️ المشاريع</a></li>
+          </ul>
+        </div>
+
+        <!-- عمود التواصل -->
+        <div class="footer-column" id="footer-contact">
+          <h3 class="footer-heading">📞 تواصل معنا</h3>
+          <address>
+            <!--
+              <address> = معلومات الاتصال
+              عنصر Semantic - بيحتوي على معلومات التواصل
+            -->
+            <p>
+              <a href="mailto:info@htmllearn.com">
+                <!--
+                  href="mailto:" = لما تضغط هيفتح برنامج الإيميل
+                -->
+                📧 info@htmllearn.com
+              </a>
+            </p>
+            <p>
+              <a href="tel:+201234567890">
+                <!--
+                  href="tel:" = لما تضغط هيعمل مكالمة (على الموبايل)
+                -->
+                📞 01234567890
+              </a>
+            </p>
+          </address>
+        </div>
+
+      </div>
+      <!-- </div> = نهاية footer-grid -->
+
+      <hr class="footer-divider">
+      <!--
+        <hr> = Horizontal Rule = خط أفقي
+        عنصر Void (فارغ) - مش محتاج إغلاق
+        هنا بيستخدم كفاصل بصري
+      -->
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 تعلم HTML - جميع الحقوق محفوظة
+          <!--
+            &copy; = رمز حقوق النشر ©
+            دي تسمى HTML Entities = رموز خاصة
+          -->
+        </p>
+        <p class="made-with">
+          صُنع بـ <span aria-label="حب">❤️</span> للمتعلمين العرب
+        </p>
+      </div>
+
+    </div>
+
+  </footer>
+  <!-- </footer> = نهاية ذيل الصفحة -->
+
+
+  <!-- ============================================================ -->
+  <!-- SCRIPTS - ملفات JavaScript في نهاية الصفحة                  -->
+  <!-- ============================================================ -->
+
+  <script src="script.js">
+    <!--
+      <script> = ملف JavaScript
+      بيجي في آخر الـ body عشان:
+      1. الصفحة تتحمل أسرع
+      2. العناصر تكون موجودة قبل ما JavaScript يشتغل
+    -->
+  </script>
+
+  <!--
+    ===============================================
+    خلصنا! 🎉
+    ده هو الهيكل الكامل لصفحة HTML احترافية
+    ===============================================
+  -->
+
+</body>
+<!-- </body> = نهاية جسم الصفحة -->
+
+</html>
+<!-- </html> = نهاية الصفحة كلها -->

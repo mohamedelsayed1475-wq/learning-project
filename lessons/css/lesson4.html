@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الرابع CSS: التموضع والعرض - Display وPosition">
+  <title>📖 CSS - الدرس 4: التموضع والعرض | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge intermediate" style="background:rgba(14,165,233,0.15);color:#38bdf8;border-color:rgba(56,189,248,0.3);">CSS - الدرس الرابع - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 16 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">📍 التموضع والعرض - Display & Position</h1>
+        <p class="lesson-description">
+          تعلم كيف تتحكم في كيفية عرض العناصر وأين تظهر بالضبط في الصفحة!
+          خاصيتا display وposition هما أساس كل تخطيط في CSS.
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>🖥️ خاصية Display</h2>
+        <pre class="code-block"><code><span class="comment">/*
+  display = كيف يتصرف العنصر في تدفق الصفحة
+  القيم الأساسية:
+*/</span>
+
+<span class="comment">/* 1. block - العناصر الكتلية */</span>
+<span class="selector">div, p, h1</span> {
+  <span class="property">display</span>: <span class="value">block</span>;
+  <span class="comment">/*
+    - يأخذ عرض كامل (100%) من الأب
+    - ينزل على سطر جديد
+    - يقبل width وheight
+    - أمثلة: div, p, h1-h6, section, article
+  */</span>
+}
+
+<span class="comment">/* 2. inline - العناصر المضمنة */</span>
+<span class="selector">span, a, strong</span> {
+  <span class="property">display</span>: <span class="value">inline</span>;
+  <span class="comment">/*
+    - يأخذ عرض محتواه فقط
+    - يبقى في نفس السطر
+    - لا يقبل width وheight
+    - أمثلة: span, a, img, strong, em
+  */</span>
+}
+
+<span class="comment">/* 3. inline-block - الوسط بين الاثنين */</span>
+<span class="selector">.badge</span> {
+  <span class="property">display</span>: <span class="value">inline-block</span>;
+  <span class="comment">/*
+    - يبقى في السطر زي inline
+    - لكن يقبل width وheight زي block
+    - مفيد للأزرار والشارات والروابط
+  */</span>
+  <span class="property">width</span>: <span class="value">100px</span>;
+  <span class="property">height</span>: <span class="value">36px</span>;
+}
+
+<span class="comment">/* 4. none - إخفاء العنصر كلياً */</span>
+<span class="selector">.hidden</span> {
+  <span class="property">display</span>: <span class="value">none</span>;
+  <span class="comment">/*
+    - يُزيل العنصر من الصفحة كلياً
+    - لا يأخذ مساحة
+    - مختلف عن visibility: hidden
+    - visibility: hidden يُخفي لكن يحتفظ بالمساحة
+  */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📌 خاصية Position</h2>
+        <pre class="code-block"><code><span class="comment">/* 1. static - الافتراضي */</span>
+<span class="selector">p</span> {
+  <span class="property">position</span>: <span class="value">static</span>;
+  <span class="comment">/*
+    - الوضع الافتراضي لكل العناصر
+    - يتبع التدفق الطبيعي للصفحة
+    - لا يتأثر بـ top, right, bottom, left
+  */</span>
+}
+
+<span class="comment">/* 2. relative - نسبي */</span>
+<span class="selector">.shifted</span> {
+  <span class="property">position</span>: <span class="value">relative</span>;
+  <span class="property">top</span>: <span class="value">20px</span>;   <span class="comment">/* ينزل 20px من موضعه الأصلي */</span>
+  <span class="property">left</span>: <span class="value">10px</span>;  <span class="comment">/* ينتقل 10px لليسار */</span>
+  <span class="comment">/*
+    - يتحرك بالنسبة لموضعه الأصلي
+    - يحتفظ بمساحته في التدفق الطبيعي
+    - الأهم: يصبح نقطة مرجعية للعناصر absolute بداخله!
+  */</span>
+}
+
+<span class="comment">/* 3. absolute - مطلق */</span>
+<span class="selector">.tooltip</span> {
+  <span class="property">position</span>: <span class="value">absolute</span>;
+  <span class="property">top</span>: <span class="value">0</span>;
+  <span class="property">right</span>: <span class="value">0</span>;
+  <span class="comment">/*
+    - يخرج من التدفق الطبيعي (لا يأخذ مساحة)
+    - يتموضع بالنسبة لأقرب عنصر أب بـ position غير static
+    - لو ما فيش، يتموضع بالنسبة للـ body
+    - شائع جداً لـ: tooltips, badges, overlays
+    
+    مثال: زرار "جديد" فوق صورة المنتج
+    الصورة: position relative
+    النص "جديد": position absolute, top 10px, left 10px
+  */</span>
+}
+
+<span class="comment">/* 4. fixed - ثابت بالنسبة للشاشة */</span>
+<span class="selector">.navbar</span> {
+  <span class="property">position</span>: <span class="value">fixed</span>;
+  <span class="property">top</span>: <span class="value">0</span>;
+  <span class="property">left</span>: <span class="value">0</span>;
+  <span class="property">right</span>: <span class="value">0</span>;
+  <span class="property">z-index</span>: <span class="value">100</span>;
+  <span class="comment">/*
+    - يبقى ثابتاً عند التمرير (scroll)
+    - يتموضع بالنسبة لنافذة المتصفح
+    - يخرج من التدفق الطبيعي
+    - شائع جداً لـ: navigation bars, chat buttons
+    
+    z-index = ترتيب الطبقات
+    القيمة الأعلى = يظهر فوق كل شيء آخر
+  */</span>
+}
+
+<span class="comment">/* 5. sticky - لاصق */</span>
+<span class="selector">.sticky-header</span> {
+  <span class="property">position</span>: <span class="value">sticky</span>;
+  <span class="property">top</span>: <span class="value">0</span>;
+  <span class="comment">/*
+    - يبدأ كـ relative
+    - عند التمرير يصبح كـ fixed عند الحد المحدد
+    - يبقى في حاويته (الأب)
+    - شائع لـ: جداول بعناوين ثابتة، سكاشن headers
+  */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ display: block وinline وinline-block ونone</li>
+            <li>✅ position: static وrelative وabsolute وfixed وsticky</li>
+            <li>✅ الفرق بين display:none وvisibility:hidden</li>
+            <li>✅ z-index لترتيب طبقات العناصر</li>
+            <li>✅ top وright وbottom وleft للتحكم في الموضع</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson3.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: Box Model</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">4</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson5.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: Flexbox ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار CSS</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

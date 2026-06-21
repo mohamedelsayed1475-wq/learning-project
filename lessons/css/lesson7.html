@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس السابع CSS: استعلامات الوسائط والتصميم المتجاوب - Media Queries and Responsive Design">
+  <title>📖 CSS - الدرس 7: استعلامات الوسائط والتصميم المتجاوب | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge intermediate" style="background:rgba(14,165,233,0.15);color:#38bdf8;border-color:rgba(56,189,248,0.3);">CSS - الدرس السابع - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 15 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">📱 التصميم المتجاوب واستعلامات الوسائط (Media Queries)</h1>
+        <p class="lesson-description">
+          تعلم كيف تجعل موقعك يبدو جميلاً واحترافياً على كافة الشاشات، من الهواتف المحمولة الصغيرة وحتى شاشات الحواسيب الضخمة!
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>🤔 ما هو التصميم المتجاوب (Responsive Web Design)؟</h2>
+        <p>
+          التصميم المتجاوب هو أسلوب تصميم يهدف لتجعل صفحات الويب تبدو مناسبة وتعمل بشكل مثالي على مختلف الأجهزة والقرارات وشاشات العرض.
+        </p>
+        <div class="info-box">
+          <p>💡 قديماً، كان المطورون يبنون موقعاً خاصاً للهواتف (مثل m.facebook.com) وموقعاً آخر للحاسوب. اليوم، نستخدم كود CSS واحداً يتكيف مع حجم الشاشة تلقائياً!</p>
+          <p><strong>الركائز الأساسية الثلاث للتصميم المتجاوب:</strong></p>
+          <ul>
+            <li>📏 <strong>تخطيطات مرنة (Fluid Grids):</strong> استخدام النسب المئوية % أو وحدات مثل fr و vw بدلاً من العرض الثابت بالبكسل.</li>
+            <li>🖼️ <strong>صور مرنة (Responsive Images):</strong> جعل الصور لا تزيد عن حجم حاويتها بـ <code>max-width: 100%;</code>.</li>
+            <li>📱 <strong>استعلامات الوسائط (Media Queries):</strong> تطبيق تنسيقات مختلفة بناءً على حجم الشاشة.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📱 استعلامات الوسائط (Media Queries)</h2>
+        <p>
+          تتيح لك استعلامات الوسائط كتابة شروط معينة في CSS، بحيث لا تطبق هذه التنسيقات إلا إذا تحققت تلك الشروط (مثل حجم شاشة معين).
+        </p>
+        <pre class="code-block"><code><span class="comment">/* التنسيق الافتراضي للشاشات الكبيرة (Desktop-First) */</span>
+<span class="selector">.container</span> {
+  <span class="property">width</span>: <span class="value">80%</span>;
+  <span class="property">margin</span>: <span class="value">0 auto</span>;
+  <span class="property">display</span>: <span class="value">flex</span>;
+}
+
+<span class="selector">.sidebar</span> {
+  <span class="property">width</span>: <span class="value">30%</span>;
+  <span class="property">background-color</span>: <span class="value">#f1f5f9</span>;
+}
+
+<span class="selector">.main-content</span> {
+  <span class="property">width</span>: <span class="value">70%</span>;
+}
+
+<span class="comment">/* 📱 استعلام الوسائط للهواتف (عرض الشاشة أقل من أو يساوي 768px) */</span>
+<span class="keyword">@media</span> <span class="value">screen and (max-width: 768px)</span> {
+  <span class="selector">.container</span> {
+    <span class="property">flex-direction</span>: <span class="value">column</span>; <span class="comment">/* تحويل العناصر لترتيب عمودي بدلاً من أفقي */</span>
+    <span class="property">width</span>: <span class="value">95%</span>;            <span class="comment">/* جعل الحاوية أوسع على الشاشات الصغيرة */</span>
+  }
+
+  <span class="selector">.sidebar</span>, <span class="selector">.main-content</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;           <span class="comment">/* أخذ العرض الكامل للشاشة */</span>
+  }
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎯 نقاط التوقف الشائعة (Breakpoints)</h2>
+        <p>
+          نقطة التوقف هي الحجم الذي يتغير عنده تنسيق الصفحة. تختلف نقاط التوقف بناءً على الأجهزة المستهدفة، ولكن الأكثر شيوعاً هي:
+        </p>
+        <pre class="code-block"><code><span class="comment">/* 1. للهواتف المحمولة الصغيرة جداً (أقل من 480 بكسل) */</span>
+<span class="keyword">@media</span> <span class="value">screen and (max-width: 480px)</span> {
+  <span class="selector">h1</span> {
+    <span class="property">font-size</span>: <span class="value">24px</span>; <span class="comment">/* تصغير العناوين لتناسب شاشات الموبايل الصغيرة */</span>
+  }
+}
+
+<span class="comment">/* 2. للأجهزة اللوحية والهواتف الكبيرة (أقل من 768 بكسل) */</span>
+<span class="keyword">@media</span> <span class="value">screen and (max-width: 768px)</span> {
+  <span class="selector">.nav-menu</span> {
+    <span class="property">display</span>: <span class="value">none</span>; <span class="comment">/* إخفاء قائمة التنقل لعرض زر همبرغر بدلاً منها */</span>
+  }
+}
+
+<span class="comment">/* 3. للحواسيب المحمولة والشاشات المتوسطة (بين 769 و 1024 بكسل) */</span>
+<span class="keyword">@media</span> <span class="value">screen and (min-width: 769px) and (max-width: 1024px)</span> {
+  <span class="selector">.card</span> {
+    <span class="property">width</span>: <span class="value">50%</span>; <span class="comment">/* عرض كارتين في كل صف */</span>
+  }
+}
+
+<span class="comment">/* 4. للحواسيب المكتبية والشاشات الكبيرة جداً (أكثر من 1200 بكسل) */</span>
+<span class="keyword">@media</span> <span class="value">screen and (min-width: 1200px)</span> {
+  <span class="selector">.container</span> {
+    <span class="property">max-width</span>: <span class="value">1140px</span>; <span class="comment">/* تحديد حد أقصى لعرض المحتوى كي لا يتمدد بشكل قبيح */</span>
+  }
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>⚡ نهج الموبايل أولاً (Mobile-First)</h2>
+        <div class="info-box">
+          <p>أثناء التصميم، يفضل اتباع نهج <strong>Mobile-First</strong> وهو كتابة الأكواد الخاصة بالهاتف كأكواد أساسية، ثم استخدام <code>min-width</code> لإضافة تنسيقات الأجهزة الأكبر تدريجياً. هذا يجعل الكود أنظف وأسرع في التحميل على الهواتف.</p>
+        </div>
+        <pre class="code-block"><code><span class="comment">/* 📱 التنسيق الأساسي للموبايل (Mobile-First) */</span>
+<span class="selector">.grid-layout</span> {
+  <span class="property">display</span>: <span class="value">grid</span>;
+  <span class="property">grid-template-columns</span>: <span class="value">1fr</span>; <span class="comment">/* عمود واحد في الموبايل */</span>
+  <span class="property">gap</span>: <span class="value">15px</span>;
+}
+
+<span class="comment">/* 💻 الأجهزة اللوحية وما فوق (أكبر من 768px) */</span>
+<span class="keyword">@media</span> <span class="value">screen and (min-width: 768px)</span> {
+  <span class="selector">.grid-layout</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(2, 1fr)</span>; <span class="comment">/* عمودان متساويان */</span>
+  }
+}
+
+<span class="comment">/* 🖥️ شاشات الحاسوب الكبيرة (أكبر من 1024px) */</span>
+<span class="keyword">@media</span> <span class="value">screen and (min-width: 1024px)</span> {
+  <span class="selector">.grid-layout</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(3, 1fr)</span>; <span class="comment">/* 3 أعمدة */</span>
+  }
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ التصميم المتجاوب يجعل الموقع يعمل بشكل رائع على جميع الشاشات.</li>
+            <li>✅ <code>@media</code> تستخدم لفحص الحجم وتطبيق خصائص مخصصة له.</li>
+            <li>✅ <code>max-width</code> يستهدف الشاشات الأصغر من حجم معين (منهج Desktop-First).</li>
+            <li>✅ <code>min-width</code> يستهدف الشاشات الأكبر من حجم معين (منهج Mobile-First).</li>
+            <li>✅ استخدام الوحدات المرنة مثل flex و grid يساعد كثيراً في تحقيق التجاوب بسهولة.</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson6.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: CSS Grid</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">7</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson8.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: الانتقالات والحركات ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار CSS</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

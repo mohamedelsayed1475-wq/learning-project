@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  ده بيقول للمتصفح إن الصفحة دي HTML5.
+  يساعد المتصفح على عرض الصفحة بالشكل الصحيح والمعياري الحديث.
+  =====================================================
+-->
+<html lang="ar" dir="rtl">
+<!--
+  <html> = جذر الصفحة (Root).
+  - lang="ar": تحديد لغة الموقع بالعربية.
+  - dir="rtl": اتجاه الصفحة من اليمين لليسار.
+-->
+<head>
+<!--
+  <head> = وسم الرأس، يحتوي على الميتا والبيانات الوصفية والعنوان والروابط لملفات الاستايل.
+-->
+  <meta charset="UTF-8">
+  <!-- ترميز الحروف العالمي لضمان ظهور الأحرف العربية بشكل صحيح -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ضبط التجاوب مع مقاسات الشاشات المختلفة (الموبايل والكمبيوتر) -->
+  <meta name="description" content="الدرس الرابع: القوائم في HTML - ul و ol و li و dl">
+  <!-- وصف الصفحة لمحركات البحث -->
+  <title>📖 الدرس 4: القوائم - تعلم HTML</title>
+  <!-- عنوان التبويب فوق في المتصفح -->
+  <link rel="stylesheet" href="../style.css">
+  <!-- ربط ملف الاستايل الخارجي CSS -->
+</head>
+<body>
+<!--
+  <body> = جسم الصفحة الفعلي وكل العناصر المرئية للمستخدم توضع هنا.
+-->
+
+  <header id="main-header">
+  <!-- رأس الموقع ويحتوي على شعار وقائمة التنقل الرئيسية -->
+    <nav id="main-nav">
+    <!-- حاوية روابط التنقل الرئيسية -->
+      <div class="nav-logo">
+      <!-- حاوية اللوجو والشعار -->
+        <a href="../index.html" id="logo-link">
+        <!-- رابط يرجع للصفحة الرئيسية -->
+          <span class="logo-icon">🎓</span>
+          <!-- أيقونة الشعار اللطيفة -->
+          <span class="logo-text">تعلم HTML</span>
+          <!-- نص الشعار -->
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+      <!-- القائمة غير المرتبة لروابط التنقل -->
+        <li class="nav-item"><a href="../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <!-- class="active" لتمييز وسم الدروس حالياً بالهيدر -->
+        <li class="nav-item"><a href="../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+      <!-- زر الهامبرغر للقائمة المنسدلة في الهواتف الذكية -->
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+  <!-- المحتوى الرئيسي للصفحة -->
+    <article class="lesson-article">
+    <!-- حاوية مقال الدرس -->
+
+      <header class="lesson-header">
+      <!-- ترويسة الدرس الفرعية -->
+        <div class="lesson-meta">
+        <!-- شارات التصنيف والمعلومات الجانبية للدرس -->
+          <span class="category-badge beginner">الدرس الرابع - مبتدئ</span>
+          <span class="read-time">⏱️ مدة القراءة: 12 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">📋 القوائم في HTML</h1>
+        <!-- العنوان الرئيسي للدرس -->
+        <p class="lesson-summary">
+        <!-- ملخص الدرس -->
+          القوائم من أكثر عناصر HTML استخداماً في المواقع. سنتعلم ثلاثة أنواع: القوائم غير المرتبة (ul)، والقوائم المرتبة (ol)، وقوائم التعريف (dl).
+        </p>
+      </header>
+
+      <section class="lesson-body">
+      <!-- جسم موضوع الدرس وشرح القوائم بالتفصيل -->
+
+        <h2>1. القائمة غير المرتبة &lt;ul&gt;</h2>
+        <!-- عنوان فرعي للقسم الأول -->
+        <p>
+          تُستخدم <code>&lt;ul&gt;</code> (Unordered List) لعرض قائمة من العناصر بدون ترتيب معين (تظهر كنقاط). كل عنصر داخلها يكتب بوسم <code>&lt;li&gt;</code> (List Item).
+        </p>
+        <div class="code-explain-card">
+        <!-- كود توضيحي للقائمة غير المرتبة -->
+          <pre><code>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+        <div class="live-preview-box">
+        <!-- صندوق معاينة حية لشكل القائمة في المتصفح -->
+          <p class="preview-label">👁️ النتيجة في المتصفح:</p>
+          <ul style="margin:0;padding-right:20px;">
+          <!--
+            <ul>: قائمة غير مرتبة.
+            - style="margin:0;padding-right:20px;": كود CSS داخلي لضبط هوامش القائمة ومكان النقاط.
+          -->
+            <li>HTML</li>
+            <!-- <li>: وسم عنصر القائمة (List Item) -->
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+
+        <hr>
+        <!-- خط أفقي فاصل -->
+
+        <h2>2. القائمة المرتبة &lt;ol&gt;</h2>
+        <!-- عنوان فرعي للقسم الثاني -->
+        <p>
+          تُستخدم <code>&lt;ol&gt;</code> (Ordered List) لعرض قائمة مرقّمة بترتيب رقمي أو أبجدي معين. مثالية لخطوات الطبخ أو التعليمات التسلسلية.
+        </p>
+        <div class="code-explain-card">
+          <pre><code>&lt;ol&gt;
+  &lt;li&gt;افتح محرر النصوص&lt;/li&gt;
+  &lt;li&gt;اكتب كود HTML&lt;/li&gt;
+  &lt;li&gt;احفظ الملف بامتداد .html&lt;/li&gt;
+  &lt;li&gt;افتح الملف في المتصفح&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        </div>
+        <div class="live-preview-box">
+          <p class="preview-label">👁️ النتيجة في المتصفح:</p>
+          <ol style="margin:0;padding-right:25px;">
+          <!--
+            <ol>: قائمة مرتبة (تظهر كأرقام تسلسلية تلقائية).
+          -->
+            <li>افتح محرر النصوص</li>
+            <li>اكتب كود HTML</li>
+            <li>احفظ الملف بامتداد .html</li>
+            <li>افتح الملف في المتصفح</li>
+          </ol>
+        </div>
+
+        <div class="tip-box">
+        <!-- تلميحات لسمات إضافية مفيدة في القائمة المرتبة -->
+          💡 <strong>خصائص &lt;ol&gt; المفيدة:</strong><br>
+          • <code>type="A"</code> — ترقيم بالحروف الإنجليزية الكبيرة (A, B, C)<br>
+          • <code>type="I"</code> — ترقيم بالأرقام الرومانية (I, II, III)<br>
+          • <code>start="5"</code> — بدء التعداد والترقيم من رقم محدد (مثل البدء من 5 بدلاً من 1)
+        </div>
+
+        <hr>
+
+        <h2>3. القوائم المتداخلة (Nested Lists)</h2>
+        <!-- عنوان فرعي للقسم الثالث -->
+        <p>يمكن وضع قائمة كاملة جديدة داخل عنصر <code>&lt;li&gt;</code> لإنشاء قائمة فرعية متداخلة:</p>
+        <div class="code-explain-card">
+          <pre><code>&lt;ul&gt;
+  &lt;li&gt;تطوير الويب
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+      &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;تطوير الموبايل&lt;/li&gt;
+  &lt;li&gt;الذكاء الاصطناعي&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+        <div class="live-preview-box">
+          <p class="preview-label">👁️ النتيجة:</p>
+          <ul style="margin:0;padding-right:20px;">
+            <li>تطوير الويب
+              <ul style="margin-top:5px;margin-bottom:5px;padding-right:20px;">
+              <!-- قائمة فرعية غير مرتبة متداخلة داخل عنصر القائمة الأب -->
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+            </li>
+            <li>تطوير الموبايل</li>
+            <li>الذكاء الاصطناعي</li>
+          </ul>
+        </div>
+
+        <hr>
+
+        <h2>4. قائمة التعريف &lt;dl&gt;</h2>
+        <!-- عنوان فرعي للقسم الرابع -->
+        <p>
+          تُستخدم <code>&lt;dl&gt;</code> (Description List) لعرض مصطلحات يتبعها شروحات أو تعريفات لكل مصطلح. تتكون من جزئين:
+        </p>
+        <ul style="padding-right:20px;">
+          <li><code>&lt;dt&gt;</code> (Description Term) — المصطلح أو الكلمة المراد تعريفها.</li>
+          <li><code>&lt;dd&gt;</code> (Description Details / Definition) — التفاصيل والشرح لهذا المصطلح.</li>
+        </ul>
+        <div class="code-explain-card">
+          <pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;لغة ترميز النصوص التشعبية، تُستخدم لبناء هيكل صفحات الويب.&lt;/dd&gt;
+
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;صحائف الأنماط المتتالية، تُستخدم لتنسيق وتصميم صفحات الويب.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+        </div>
+
+      </section>
+
+      <footer class="lesson-footer-nav">
+      <!-- أزرار التنقل السفلية للدرس -->
+        <a href="lesson3.html" class="btn btn-secondary">⬅️ الدرس السابق</a>
+        <a href="lesson5.html" class="btn btn-primary">الدرس التالي: الجداول ➡️</a>
+      </footer>
+
+    </article>
+  </main>
+
+  <footer id="main-footer" class="main-footer">
+  <!-- تذييل الصفحة للموقع كله -->
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 تعلم HTML - جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* تنسيقات CSS مخصصة لصفحة الدرس */
+    .lesson-meta { margin-bottom: 15px; font-size: 0.9em; color: #666; }
+    .category-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; background: #e3f2fd; color: #0d47a1; margin-left: 10px; }
+    .read-time { font-style: italic; }
+    .lesson-title { font-size: 2.2em; margin-top: 10px; margin-bottom: 15px; color: #1a1a1a; }
+    .lesson-summary { font-size: 1.2em; line-height: 1.6; color: #555; background: #fdfdfd; padding: 15px; border-right: 4px solid #007bff; }
+    .lesson-body h2 { font-size: 1.6em; margin-top: 35px; margin-bottom: 15px; color: #007bff; border-bottom: 2px solid #eaeaea; padding-bottom: 8px; }
+    .lesson-body p { font-size: 1.1em; line-height: 1.7; color: #333; margin-bottom: 15px; }
+    .code-explain-card { background: #272822; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto; }
+    .code-explain-card code { color: #f8f8f2; font-family: monospace; font-size: 1em; white-space: pre; }
+    .tip-box { background: #fff8e1; border-right: 4px solid #ffc107; padding: 12px 16px; border-radius: 6px; margin: 15px 0; font-size: 1em; color: #333; line-height: 1.8; }
+    .live-preview-box { background: #fff; border: 2px dashed #007bff; border-radius: 8px; padding: 20px; margin: 15px 0; }
+    .preview-label { color: #007bff; font-weight: bold; margin-bottom: 10px; }
+    .lesson-footer-nav { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 15px; }
+  </style>
+
+  <script src="../script.js"></script>
+</body>
+</html>

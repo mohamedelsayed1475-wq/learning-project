@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الأول من مسار CSS: تعرف على ما هي CSS وطرق كتابتها والمحددات الأساسية">
+  <title>📖 CSS - الدرس 1: مقدمة وأساسيات CSS | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم الويب</span>
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge beginner" style="background:rgba(14,165,233,0.15);color:#38bdf8;border-color:rgba(56,189,248,0.3);">CSS - الدرس الأول - مبتدئ</span>
+          <span class="read-time">⏱️ مدة القراءة: 12 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">🎨 مقدمة وأساسيات CSS</h1>
+        <p class="lesson-description">
+          تعلم ما هي CSS وكيف تستخدمها لتحويل صفحات HTML العادية إلى تصاميم احترافية ورائعة!
+          ستتعلم في هذا الدرس طرق كتابة CSS والمحددات الأساسية.
+        </p>
+      </header>
+
+      <!-- ============================================================ -->
+      <!-- LESSON CONTENT                                                -->
+      <!-- ============================================================ -->
+
+      <section class="lesson-section">
+        <h2>🤔 ما هي CSS؟</h2>
+        <p>
+          <strong>CSS</strong> اختصار لـ <strong>Cascading Style Sheets</strong> أي "أوراق الأنماط المتتالية".
+          هي اللغة المسؤولة عن <strong>الشكل والمظهر</strong> لصفحات الويب.
+        </p>
+        <div class="info-box">
+          <p>🎭 تخيل صفحة HTML كهيكل عظمي للجسم، و CSS هي الملابس والمظهر الخارجي!</p>
+          <ul>
+            <li>🟠 <strong>HTML</strong> = هيكل الصفحة (العظام والمحتوى)</li>
+            <li>🔵 <strong>CSS</strong> = التصميم والمظهر (الألوان والخطوط والتخطيط)</li>
+            <li>🟡 <strong>JavaScript</strong> = التفاعل والحركة (العضلات والحركة)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <h2>✍️ طرق كتابة CSS</h2>
+        <p>في CSS ثلاث طرق لتطبيق التنسيق على العناصر:</p>
+
+        <h3>1️⃣ CSS داخلي (Inline CSS)</h3>
+        <pre class="code-block"><code><span class="comment"><!-- تكتب CSS مباشرة في السمة style --></span>
+<span class="tag">&lt;p</span> <span class="attr">style</span>="<span class="value">color: red; font-size: 18px;</span>"<span class="tag">&gt;</span>هذا نص أحمر<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment"><!--
+  style = سمة HTML تقبل خصائص CSS
+  color: red   = لون النص أحمر
+  font-size: 18px = حجم الخط 18 بكسل
+  الفاصلة المنقوطة ; تفصل بين الخصائص
+  
+  ⚠️ لا يُنصح بهذه الطريقة للمشاريع الكبيرة
+  لأنها تخلط HTML و CSS معاً
+--></span></code></pre>
+
+        <h3>2️⃣ CSS داخلي في الملف (Internal CSS)</h3>
+        <pre class="code-block"><code><span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;style&gt;</span>
+    <span class="comment">/* هنا نكتب CSS بين وسم style */</span>
+    <span class="selector">p</span> {
+      <span class="property">color</span>: <span class="value">blue</span>;     <span class="comment">/* لون النص أزرق */</span>
+      <span class="property">font-size</span>: <span class="value">16px</span>; <span class="comment">/* حجم الخط 16 بكسل */</span>
+    }
+  <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="comment"><!--
+  &lt;style&gt; = وسم CSS داخل ملف HTML
+  يُستخدم للصفحات الصغيرة أو الاختبار السريع
+  الأفضل للمبتدئين في البداية
+--></span></code></pre>
+
+        <h3>3️⃣ CSS خارجي (External CSS) ✅ الأفضل</h3>
+        <pre class="code-block"><code><span class="comment"><!-- في ملف HTML نربط ملف style.css --></span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>="<span class="value">stylesheet</span>" <span class="attr">href</span>="<span class="value">style.css</span>"<span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="comment"><!--
+  ملف style.css منفصل يحتوي على:
+
+  p {
+    color: green;
+    font-size: 16px;
+  }
+
+  ✅ هذه الطريقة الأفضل لأن:
+  - فصل HTML عن CSS (نظافة الكود)
+  - ملف CSS واحد لجميع الصفحات
+  - أسهل في التعديل والصيانة
+  - يُحمّل مرة واحدة ويُحفظ في ذاكرة التخزين المؤقت
+--></span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎯 بناء قاعدة CSS (CSS Rule)</h2>
+        <p>كل قاعدة CSS تتكون من ثلاثة أجزاء:</p>
+        <pre class="code-block"><code><span class="comment">/*
+  بناء قاعدة CSS الأساسية:
+
+  المحدد { الخاصية: القيمة; }
+
+  Selector { property: value; }
+*/</span>
+
+<span class="selector">p</span> {
+  <span class="comment">/* المحدد p = يستهدف جميع عناصر &lt;p&gt; في الصفحة */</span>
+
+  <span class="property">color</span>: <span class="value">darkblue</span>;
+  <span class="comment">/* color = اسم الخاصية */</span>
+  <span class="comment">/* darkblue = القيمة */</span>
+  <span class="comment">/* ; = الفاصلة المنقوطة تنهي كل خاصية */</span>
+
+  <span class="property">font-size</span>: <span class="value">18px</span>;
+  <span class="comment">/* يمكن كتابة خصائص متعددة في نفس المحدد */</span>
+
+  <span class="property">line-height</span>: <span class="value">1.6</span>;
+  <span class="comment">/* ارتفاع السطر = 1.6 ضعف حجم الخط */</span>
+}
+
+<span class="comment">/*
+  ملاحظة: التعليقات في CSS بين /* و *-/
+  (أزلت النجمة الأخيرة لتجنب إغلاق التعليق مبكراً)
+  أي سطر بين العلامتين = تعليق لا يُنفَّذ
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎯 المحددات الأساسية (Selectors)</h2>
+
+        <h3>1. محدد العنصر (Element Selector)</h3>
+        <pre class="code-block"><code><span class="comment">/* يستهدف جميع عناصر من نفس النوع */</span>
+<span class="selector">h1</span> {
+  <span class="property">color</span>: <span class="value">purple</span>;   <span class="comment">/* كل h1 في الصفحة هيبقى لونه بنفسجي */</span>
+}
+
+<span class="selector">p</span> {
+  <span class="property">font-size</span>: <span class="value">16px</span>; <span class="comment">/* كل p في الصفحة حجمها 16px */</span>
+}
+
+<span class="selector">button</span> {
+  <span class="property">background</span>: <span class="value">blue</span>; <span class="comment">/* كل الأزرار خلفيتها زرقاء */</span>
+}</code></pre>
+
+        <h3>2. محدد الكلاس (Class Selector) - الأكثر استخداماً</h3>
+        <pre class="code-block"><code><span class="comment">/* في HTML تعطي العنصر class */</span>
+<span class="comment">&lt;!-- &lt;p class="intro-text"&gt;نص المقدمة&lt;/p&gt; --&gt;</span>
+
+<span class="comment">/* في CSS تستهدفه بالنقطة . */</span>
+<span class="selector">.intro-text</span> {
+  <span class="property">color</span>: <span class="value">#2563eb</span>;  <span class="comment">/* لون أزرق HEX */</span>
+  <span class="property">font-weight</span>: <span class="value">bold</span>; <span class="comment">/* خط عريض */</span>
+}
+
+<span class="comment">/*
+  ✅ مميزات الكلاس:
+  - يمكن تطبيقه على عناصر متعددة
+  - عنصر واحد يمكنه امتلاك كلاسات متعددة
+  - مثال: &lt;div class="card featured highlight"&gt;
+*/</span></code></pre>
+
+        <h3>3. محدد الـ ID (ID Selector)</h3>
+        <pre class="code-block"><code><span class="comment">/* في HTML تعطي العنصر id فريد */</span>
+<span class="comment">&lt;!-- &lt;header id="main-header"&gt;...&lt;/header&gt; --&gt;</span>
+
+<span class="comment">/* في CSS تستهدفه بـ # */</span>
+<span class="selector">#main-header</span> {
+  <span class="property">background</span>: <span class="value">#1e293b</span>; <span class="comment">/* لون خلفية داكن */</span>
+  <span class="property">padding</span>: <span class="value">20px</span>;       <span class="comment">/* مسافة داخلية 20 بكسل */</span>
+}
+
+<span class="comment">/*
+  ⚠️ قواعد الـ ID:
+  - يجب أن يكون فريداً في الصفحة (لا يتكرر)
+  - خصوصيته (Specificity) أعلى من الكلاس
+  - يُنصح باستخدام الكلاس بدلاً منه في CSS
+  - الـ ID أفضل للـ JavaScript
+*/</span></code></pre>
+
+        <h3>4. المحدد الشامل (Universal Selector)</h3>
+        <pre class="code-block"><code><span class="comment">/* * تعني "كل العناصر في الصفحة" */</span>
+<span class="selector">*</span> {
+  <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+  <span class="comment">/* هذا الإعداد مهم جداً - يجعل حساب الأبعاد أسهل */</span>
+  <span class="comment">/* سنشرحه بالتفصيل في درس Box Model */</span>
+
+  <span class="property">margin</span>: <span class="value">0</span>;
+  <span class="property">padding</span>: <span class="value">0</span>;
+  <span class="comment">/* إزالة الهوامش الافتراضية من كل العناصر */</span>
+  <span class="comment">/* ممارسة شائعة في بداية كل مشروع CSS */</span>
+}</code></pre>
+
+        <h3>5. المحدد المتعدد (Multiple Selectors)</h3>
+        <pre class="code-block"><code><span class="comment">/* تستهدف عناصر متعددة بنفس النمط */</span>
+<span class="selector">h1, h2, h3</span> {
+  <span class="property">font-family</span>: <span class="value">'Cairo', sans-serif</span>;
+  <span class="comment">/* تطبق نفس الخط على h1 وh2 وh3 */</span>
+  <span class="comment">/* الفاصلة تفصل بين المحددات */</span>
+}
+
+<span class="selector">.btn-primary, .btn-secondary</span> {
+  <span class="property">border-radius</span>: <span class="value">8px</span>;
+  <span class="property">padding</span>: <span class="value">10px 20px</span>;
+  <span class="comment">/* تطبق نفس التنسيق على نوعي الأزرار */</span>
+}</code></pre>
+
+        <h3>6. محدد النسب (Descendant Selector)</h3>
+        <pre class="code-block"><code><span class="comment">/* يستهدف العنصر داخل عنصر آخر */</span>
+<span class="selector">nav a</span> {
+  <span class="property">color</span>: <span class="value">white</span>;
+  <span class="comment">/* يستهدف كل روابط &lt;a&gt; الموجودة داخل &lt;nav&gt; فقط */</span>
+  <span class="comment">/* وليس كل روابط الصفحة */</span>
+}
+
+<span class="selector">.card .title</span> {
+  <span class="property">font-size</span>: <span class="value">20px</span>;
+  <span class="comment">/* يستهدف كل عنصر بكلاس .title داخل عنصر بكلاس .card */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>⚖️ أولوية CSS (Specificity)</h2>
+        <p>عندما تتعارض قواعد CSS، أيها يفوز؟</p>
+        <pre class="code-block"><code><span class="comment">/*
+  ترتيب الأولوية من الأقل للأعلى:
+
+  1️⃣ المحدد الشامل (*) = 0 نقطة
+  2️⃣ محدد العنصر (p, h1) = 1 نقطة
+  3️⃣ محدد الكلاس (.card) = 10 نقطة
+  4️⃣ محدد الـ ID (#header) = 100 نقطة
+  5️⃣ Inline style = 1000 نقطة
+  6️⃣ !important = يتغلب على الكل ⚠️
+*/</span>
+
+<span class="selector">p</span> {
+  <span class="property">color</span>: <span class="value">red</span>;    <span class="comment">/* 1 نقطة */</span>
+}
+
+<span class="selector">.text</span> {
+  <span class="property">color</span>: <span class="value">blue</span>;   <span class="comment">/* 10 نقاط - يفوز على p */</span>
+}
+
+<span class="selector">#intro</span> {
+  <span class="property">color</span>: <span class="value">green</span>;  <span class="comment">/* 100 نقطة - يفوز على الكلاس */</span>
+}
+
+<span class="comment">/*
+  &lt;p id="intro" class="text"&gt;ما لون هذا النص؟&lt;/p&gt;
+  الجواب: أخضر! لأن #intro (100 نقطة) يفوز
+
+  ⚠️ تجنب استخدام !important قدر المستطاع
+  لأنه يجعل التعديلات مستقبلاً أصعب
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ CSS تعني Cascading Style Sheets وتتحكم في مظهر الصفحة</li>
+            <li>✅ ثلاث طرق لكتابة CSS: Inline وInternal وExternal</li>
+            <li>✅ External CSS هي الأفضل لفصل الكود وإعادة الاستخدام</li>
+            <li>✅ المحددات: عنصر (.class) (#id) وشامل (*) ومتعدد ونسب</li>
+            <li>✅ أولوية CSS (Specificity): ID > Class > Element</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- LESSON NAVIGATION -->
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="../../index.html" class="nav-btn prev-btn" id="nav-home">🏠 الرئيسية</a>
+        <div class="lesson-progress-indicator">
+          <span class="current-lesson">1</span>
+          <span class="total-lessons">/ 8</span>
+        </div>
+        <a href="lesson2.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: الألوان والخطوط ←</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-text">🎓 منصة تعلم الويب - مسار CSS</p>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>

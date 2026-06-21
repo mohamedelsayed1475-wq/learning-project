@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  إعلان نوع المستند للمتصفح بأنه HTML5 لضمان العرض السليم والتوافق التام.
+  =====================================================
+-->
+<html lang="ar" dir="rtl">
+<!--
+  <html> = الجذر (Root).
+  - lang="ar": لغة المحتوى العربية (مهم جداً لقارئات الشاشة لمعرفة اللغة ونطق الكلمات بشكل صحيح).
+  - dir="rtl": اتجاه المحتوى من اليمين لليسار ليتناسب مع اللغة العربية.
+-->
+<head>
+<!-- وسم الرأس الذي يحتوي على البيانات الوصفية والعنوان وملفات التنسيق -->
+  <meta charset="UTF-8">
+  <!-- ترميز الحروف العالمي لضمان سلامة الأحرف العربية والإيموجي -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- لضمان تجاوب الصفحة وتناسبها مع شاشات الأجهزة المحمولة والذكية -->
+  <meta name="description" content="الدرس العاشر: إمكانية الوصول (Accessibility) في HTML - كيفية استخدام سمات ARIA، alt، label، وtabindex لتسهيل التصفح">
+  <!-- وصف الصفحة لمحركات البحث وقارئات الشاشة -->
+  <title>📖 الدرس 10: إمكانية الوصول (Accessibility) - تعلم HTML</title>
+  <!-- عنوان الصفحة في التبويب العلوي للمتصفح -->
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <!-- أيقونة الموقع المفضلة (Favicon) -->
+  <link rel="stylesheet" href="../style.css">
+  <!-- ربط ملف الاستايل CSS الخارجي للتصميم الموحد -->
+</head>
+<body>
+<!-- وسم الجسم الذي يحتوي على كافة المكونات المرئية للمستخدم -->
+
+  <header id="main-header">
+  <!-- رأس الموقع، يحتوي على اللوجو وقائمة التنقل -->
+    <nav id="main-nav">
+    <!-- حاوية روابط قائمة التنقل الرئيسية -->
+      <div class="nav-logo">
+        <a href="../index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم HTML</span>
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+  <!-- المحتوى الرئيسي للدرس الحالي -->
+    <article class="lesson-article">
+
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge advanced">الدرس العاشر - متقدم</span>
+          <span class="read-time">⏱️ مدة القراءة: 15 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">♿ إمكانية الوصول (Accessibility)</h1>
+        <p class="lesson-summary">
+          الويب للجميع! سنتعلم في هذا الدرس كيفية جعل صفحات موقعنا الإلكتروني سهلة الاستخدام ومتاحة للأشخاص ذوي الاحتياجات الخاصة (مثل المكفوفين أو ضعاف البصر)، ومساعدتهم في تصفح الموقع وفهمه بسهولة باستخدام تقنيات HTML الصحيحة وسمات ARIA.
+        </p>
+      </header>
+
+      <section class="lesson-body">
+
+        <h2>1. ما هي إمكانية الوصول (Accessibility أو A11y)؟</h2>
+        <p>
+          إمكانية الوصول تعني تصميم وتطوير المواقع الإلكترونية بطريقة تُمكّن الجميع من استخدامها، بمن فيهم الأشخاص الذين يعانون من إعاقات بصرية، سمعية، حركية، أو إدراكية.
+        </p>
+        <p>
+          يستخدم المكفوفون برامج تُسمى <strong>قارئات الشاشة (Screen Readers)</strong>، وهي برامج تقوم بقراءة نصوص وهيكل صفحة HTML بصوت مسموع للمستخدم. لذلك، كتابة كود HTML دلالي ومنظم بشكل صحيح هو الأساس لتسهيل مهمة هذه البرامج.
+        </p>
+
+        <div class="tip-box">
+          💡 <strong>معلومة سريعة:</strong><br>
+          يُرمز لمصطلح إمكانية الوصول بـ <strong>A11y</strong>؛ حيث يمثل الرقم 11 عدد الحروف المحصورة بين حرفي A و Y في كلمة Accessibility بالإنجليزية.
+        </div>
+
+        <hr>
+
+        <h2>2. النص البديل للصور (سمة alt)</h2>
+        <p>
+          عند إضافة صور في صفحتك باستخدام وسم <code>&lt;img&gt;</code>، يجب دائماً تضمين سمة <strong>النص البديل (alt)</strong>. هذا النص يقرأه برنامج قارئ الشاشة للمستخدم الكفيف بدلاً من رؤية الصورة، ويظهر أيضاً كبديل إذا فشلت الصورة في التحميل.
+        </p>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;!-- صورة توضيحية هامة: يجب توفير وصف دقيق لمحتواها --&gt;
+&lt;img src="html-logo.png" alt="شعار لغة HTML5 باللون البرتقالي مع درع رمادي"&gt;
+
+&lt;!-- صورة تجميلية فقط (مثل أيقونة أو خط فاصل): نترك السمة فارغة حتى يتجاهلها قارئ الشاشة --&gt;
+&lt;img src="divider.png" alt=""&gt;</code></pre>
+        </div>
+
+        <div class="tags-comparison">
+          <div class="tag-type-card" style="border-color:#28a745;">
+            <h3 style="color:#28a745;">✅ الوصف الصحيح (alt)</h3>
+            <p>يصف بدقة المعلومات الهامة في الصورة:</p>
+            <code>alt="رجل يبتسم ويعمل على كمبيوتر محمول"</code>
+          </div>
+          <div class="tag-type-card" style="border-color:#dc3545;">
+            <h3 style="color:#dc3545;">❌ الوصف الخاطئ</h3>
+            <p>كتابة كلمات عامة غير مفيدة أو تكرار كلمة صورة:</p>
+            <code>alt="صورة1" أو alt="image"</code>
+          </div>
+        </div>
+
+        <hr>
+
+        <h2>3. عناصر النماذج (Forms) والعناوين الصحيحة</h2>
+        <p>
+          لتسهيل ملء الاستمارات والنماذج، يجب دائماً ربط حقول الإدخال بوسم التعريف <code>&lt;label&gt;</code> بشكل صريح عن طريق سمة <code>for</code> للـ Label و سمة <code>id</code> للـ Input.
+        </p>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;!-- الطريقة الصحيحة لربط المدخلات بالـ Label --&gt;
+&lt;label for="username"&gt;الاسم بالكامل:&lt;/label&gt;
+&lt;input type="text" id="username" name="fullname" placeholder="أدخل اسمك الثلاثي"&gt;</code></pre>
+        </div>
+
+        <p>
+          <strong>أهمية هيكل العناوين:</strong> تستخدم قارئات الشاشة العناوين (h1 إلى h6) كالفهرس لتسهيل تنقل المستخدم بين الأقسام. يجب ألا تقفز من <code>&lt;h1&gt;</code> مباشرة إلى <code>&lt;h3&gt;</code> بدون المرور بـ <code>&lt;h2&gt;</code>.
+        </p>
+
+        <hr>
+
+        <h2>4. سمات ARIA المتقدمة</h2>
+        <p>
+          <strong>ARIA</strong> (اختصار لـ Accessible Rich Internet Applications) هي مجموعة من السمات الإضافية التي نلحقها بعناصر HTML لتعزيز وتوضيح الغرض منها لقارئات الشاشة.
+        </p>
+
+        <dl class="explain-list">
+          <dt>role (الدور)</dt>
+          <dd>يحدد نوع أو وظيفة العنصر للمتصفح إذا لم يكن الوسم دلالياً. مثل: <code>role="button"</code>.</dd>
+          
+          <dt>aria-label (الملصق الوصفي)</dt>
+          <dd>يوفر اسماً نصياً واضحاً للعناصر التي لا تحتوي على نص مرئي، مثل زر إغلاق يحتوي فقط على علامة X. مثال: <code>aria-label="إغلاق النافذة"</code>.</dd>
+
+          <dt>aria-hidden (الإخفاء المساعد)</dt>
+          <dd>يُخفي العنصر تماماً عن قارئ الشاشة إذا كان يمثل عنصراً تجميلياً أو إيقونة تكرر نصاً موجوداً بجانبها بالفعل. مثال: <code>aria-hidden="true"</code>.</dd>
+        </dl>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;!-- زر يحتوي على إيقونة إغلاق فقط ولكنه مفهوم لقارئ الشاشة --&gt;
+&lt;button type="button" aria-label="إغلاق القائمة"&gt;
+  &lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+        </div>
+
+        <hr>
+
+        <h2>5. التنقل عبر لوحة المفاتيح وسمة tabindex</h2>
+        <p>
+          بعض المستخدمين لا يستطيعون استخدام الفأرة (Mouse) ويعتمدون بالكامل على زر <strong>Tab</strong> في لوحة المفاتيح للتنقل بين الروابط والأزرار والحقول في الصفحة.
+        </p>
+        <p>
+          بشكل افتراضي، العناصر التفاعلية فقط (مثل الروابط <code>&lt;a&gt;</code> والأزرار والمدخلات) قابلة للتنقل بالـ Tab. ولكن يمكننا التحكم في ذلك باستخدام سمة <code>tabindex</code>:
+        </p>
+
+        <div class="tags-comparison">
+          <div class="tag-type-card">
+            <h3>🔘 tabindex="0"</h3>
+            <p>يجعل العنصر غير التفاعلي (مثل div أو span) قابلاً للتركيز والتنقل إليه عبر زر الـ Tab بالترتيب الطبيعي للصفحة.</p>
+          </div>
+          <div class="tag-type-card">
+            <h3>🚫 tabindex="-1"</h3>
+            <p>يزيل العنصر من الترتيب الافتراضي للتنقل بالـ Tab، بحيث لا يمكن التركيز عليه باللوحة، ولكن يمكن التركيز عليه برمجياً بواسطة JavaScript.</p>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>نصيحة ذهبية:</strong><br>
+          استخدم دائماً عناصر HTML الدلالية الأصلية (مثل <code>&lt;button&gt;</code> للضغط و <code>&lt;a&gt;</code> للروابط) بدلاً من كتابة <code>&lt;div&gt;</code> وإضافة سمات <code>tabindex</code> و <code>role</code> إليه، لأن الوسوم الأصلية تأتي بدعم كامل ومدمج لتسهيل الوصول والتفاعل مجاناً!
+        </div>
+
+      </section>
+
+      <footer class="lesson-footer-nav">
+        <a href="lesson9.html" class="btn btn-secondary">⬅️ الدرس السابق</a>
+        <a href="lesson11.html" class="btn btn-primary">الدرس التالي: SEO وتحسين محركات البحث ➡️</a>
+      </footer>
+
+    </article>
+  </main>
+
+  <footer id="main-footer" class="main-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2024 تعلم HTML - جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* تنسيقات CSS لصفحة الدرس */
+    .lesson-meta { margin-bottom: 15px; font-size: 0.9em; color: #666; }
+    .category-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-left: 10px; }
+    .category-badge.advanced { background: #ffebee; color: #c62828; }
+    .read-time { font-style: italic; }
+    .lesson-title { font-size: 2.2em; margin-top: 10px; margin-bottom: 15px; color: #1a1a1a; }
+    .lesson-summary { font-size: 1.2em; line-height: 1.6; color: #555; background: #fdfdfd; padding: 15px; border-right: 4px solid #007bff; }
+    .lesson-body h2 { font-size: 1.6em; margin-top: 35px; margin-bottom: 15px; color: #007bff; border-bottom: 2px solid #eaeaea; padding-bottom: 8px; }
+    .lesson-body p { font-size: 1.1em; line-height: 1.7; color: #333; margin-bottom: 15px; }
+    .code-explain-card { background: #272822; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto; }
+    .code-explain-card code { color: #f8f8f2; font-family: monospace; font-size: 1em; white-space: pre; }
+    .tags-comparison { display: flex; gap: 20px; margin: 25px 0; flex-wrap: wrap; }
+    .tag-type-card { flex: 1; min-width: 250px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa; }
+    .tag-type-card h3 { color: #333; margin-top: 0; font-size: 1em; }
+    .tag-type-card code { display: block; background: #eee; padding: 8px 12px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.85em; white-space: pre; }
+    .tag-type-card p { font-size: 0.9em; color: #555; margin: 6px 0; }
+    .explain-list dt { font-weight: bold; font-size: 1.1em; color: #333; margin-top: 15px; }
+    .explain-list dd { margin-right: 20px; color: #666; margin-bottom: 15px; line-height: 1.6; }
+    .tip-box { background: #fff8e1; border-right: 4px solid #ffc107; padding: 12px 16px; border-radius: 6px; margin: 15px 0; font-size: 1em; color: #333; line-height: 1.8; }
+    .lesson-footer-nav { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 15px; }
+  </style>
+
+  <script src="../script.js"></script>
+</body>
+</html>

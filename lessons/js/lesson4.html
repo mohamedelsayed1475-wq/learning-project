@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الرابع JavaScript: الدوال والنطاق - Functions and Scope">
+  <title>📖 JS - الدرس 4: الدوال والنطاق | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge intermediate" style="background:rgba(234,179,8,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3);">JavaScript - الدرس الرابع - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 18 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">⚙️ الدوال والنطاق</h1>
+        <p class="lesson-description">
+          الدوال هي بلوكات من الكود يمكن إعادة استخدامها. تعلم كيف تكتب دوالاً
+          فعّالة وتفهم مفهوم النطاق (Scope)!
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>⚙️ ما هي الدالة؟</h2>
+        <div class="info-box">
+          <p>💡 الدالة = وصفة طبخ قابلة للإعادة: تعرّفها مرة وتستخدمها كثيراً!</p>
+          <p>بدل كتابة نفس الكود مرات ومرات، ضعه في دالة واستدعها كلما احتجته.</p>
+        </div>
+        <pre class="code-block"><code><span class="comment">// 1. الدالة التقليدية (Function Declaration)</span>
+function greet(name) {
+  console.log(`مرحباً ${name}! 👋`);
+}
+<span class="comment">/*
+  function = الكلمة الأساسية
+  greet = اسم الدالة
+  (name) = المعامل (Parameter)
+  {} = جسم الدالة
+*/</span>
+
+<span class="comment">// استدعاء الدالة</span>
+greet('أحمد');   <span class="comment">// مرحباً أحمد! 👋</span>
+greet('سارة');   <span class="comment">// مرحباً سارة! 👋</span>
+greet('محمد');   <span class="comment">// مرحباً محمد! 👋</span>
+<span class="comment">// نفس الدالة، نتائج مختلفة!</span>
+
+<span class="comment">// 2. دالة تُعيد قيمة (return)</span>
+function add(a, b) {
+  return a + b;  <span class="comment">// ترجع الناتج</span>
+}
+
+const result = add(5, 3);
+console.log(result);  <span class="comment">// 8</span>
+<span class="comment">/*
+  return = إرجع هذه القيمة للمستدعي
+  الدالة تتوقف عند return
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🏹 الدوال الحديثة</h2>
+        <pre class="code-block"><code><span class="comment">// Function Expression (دالة كقيمة)</span>
+const multiply = function(a, b) {
+  return a * b;
+};
+console.log(multiply(4, 5)); <span class="comment">// 20</span>
+
+<span class="comment">// Arrow Function (الدالة السهمية) ← الأكثر شيوعاً الآن</span>
+const square = (x) => {
+  return x * x;
+};
+
+<span class="comment">// مختصرة أكثر لو سطر واحد</span>
+const square2 = x => x * x;
+console.log(square2(5));  <span class="comment">// 25</span>
+
+<span class="comment">// لو معاملان يلزم قوسان</span>
+const divide = (a, b) => a / b;
+console.log(divide(10, 2)); <span class="comment">// 5</span>
+
+<span class="comment">// القيم الافتراضية للمعاملات</span>
+function greet(name = 'زائر', emoji = '👋') {
+  return `مرحباً ${name} ${emoji}`;
+}
+console.log(greet());          <span class="comment">// مرحباً زائر 👋</span>
+console.log(greet('أحمد'));    <span class="comment">// مرحباً أحمد 👋</span>
+console.log(greet('سارة', '🌟')); <span class="comment">// مرحباً سارة 🌟</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🌐 النطاق (Scope)</h2>
+        <pre class="code-block"><code><span class="comment">// النطاق العام (Global Scope)</span>
+let globalVar = 'أنا عالمي';
+
+function testScope() {
+  <span class="comment">// النطاق المحلي (Local Scope)</span>
+  let localVar = 'أنا محلي';
+  console.log(globalVar);  <span class="comment">// ✅ يمكن الوصول للعالمي</span>
+  console.log(localVar);   <span class="comment">// ✅ يمكن الوصول للمحلي</span>
+}
+
+testScope();
+console.log(globalVar);  <span class="comment">// ✅ يعمل</span>
+<span class="comment">// console.log(localVar);  ❌ خطأ! localVar خارج النطاق</span>
+
+<span class="comment">/*
+  القاعدة: المتغيرات الداخلية تُرى من الخارج
+  لكن الخارجية تُرى من الداخل (وراثة النطاق)
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ الدالة التقليدية بـ function وreturn</li>
+            <li>✅ Function Expression وArrow Function</li>
+            <li>✅ المعاملات (Parameters) والقيم الافتراضية</li>
+            <li>✅ النطاق: Global مقابل Local Scope</li>
+            <li>✅ الدوال كمكتبة كود قابل للإعادة</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson3.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: الشروط</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">4</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson5.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: المصفوفات ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار JavaScript</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

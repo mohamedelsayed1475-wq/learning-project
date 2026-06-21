@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الثامن JavaScript: التخزين المحلي وبناء تطبيق قائمة المهام - Web Storage and Todo List Project in JavaScript">
+  <title>📖 JS - الدرس 8: التخزين المحلي وتطبيق عملي | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    /* تنسيقات تطبيق المهام التفاعلي المصغر داخل الدرس */
+    .todo-app-widget {
+      background: var(--card-bg, #1e293b);
+      border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+    }
+    .todo-input-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .todo-input-group input {
+      flex: 1;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+      background: rgba(15,23,42,0.6);
+      color: #fff;
+      font-size: 16px;
+    }
+    .todo-input-group input:focus {
+      outline: none;
+      border-color: #fbbf24;
+    }
+    .todo-input-group button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #fbbf24;
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .todo-input-group button:hover {
+      background: #f59e0b;
+    }
+    .todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background: rgba(15,23,42,0.4);
+      border: 1px solid var(--border-color, rgba(255,255,255,0.05));
+      border-radius: 8px;
+      margin-bottom: 8px;
+      transition: all 0.2s ease;
+    }
+    .todo-item.completed span {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+    .todo-item span {
+      cursor: pointer;
+      user-select: none;
+    }
+    .todo-item .delete-btn {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s ease;
+    }
+    .todo-item .delete-btn:hover {
+      background: rgba(239, 68, 68, 0.4);
+    }
+    .todo-empty-msg {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      padding: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge advanced" style="background:rgba(234,179,8,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3);">JavaScript - الدرس الثامن - متقدم</span>
+          <span class="read-time">⏱️ مدة القراءة: 22 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">💾 التخزين المحلي وبناء تطبيق قائمة المهام</h1>
+        <p class="lesson-description">
+          الدرس الختامي! تعلم كيف تحتفظ ببيانات المستخدم وتمنعها من الاختفاء عند تحديث الصفحة باستخدام التخزين المحلي (localStorage)، وسنجمع كل ما تعلمناه لبناء تطبيق متكامل لقائمة المهام.
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>💾 ما هو التخزين المحلي (localStorage)؟</h2>
+        <p>
+          هو عبارة عن مساحة تخزين صغيرة يوفرها متصفح الويب للموقع، تتيح للمطورين تخزين البيانات على شكل <strong>مفتاح وقيمة (Key - Value Pairs)</strong> بشكل مستمر.
+        </p>
+        <div class="info-box">
+          <p>💡 على عكس ملفات تعريف الارتباط (Cookies)، فإن بيانات <code>localStorage</code> تظل محفوظة للأبد حتى لو أغلق المستخدم المتصفح أو أطفأ الحاسوب، ولا تحذف إلا إذا قام المستخدم بمسح بيانات التصفح بنفسه.</p>
+        </div>
+        <pre class="code-block"><code><span class="comment">// 1️⃣ حفظ البيانات (تخزين نص)</span>
+localStorage.setItem('username', 'أحمد');
+
+<span class="comment">// 2️⃣ استرجاع البيانات المحفوظة</span>
+const storedName = localStorage.getItem('username');
+console.log(storedName); <span class="comment">// أحمد</span>
+
+<span class="comment">// 3️⃣ حذف مفتاح معين</span>
+localStorage.removeItem('username');
+
+<span class="comment">// 4️⃣ مسح كل بيانات التخزين المحلي للموقع</span>
+localStorage.clear();</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🔄 حفظ واستعادة البيانات المعقدة (JSON)</h2>
+        <p>
+          التخزين المحلي يقبل تخزين <strong>نصوص فقط (Strings)</strong>. إذا حاولت حفظ مصفوفة أو كائن، فسيقوم بتحويله لنص غير صالح <code>"[object Object]"</code>. لحل هذه المشكلة نستخدم كائن <code>JSON</code>.
+        </p>
+        <pre class="code-block"><code>const userProfile = {
+  name: 'سارة',
+  score: 100
+};
+
+<span class="comment">// ❌ طريقة خاطئة:</span>
+localStorage.setItem('user', userProfile);
+console.log(localStorage.getItem('user')); <span class="comment">// "[object Object]"</span>
+
+<span class="comment">// ✅ الطريقة الصحيحة:</span>
+<span class="comment">// 1. تحويل الكائن إلى نص JSON (Stringify)</span>
+const stringifiedData = JSON.stringify(userProfile);
+localStorage.setItem('user', stringifiedData);
+
+<span class="comment">// 2. استرجاع النص وتحويله مجدداً لكائن (Parse)</span>
+const retrievedText = localStorage.getItem('user');
+const parsedUser = JSON.parse(retrievedText);
+console.log(parsedUser.name); <span class="comment">// سارة</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🛠️ تطبيق عملي: قائمة المهام (Todo List Project)</h2>
+        <p>
+          الآن، سنبني معاً قائمة مهام تفاعلية تتيح للمستخدم:
+        </p>
+        <ul>
+          <li>➕ إضافة مهام جديدة.</li>
+          <li>✔️ تحديد المهمة كمنجزة أو غير منجزة بنقرة واحدة.</li>
+          <li>❌ حذف المهمة نهائياً.</li>
+          <li>💾 حفظ التغييرات في التخزين المحلي حتى لا تضيع عند التحديث.</li>
+        </ul>
+
+        <h3>💻 الكود الكامل للتطبيق:</h3>
+        <pre class="code-block"><code><span class="comment">// 1. تحديد العناصر من الـ DOM</span>
+const input = document.getElementById('new-todo-input');
+const addButton = document.getElementById('add-todo-btn');
+const todoList = document.getElementById('todos-container');
+
+<span class="comment">// 2. مصفوفة لتخزين المهام، مع محاولة تحميلها من localStorage أولاً</span>
+let tasks = JSON.parse(localStorage.getItem('myTasks')) || [];
+
+<span class="comment">// 3. دالة لحفظ المصفوفة الحالية في localStorage</span>
+function saveTasks() {
+  localStorage.setItem('myTasks', JSON.stringify(tasks));
+}
+
+<span class="comment">// 4. دالة عرض وتحديث القائمة في الـ DOM</span>
+function renderTasks() {
+  todoList.innerHTML = ''; <span class="comment">// تفريغ الحاوية أولاً</span>
+
+  if (tasks.length === 0) {
+    todoList.innerHTML = '&lt;li class="todo-empty-msg"&gt;لا توجد مهام حالياً. أضف مهمة جديدة!&lt;/li&gt;';
+    return;
+  }
+
+  tasks.forEach((task, index) => {
+    <span class="comment">// إنشاء عنصر قائمة &lt;li&gt;</span>
+    const li = document.createElement('li');
+    li.className = `todo-item ${task.completed ? 'completed' : ''}`;
+
+    <span class="comment">// بناء محتوى العنصر</span>
+    li.innerHTML = `
+      <span onclick="toggleTask(${index})">${task.text}</span>
+      <button class="delete-btn" onclick="deleteTask(${index})">حذف</button>
+    `;
+
+    todoList.appendChild(li);
+  });
+}
+
+<span class="comment">// 5. دالة إضافة مهمة جديدة</span>
+function addTask() {
+  const text = input.value.trim(); <span class="comment">// إزالة الفراغات الزائدة</span>
+  if (text === '') return;          <span class="comment">// تجاهل لو الحقل فارغ</span>
+
+  tasks.push({
+    text: text,
+    completed: false
+  });
+
+  input.value = ''; <span class="comment">// تفريغ الحقل</span>
+  saveTasks();      <span class="comment">// الحفظ</span>
+  renderTasks();    <span class="comment">// إعادة الرسم</span>
+}
+
+<span class="comment">// 6. دالة تغيير حالة الانجاز</span>
+function toggleTask(index) {
+  tasks[index].completed = !tasks[index].completed;
+  saveTasks();
+  renderTasks();
+}
+
+<span class="comment">// 7. دالة حذف مهمة</span>
+function deleteTask(index) {
+  tasks.splice(index, 1); <span class="comment">// حذف عنصر واحد من الفهرس المحدد</span>
+  saveTasks();
+  renderTasks();
+}
+
+<span class="comment">// 8. ربط حدث النقر والضغط على زر Enter للإضافة</span>
+addButton.addEventListener('click', addTask);
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') addTask();
+});
+
+<span class="comment">// 9. تشغيل العرض الأولي عند تحميل الصفحة</span>
+renderTasks();</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎮 تجربة تفاعلية حية (تطبيق حقيقي)</h2>
+        <p>جرب الكود الذي شرحناه بالأعلى مباشرة هنا! قم بإضافة المهام وحذفها، ثم حدث الصفحة لتتأكد من بقائها محفوظة:</p>
+        
+        <div class="todo-app-widget">
+          <div class="todo-input-group">
+            <input type="text" id="demo-todo-input" placeholder="اكتب مهمة جديدة هنا...">
+            <button id="demo-add-btn">إضافة</button>
+          </div>
+          <ul class="todo-list" id="demo-todo-list">
+            <!-- سيتم توليد العناصر هنا ديناميكياً -->
+          </ul>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 تهانينا! نهاية مسار جافاسكريبت</h2>
+        <div class="lesson-summary" style="border-color:#fbbf24; background: rgba(234,179,8,0.05);">
+          <p>🎉 لقد أتممت بنجاح مسار أساسيات JavaScript وتطوير الويب! لقد تعلمت:</p>
+          <ul>
+            <li>✅ المتغيرات وأنواع البيانات والعمليات الرياضية والمنطقية.</li>
+            <li>✅ الحلقات التكرارية والجمل الشرطية للتحكم بالمسار.</li>
+            <li>✅ الدوال وإعادة الاستخدام ونطاقات المتغيرات.</li>
+            <li>✅ المصفوفات وعمليات تصفيتها وتعديلها، والكائنات وتخزين البيانات.</li>
+            <li>✅ الـ DOM وتعديل محتوى وتصميم الصفحة ديناميكياً.</li>
+            <li>✅ الأحداث والاستماع لتفاعلات المستخدم.</li>
+            <li>✅ التخزين المحلي لحفظ البيانات في المتصفح.</li>
+          </ul>
+          <p style="margin-top: 15px; font-weight: bold; color: #fbbf24;">🚀 أنت الآن مستعد للانتقال لبناء مواقع حقيقية بالكامل وتطوير مهاراتك بشكل أكبر!</p>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson7.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: معالجة الأحداث</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">8</span><span class="total-lessons">/ 8</span></div>
+        <a href="../../index.html" class="nav-btn next-btn" id="nav-home">🏠 الرئيسية</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار JavaScript</p></div></footer>
+  <script src="../../script.js"></script>
+
+  <!-- سكربت مخصص للتحكم بالتجربة الحية المرفقة بالدرس -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const demoInput = document.getElementById('demo-todo-input');
+      const demoAddBtn = document.getElementById('demo-add-btn');
+      const demoList = document.getElementById('demo-todo-list');
+
+      let demoTasks = JSON.parse(localStorage.getItem('demoTasksList')) || [
+        { text: 'مراجعة درس الـ DOM في جافاسكريبت', completed: true },
+        { text: 'حل التحدي البرمجي بصفحة الاختبارات', completed: false }
+      ];
+
+      function saveDemo() {
+        localStorage.setItem('demoTasksList', JSON.stringify(demoTasks));
+      }
+
+      function renderDemo() {
+        demoList.innerHTML = '';
+        if (demoTasks.length === 0) {
+          demoList.innerHTML = '<li class="todo-empty-msg">القائمة فارغة تماماً! اكتب شيئاً بالأعلى واضغط إضافة.</li>';
+          return;
+        }
+
+        demoTasks.forEach((t, i) => {
+          const li = document.createElement('li');
+          li.className = `todo-item ${t.completed ? 'completed' : ''}`;
+          
+          const textSpan = document.createElement('span');
+          textSpan.textContent = t.text;
+          textSpan.style.flex = '1';
+          textSpan.addEventListener('click', () => {
+            demoTasks[i].completed = !demoTasks[i].completed;
+            saveDemo();
+            renderDemo();
+          });
+
+          const delBtn = document.createElement('button');
+          delBtn.className = 'delete-btn';
+          delBtn.textContent = 'حذف';
+          delBtn.addEventListener('click', () => {
+            demoTasks.splice(i, 1);
+            saveDemo();
+            renderDemo();
+          });
+
+          li.appendChild(textSpan);
+          li.appendChild(delBtn);
+          demoList.appendChild(li);
+        });
+      }
+
+      function addDemoTask() {
+        const val = demoInput.value.trim();
+        if (val === '') return;
+        demoTasks.push({ text: val, completed: false });
+        demoInput.value = '';
+        saveDemo();
+        renderDemo();
+      }
+
+      demoAddBtn.addEventListener('click', addDemoTask);
+      demoInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addDemoTask();
+      });
+
+      renderDemo();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الخامس CSS: Flexbox - تخطيط مرن احترافي">
+  <title>📖 CSS - الدرس 5: Flexbox | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge intermediate" style="background:rgba(14,165,233,0.15);color:#38bdf8;border-color:rgba(56,189,248,0.3);">CSS - الدرس الخامس - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 18 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">💪 التخطيط المرن - Flexbox</h1>
+        <p class="lesson-description">
+          Flexbox هو نظام التخطيط الأكثر استخداماً في CSS الحديثة.
+          يجعل محاذاة وترتيب العناصر أمراً بسيطاً وسهلاً!
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>💡 ما هو Flexbox؟</h2>
+        <div class="info-box">
+          <p>Flexbox = Flexible Box Layout = نظام التخطيط المرن</p>
+          <p>يُطبَّق على الحاوية (Container) ويؤثر على أبنائها المباشرين (Items)</p>
+        </div>
+        <pre class="code-block"><code><span class="comment">/* تفعيل Flexbox على الحاوية */</span>
+<span class="selector">.container</span> {
+  <span class="property">display</span>: <span class="value">flex</span>;
+  <span class="comment">/*
+    هذا السطر الوحيد يحوّل كل الأبناء المباشرين
+    ليتراصوا في صف أفقي تلقائياً!
+  */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📐 خصائص الحاوية (Container)</h2>
+        <pre class="code-block"><code><span class="selector">.flex-container</span> {
+  <span class="property">display</span>: <span class="value">flex</span>;
+
+  <span class="comment">/* اتجاه المحور الرئيسي */</span>
+  <span class="property">flex-direction</span>: <span class="value">row</span>;         <span class="comment">/* افتراضي: أفقي من اليسار */</span>
+  <span class="property">flex-direction</span>: <span class="value">row-reverse</span>; <span class="comment">/* أفقي من اليمين */</span>
+  <span class="property">flex-direction</span>: <span class="value">column</span>;      <span class="comment">/* رأسي من الأعلى */</span>
+
+  <span class="comment">/* هل العناصر تنزل لسطر جديد؟ */</span>
+  <span class="property">flex-wrap</span>: <span class="value">nowrap</span>;   <span class="comment">/* افتراضي: لا تنزل، تضغط */</span>
+  <span class="property">flex-wrap</span>: <span class="value">wrap</span>;     <span class="comment">/* تنزل لسطر جديد عند الامتلاء */</span>
+
+  <span class="comment">/* المحاذاة على المحور الرئيسي (أفقي افتراضاً) */</span>
+  <span class="property">justify-content</span>: <span class="value">flex-start</span>;    <span class="comment">/* في البداية (افتراضي) */</span>
+  <span class="property">justify-content</span>: <span class="value">flex-end</span>;      <span class="comment">/* في النهاية */</span>
+  <span class="property">justify-content</span>: <span class="value">center</span>;        <span class="comment">/* في الوسط ✅ مفيد جداً */</span>
+  <span class="property">justify-content</span>: <span class="value">space-between</span>; <span class="comment">/* مساحات بين العناصر */</span>
+  <span class="property">justify-content</span>: <span class="value">space-around</span>;  <span class="comment">/* مساحات حول العناصر */</span>
+  <span class="property">justify-content</span>: <span class="value">space-evenly</span>;  <span class="comment">/* مساحات متساوية */</span>
+
+  <span class="comment">/* المحاذاة على المحور الثانوي (رأسي افتراضاً) */</span>
+  <span class="property">align-items</span>: <span class="value">stretch</span>;      <span class="comment">/* يمتد للأعلى والأسفل (افتراضي) */</span>
+  <span class="property">align-items</span>: <span class="value">flex-start</span>;  <span class="comment">/* يلتصق بالأعلى */</span>
+  <span class="property">align-items</span>: <span class="value">flex-end</span>;    <span class="comment">/* يلتصق بالأسفل */</span>
+  <span class="property">align-items</span>: <span class="value">center</span>;      <span class="comment">/* يتوسط رأسياً ✅ مفيد جداً */</span>
+
+  <span class="comment">/* مسافة بين العناصر (gap) */</span>
+  <span class="property">gap</span>: <span class="value">20px</span>;           <span class="comment">/* مسافة في الصفوف والأعمدة */</span>
+  <span class="property">gap</span>: <span class="value">16px 24px</span>;     <span class="comment">/* صفوف ثم أعمدة */</span>
+  <span class="property">column-gap</span>: <span class="value">20px</span>;   <span class="comment">/* مسافة بين الأعمدة فقط */</span>
+  <span class="property">row-gap</span>: <span class="value">16px</span>;      <span class="comment">/* مسافة بين الصفوف فقط */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎯 خصائص العناصر الأبناء (Items)</h2>
+        <pre class="code-block"><code><span class="selector">.flex-item</span> {
+  <span class="comment">/* نسبة النمو: كم يأخذ من المساحة الفارغة */</span>
+  <span class="property">flex-grow</span>: <span class="value">0</span>;    <span class="comment">/* افتراضي: لا ينمو */</span>
+  <span class="property">flex-grow</span>: <span class="value">1</span>;    <span class="comment">/* ينمو ليملأ المساحة الفارغة */</span>
+  <span class="property">flex-grow</span>: <span class="value">2</span>;    <span class="comment">/* ينمو ضعف عنصر بـ flex-grow: 1 */</span>
+
+  <span class="comment">/* الحجم الافتراضي */</span>
+  <span class="property">flex-basis</span>: <span class="value">auto</span>;   <span class="comment">/* يعتمد على المحتوى (افتراضي) */</span>
+  <span class="property">flex-basis</span>: <span class="value">200px</span>;  <span class="comment">/* حجم أساسي 200px */</span>
+  <span class="property">flex-basis</span>: <span class="value">0</span>;      <span class="comment">/* يبدأ من الصفر قبل التوزيع */</span>
+
+  <span class="comment">/* اختصار flex */</span>
+  <span class="property">flex</span>: <span class="value">1</span>;          <span class="comment">/* = flex-grow: 1; flex-shrink: 1; flex-basis: 0 */</span>
+  <span class="property">flex</span>: <span class="value">1 1 200px</span>;  <span class="comment">/* grow, shrink, basis */</span>
+
+  <span class="comment">/* ترتيب ظهور العنصر */</span>
+  <span class="property">order</span>: <span class="value">0</span>;  <span class="comment">/* افتراضي */</span>
+  <span class="property">order</span>: <span class="value">1</span>;  <span class="comment">/* يظهر بعد العناصر ذات order:0 */</span>
+  <span class="property">order</span>: <span class="value">-1</span>; <span class="comment">/* يظهر أول شيء! */</span>
+}
+
+<span class="comment">/* ✅ المثال الأكثر شيوعاً: توسيط عنصر */</span>
+<span class="selector">.center-everything</span> {
+  <span class="property">display</span>: <span class="value">flex</span>;
+  <span class="property">justify-content</span>: <span class="value">center</span>; <span class="comment">/* توسيط أفقي */</span>
+  <span class="property">align-items</span>: <span class="value">center</span>;    <span class="comment">/* توسيط رأسي */</span>
+  <span class="comment">/* قبل Flexbox كان التوسيط الرأسي شبه مستحيل! */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ display: flex يفعّل Flexbox على الحاوية</li>
+            <li>✅ flex-direction لتحديد اتجاه العناصر</li>
+            <li>✅ justify-content للمحاذاة على المحور الرئيسي</li>
+            <li>✅ align-items للمحاذاة على المحور الثانوي</li>
+            <li>✅ gap لإضافة مسافات بين العناصر</li>
+            <li>✅ flex-grow وflex-basis لتحديد حجم الأبناء</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson4.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: التموضع</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">5</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson6.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: CSS Grid ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار CSS</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

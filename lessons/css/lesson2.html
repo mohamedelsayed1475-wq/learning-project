@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الثاني من مسار CSS: الألوان والخلفيات وتنسيق الخطوط والنصوص">
+  <title>📖 CSS - الدرس 2: الألوان والخطوط | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم الويب</span>
+        </a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge beginner" style="background:rgba(14,165,233,0.15);color:#38bdf8;border-color:rgba(56,189,248,0.3);">CSS - الدرس الثاني - مبتدئ</span>
+          <span class="read-time">⏱️ مدة القراءة: 15 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">🎨 الألوان والخلفيات وتنسيق الخطوط</h1>
+        <p class="lesson-description">
+          تعلم كيف تتحكم في الألوان بطرق مختلفة (HEX وRGB وHSL)، وكيف تنسّق الخطوط والنصوص لتعطي موقعك مظهراً احترافياً!
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>🎨 الألوان في CSS</h2>
+        <p>هناك عدة طرق لتحديد الألوان في CSS:</p>
+
+        <h3>1. الألوان بالاسم (Named Colors)</h3>
+        <pre class="code-block"><code><span class="selector">p</span> {
+  <span class="property">color</span>: <span class="value">red</span>;        <span class="comment">/* أحمر */</span>
+  <span class="property">color</span>: <span class="value">blue</span>;       <span class="comment">/* أزرق */</span>
+  <span class="property">color</span>: <span class="value">darkgreen</span>;  <span class="comment">/* أخضر داكن */</span>
+  <span class="property">color</span>: <span class="value">tomato</span>;     <span class="comment">/* أحمر طماطم 🍅 */</span>
+  <span class="property">color</span>: <span class="value">steelblue</span>;  <span class="comment">/* أزرق فولاذي */</span>
+}
+
+<span class="comment">/*
+  ✅ مناسبة للألوان الأساسية البسيطة
+  ❌ محدودة - فقط ~140 لون مسمى في CSS
+  ❌ الأسماء ليست دقيقة بما يكفي للتصاميم الاحترافية
+*/</span></code></pre>
+
+        <h3>2. نظام HEX (الأكثر استخداماً)</h3>
+        <pre class="code-block"><code><span class="comment">/*
+  HEX = Hexadecimal = نظام عد ست عشري (0-9 ثم A-F)
+  الصيغة: #RRGGBB
+  RR = قيمة الأحمر (Red) من 00 إلى FF
+  GG = قيمة الأخضر (Green) من 00 إلى FF
+  BB = قيمة الأزرق (Blue) من 00 إلى FF
+
+  00 = 0 (لا يوجد)
+  FF = 255 (أقصى درجة)
+*/</span>
+
+<span class="selector">h1</span> {
+  <span class="property">color</span>: <span class="value">#FF0000</span>;  <span class="comment">/* أحمر كامل: R=255, G=0, B=0 */</span>
+  <span class="property">color</span>: <span class="value">#00FF00</span>;  <span class="comment">/* أخضر كامل: R=0, G=255, B=0 */</span>
+  <span class="property">color</span>: <span class="value">#0000FF</span>;  <span class="comment">/* أزرق كامل: R=0, G=0, B=255 */</span>
+  <span class="property">color</span>: <span class="value">#000000</span>;  <span class="comment">/* أسود: الثلاثة صفر */</span>
+  <span class="property">color</span>: <span class="value">#FFFFFF</span>;  <span class="comment">/* أبيض: الثلاثة بحدهم */</span>
+  <span class="property">color</span>: <span class="value">#2563eb</span>;  <span class="comment">/* أزرق جميل - يمكن كتابته بحروف صغيرة */</span>
+  <span class="property">color</span>: <span class="value">#1e293b</span>;  <span class="comment">/* رمادي داكن جداً */</span>
+}
+
+<span class="comment">/*
+  اختصار HEX: لو كل رقمين متماثلين يمكن اختصارهما
+  #FF0000 = #F00
+  #FFFFFF = #FFF
+  #000000 = #000
+  #223366 = #236
+*/</span></code></pre>
+
+        <h3>3. نظام RGB</h3>
+        <pre class="code-block"><code><span class="comment">/*
+  RGB = Red, Green, Blue
+  كل قيمة من 0 إلى 255
+  rgb(أحمر, أخضر, أزرق)
+*/</span>
+
+<span class="selector">div</span> {
+  <span class="property">color</span>: <span class="value">rgb(255, 0, 0)</span>;     <span class="comment">/* أحمر كامل */</span>
+  <span class="property">color</span>: <span class="value">rgb(37, 99, 235)</span>;  <span class="comment">/* نفس #2563eb */</span>
+  <span class="property">color</span>: <span class="value">rgb(0, 0, 0)</span>;       <span class="comment">/* أسود */</span>
+}
+
+<span class="comment">/* RGBA: الـ A = Alpha = الشفافية من 0 إلى 1 */</span>
+<span class="selector">.overlay</span> {
+  <span class="property">background</span>: <span class="value">rgba(0, 0, 0, 0.5)</span>;
+  <span class="comment">/* أسود بشفافية 50% - شائع جداً للطبقات الشفافة */</span>
+
+  <span class="property">background</span>: <span class="value">rgba(37, 99, 235, 0.2)</span>;
+  <span class="comment">/* أزرق بشفافية 20% - تأثير خلفية شفافة */</span>
+}</code></pre>
+
+        <h3>4. نظام HSL (الأكثر بديهية)</h3>
+        <pre class="code-block"><code><span class="comment">/*
+  HSL = Hue, Saturation, Lightness
+  H = درجة اللون (Hue) من 0 إلى 360 درجة
+      0 = أحمر، 120 = أخضر، 240 = أزرق
+  S = التشبع (Saturation) من 0% إلى 100%
+      0% = رمادي، 100% = لون نقي كامل
+  L = الإضاءة (Lightness) من 0% إلى 100%
+      0% = أسود، 50% = طبيعي، 100% = أبيض
+*/</span>
+
+<span class="selector">button</span> {
+  <span class="property">background</span>: <span class="value">hsl(220, 90%, 56%)</span>;
+  <span class="comment">/* أزرق: درجة 220، تشبع عالي، إضاءة متوسطة */</span>
+
+  <span class="property">background</span>: <span class="value">hsl(220, 90%, 46%)</span>;
+  <span class="comment">/* نفس اللون لكن أغمق (46% إضاءة) */</span>
+
+  <span class="property">background</span>: <span class="value">hsla(220, 90%, 56%, 0.8)</span>;
+  <span class="comment">/* نفس اللون مع شفافية 80% */</span>
+}
+
+<span class="comment">/*
+  💡 لماذا HSL أفضل للمبدعين؟
+  سهل تغيير الإضاءة فقط للحصول على ألوان متناسقة!
+  مثال: لو عندك لون أساسي hsl(220, 90%, 56%)
+  النسخة الفاتحة: hsl(220, 90%, 80%)
+  النسخة الداكنة: hsl(220, 90%, 30%)
+  كل اللون من نفس العائلة!
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🖌️ الخلفيات (Backgrounds)</h2>
+        <pre class="code-block"><code><span class="selector">.hero-section</span> {
+  <span class="comment">/* لون خلفية عادي */</span>
+  <span class="property">background-color</span>: <span class="value">#1e293b</span>;
+
+  <span class="comment">/* تدرج لوني (Gradient) - الأجمل! */</span>
+  <span class="property">background</span>: <span class="value">linear-gradient(135deg, #1e293b, #2563eb)</span>;
+  <span class="comment">/*
+    linear-gradient = تدرج خطي
+    135deg = اتجاه التدرج (135 درجة = قطري)
+    #1e293b = اللون الأول (البداية)
+    #2563eb = اللون الثاني (النهاية)
+  */</span>
+
+  <span class="comment">/* صورة خلفية */</span>
+  <span class="property">background-image</span>: <span class="value">url('hero.jpg')</span>;
+  <span class="property">background-size</span>: <span class="value">cover</span>;
+  <span class="comment">/* cover = الصورة تغطي المساحة كلها مع الحفاظ على النسبة */</span>
+  <span class="property">background-position</span>: <span class="value">center</span>;
+  <span class="comment">/* center = توسيط الصورة */</span>
+  <span class="property">background-repeat</span>: <span class="value">no-repeat</span>;
+  <span class="comment">/* no-repeat = لا تكرر الصورة */</span>
+}
+
+<span class="comment">/*
+  قيم background-size:
+  cover  = تغطي الكل (قد تُقطع الصورة)
+  contain = تظهر كاملة (قد تظهر فراغات)
+  100% 100% = تمدد الصورة لتملأ الكل (قد تتشوه)
+*/</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📝 تنسيق الخطوط (Typography)</h2>
+
+        <h3>خصائص الخط</h3>
+        <pre class="code-block"><code><span class="selector">body</span> {
+  <span class="comment">/* نوع الخط */</span>
+  <span class="property">font-family</span>: <span class="value">'Cairo', 'Segoe UI', sans-serif</span>;
+  <span class="comment">/*
+    Cairo = خط عربي جميل من Google Fonts
+    'Segoe UI' = خط بديل لو Cairo مش متاح
+    sans-serif = خط بلا زخارف كـ fallback أخير
+    الفاصلة تعني "استخدم هذا، أو هذا، أو هذا..."
+  */</span>
+
+  <span class="comment">/* حجم الخط */</span>
+  <span class="property">font-size</span>: <span class="value">16px</span>;     <span class="comment">/* الحجم الافتراضي والمريح للقراءة */</span>
+  <span class="property">font-size</span>: <span class="value">1rem</span>;    <span class="comment">/* 1rem = حجم الخط الافتراضي للمتصفح (16px) */</span>
+  <span class="property">font-size</span>: <span class="value">1.2em</span>;   <span class="comment">/* 1.2 ضعف حجم خط الأب */</span>
+
+  <span class="comment">/* وزن الخط (سماكته) */</span>
+  <span class="property">font-weight</span>: <span class="value">400</span>;   <span class="comment">/* عادي - normal */</span>
+  <span class="property">font-weight</span>: <span class="value">700</span>;   <span class="comment">/* عريض - bold */</span>
+  <span class="property">font-weight</span>: <span class="value">300</span>;   <span class="comment">/* رفيع - light */</span>
+
+  <span class="comment">/* نمط الخط */</span>
+  <span class="property">font-style</span>: <span class="value">normal</span>; <span class="comment">/* عادي */</span>
+  <span class="property">font-style</span>: <span class="value">italic</span>; <span class="comment">/* مائل */</span>
+
+  <span class="comment">/* ارتفاع السطر */</span>
+  <span class="property">line-height</span>: <span class="value">1.6</span>;   <span class="comment">/* 1.6 مرة حجم الخط = ارتفاع مريح للقراءة */</span>
+}</code></pre>
+
+        <h3>تنسيق النص</h3>
+        <pre class="code-block"><code><span class="selector">.article-text</span> {
+  <span class="comment">/* محاذاة النص */</span>
+  <span class="property">text-align</span>: <span class="value">right</span>;    <span class="comment">/* يمين (للعربية) */</span>
+  <span class="property">text-align</span>: <span class="value">left</span>;     <span class="comment">/* يسار (للإنجليزية) */</span>
+  <span class="property">text-align</span>: <span class="value">center</span>;   <span class="comment">/* توسيط */</span>
+  <span class="property">text-align</span>: <span class="value">justify</span>;  <span class="comment">/* ضبط = يمتد عرض السطر بالكامل */</span>
+
+  <span class="comment">/* تزيين النص */</span>
+  <span class="property">text-decoration</span>: <span class="value">none</span>;         <span class="comment">/* إزالة الخط من الروابط */</span>
+  <span class="property">text-decoration</span>: <span class="value">underline</span>;    <span class="comment">/* خط تحت */</span>
+  <span class="property">text-decoration</span>: <span class="value">line-through</span>; <span class="comment">/* خط في المنتصف (شطب) */</span>
+
+  <span class="comment">/* تحويل حالة الأحرف */</span>
+  <span class="property">text-transform</span>: <span class="value">uppercase</span>;  <span class="comment">/* كل الأحرف كبيرة */</span>
+  <span class="property">text-transform</span>: <span class="value">capitalize</span>; <span class="comment">/* أول حرف كبير في كل كلمة */</span>
+
+  <span class="comment">/* ظل النص */</span>
+  <span class="property">text-shadow</span>: <span class="value">2px 2px 4px rgba(0,0,0,0.3)</span>;
+  <span class="comment">/*
+    2px = إزاحة أفقية
+    2px = إزاحة رأسية
+    4px = درجة الضبابية (blur)
+    rgba(0,0,0,0.3) = لون الظل (أسود شفاف)
+  */</span>
+
+  <span class="comment">/* تباعد الأحرف */</span>
+  <span class="property">letter-spacing</span>: <span class="value">0.05em</span>;  <span class="comment">/* مسافة صغيرة بين الأحرف */</span>
+
+  <span class="comment">/* تباعد الكلمات */</span>
+  <span class="property">word-spacing</span>: <span class="value">0.1em</span>;    <span class="comment">/* مسافة بين الكلمات */</span>
+}</code></pre>
+
+        <h3>استيراد خطوط Google</h3>
+        <pre class="code-block"><code><span class="comment">/* في ملف HTML داخل &lt;head&gt; */</span>
+<span class="comment">&lt;!--
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet"&gt;
+--&gt;</span>
+
+<span class="comment">/* أو في ملف CSS */</span>
+<span class="selector">@import</span> <span class="value">url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap')</span>;
+
+<span class="comment">/*
+  @import = استيراد من مصدر خارجي
+  Cairo = اسم الخط العربي الجميل
+  wght@300;400;700 = الأوزان التي نريدها
+  300 = رفيع، 400 = عادي، 700 = عريض
+*/</span>
+
+<span class="selector">body</span> {
+  <span class="property">font-family</span>: <span class="value">'Cairo', sans-serif</span>;
+  <span class="comment">/* الآن يمكن استخدام خط Cairo في كل الصفحة */</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ أربع طرق لتحديد الألوان: Named, HEX, RGB, HSL</li>
+            <li>✅ RGBA وHSLA لإضافة الشفافية (Alpha)</li>
+            <li>✅ خصائص الخلفية: color, image, size, position, repeat</li>
+            <li>✅ التدرجات اللونية بـ linear-gradient</li>
+            <li>✅ خصائص الخط: family, size, weight, style, line-height</li>
+            <li>✅ تنسيق النص: align, decoration, transform, shadow</li>
+            <li>✅ كيفية استيراد خطوط Google</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson1.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: المقدمة</a>
+        <div class="lesson-progress-indicator">
+          <span class="current-lesson">2</span>
+          <span class="total-lessons">/ 8</span>
+        </div>
+        <a href="lesson3.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: Box Model ←</a>
+      </nav>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-text">🎓 منصة تعلم الويب - مسار CSS</p>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>

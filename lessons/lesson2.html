@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<!--
+  =====================================================
+  DOCTYPE html
+  ده بيقول للمتصفح إن الصفحة دي HTML5
+  لازم يكون أول سطر في أي صفحة HTML بدون استثناء
+  =====================================================
+-->
+
+<html lang="ar" dir="rtl">
+<!--
+  <html> = العنصر الجذر الذي يحتوي على كامل الصفحة
+  lang="ar" = لغة الصفحة عربية (مهم للـ SEO وقارئات الشاشة)
+  dir="rtl" = الكتابة من اليمين لليسار (Right To Left)
+-->
+
+<head>
+  <!--
+    <head> = رأس الصفحة
+    محتواه مخفي عن الزائر
+    فيه معلومات للمتصفح ومحركات البحث وروابط الملفات
+  -->
+
+  <meta charset="UTF-8">
+  <!--
+    <meta> = عنصر معلومات - وسم فارغ (لا يحتاج إغلاق)
+    charset="UTF-8" = نظام ترميز عالمي
+    بيسمح بعرض العربية والإنجليزية والإيموجي وكل اللغات بشكل صحيح
+    لازم تكون أول meta في الـ head
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+    viewport = نافذة العرض على الموبايل
+    width=device-width = عرض الصفحة يساوي عرض الجهاز
+    initial-scale=1.0 = لا تكبير ولا تصغير عند التحميل
+    بدونها الموقع سيبدو مضغوطاً على الموبايل
+  -->
+
+  <meta name="description" content="الدرس الثاني: العناوين والفقرات في HTML - تعلم h1 إلى h6 والفقرات وتنسيق النص">
+  <!--
+    description = وصف الصفحة الذي يظهر في نتائج Google
+    اجعله واضحاً وجذاباً بين 150-160 حرف
+  -->
+
+  <title>📖 الدرس 2: العناوين والفقرات - تعلم HTML</title>
+  <!--
+    <title> = عنوان الصفحة
+    يظهر في: تبويب المتصفح + نتائج Google + المفضلة
+    الطول المثالي: 50-60 حرف
+  -->
+
+  <link rel="stylesheet" href="../style.css">
+  <!--
+    <link> = ربط ملف خارجي - وسم فارغ
+    rel="stylesheet" = نوع الملف (CSS)
+    href="../style.css" = المسار: ارجع مجلد (../) ثم ملف style.css
+    لأن الملف ده جوا مجلد lessons والـ CSS في المجلد الرئيسي
+  -->
+
+</head>
+
+<body>
+  <!--
+    <body> = جسم الصفحة
+    كل المحتوى المرئي يوضع هنا
+  -->
+
+  <!-- ============================================================ -->
+  <!-- HEADER - رأس الصفحة وقائمة التنقل                            -->
+  <!-- ============================================================ -->
+
+  <header id="main-header">
+    <!--
+      <header> = رأس الصفحة - عنصر Semantic
+      يحتوي على الشعار وقائمة التنقل الرئيسية
+      id="main-header" = معرف فريد في الصفحة
+    -->
+
+    <nav id="main-nav">
+      <!--
+        <nav> = Navigation = قائمة التنقل الرئيسية
+        عنصر Semantic - يخبر المتصفح أن هذه روابط تنقل
+        مهم لمحركات البحث وقارئات الشاشة
+      -->
+
+      <div class="nav-logo">
+        <!--
+          <div> = حاوي عام - لا معنى دلالي
+          يجمع الشعار (أيقونة + نص) في مكان واحد
+          class="nav-logo" = تصنيف للتنسيق في CSS
+        -->
+
+        <a href="../index.html" id="logo-link">
+          <!--
+            <a> = Anchor = رابط
+            href="../index.html" = الوجهة: الصفحة الرئيسية
+            ../ = ارجع للمجلد السابق أولاً
+            id="logo-link" = معرف فريد لهذا الرابط
+          -->
+          <span class="logo-icon">🎓</span>
+          <!--
+            <span> = عنصر Inline لا يكسر السطر
+            يُستخدم لتنسيق جزء صغير من النص
+          -->
+          <span class="logo-text">تعلم HTML</span>
+        </a>
+        <!-- </a> = نهاية الرابط - لا تنسَ إغلاق كل وسم فتحته -->
+
+      </div>
+      <!-- </div> = نهاية div الشعار -->
+
+      <ul class="nav-menu" id="nav-menu">
+        <!--
+          <ul> = Unordered List = قائمة غير مرتبة (بنقاط)
+          class="nav-menu" = تنسيق قائمة التنقل
+          id="nav-menu" = للوصول إليها في JavaScript عند الضغط على زر القائمة
+        -->
+
+        <li class="nav-item">
+          <!--
+            <li> = List Item = عنصر في القائمة
+            يجب أن يكون داخل <ul> أو <ol> دائماً
+          -->
+          <a href="../index.html" class="nav-link">🏠 الرئيسية</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="lesson1.html" class="nav-link active">📖 الدروس</a>
+          <!--
+            class="nav-link active"
+            active = يميز الصفحة الحالية بلون مختلف في CSS
+            يمكن لعنصر واحد أن يحمل أكثر من class - تفصلها بمسافة
+          -->
+        </li>
+
+        <li class="nav-item">
+          <a href="../playground.html" class="nav-link">⚡ الملعب</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="../quiz.html" class="nav-link">🧪 الاختبارات</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="../cheatsheet.html" class="nav-link">📋 المرجع السريع</a>
+        </li>
+
+      </ul>
+      <!-- </ul> = نهاية قائمة التنقل -->
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <!--
+          <button> = زرار تفاعلي
+          type="button" = نوع الزرار (لا يرسل form تلقائياً)
+          aria-label = وصف للقارئات الصوتية (Accessibility)
+          مهم لأن الزرار يحتوي على أيقونة فقط بلا نص
+        -->
+        <span class="menu-icon">☰</span>
+        <!-- ☰ = أيقونة القائمة المنبثقة (Hamburger Menu) -->
+      </button>
+      <!-- </button> = نهاية الزرار -->
+
+    </nav>
+    <!-- </nav> = نهاية قائمة التنقل -->
+
+  </header>
+  <!-- </header> = نهاية رأس الصفحة -->
+
+
+  <!-- ============================================================ -->
+  <!-- MAIN CONTENT - محتوى الدرس الثاني                            -->
+  <!-- ============================================================ -->
+
+  <main id="lesson-main" class="container">
+    <!--
+      <main> = المحتوى الرئيسي - عنصر Semantic
+      يجب أن يكون واحداً فقط في كل صفحة
+      محركات البحث تركز على محتواه
+      class="container" = يحدد عرضاً أقصى ويوسط المحتوى
+    -->
+
+    <article class="lesson-article">
+      <!--
+        <article> = مقال أو محتوى مستقل - عنصر Semantic
+        مناسب هنا لأن كل درس محتوى مستقل بذاته
+        أفضل من <div> لأن معناه واضح لمحركات البحث
+      -->
+
+      <header class="lesson-header">
+        <!--
+          <header> داخل <article> = رأس الدرس وليس رأس الصفحة
+          مقبول أن يتكرر <header> لكن بـ class مختلف
+          class="lesson-header" = تنسيق رأس الدرس تحديداً
+        -->
+
+        <div class="lesson-meta">
+          <!--
+            <div> لتجميع معلومات الدرس الوصفية (المستوى + وقت القراءة)
+            class="lesson-meta" = meta = معلومات وصفية
+          -->
+
+          <span class="category-badge beginner">الدرس الثاني - مبتدئ</span>
+          <!--
+            <span> = عنصر Inline داخل النص
+            class="category-badge beginner"
+            category-badge = الشكل العام للشارة
+            beginner = لون أخضر للمستوى المبتدئ
+            intermediate = أصفر، advanced = أحمر
+          -->
+
+          <span class="read-time">⏱️ مدة القراءة: 10 دقائق</span>
+
+        </div>
+
+        <h1 class="lesson-title">📝 العناوين والفقرات في HTML</h1>
+        <!--
+          <h1> = Heading 1 = العنوان الرئيسي للدرس
+          واحد فقط في كل صفحة - قاعدة SEO أساسية
+          المتصفح يعرضه بأكبر حجم تلقائياً
+        -->
+
+        <p class="lesson-summary">
+          <!--
+            <p> = Paragraph = فقرة نصية
+            يضيف مسافة (margin) فوقه وتحته تلقائياً
+            class="lesson-summary" = تنسيق ملخص الدرس (خط أكبر + حد أيمن)
+          -->
+          سنتعلم في هذا الدرس كيفية إضافة العناوين بأحجامها المختلفة من h1 إلى h6، وكيفية كتابة الفقرات، وتنسيق النصوص باستخدام وسوم bold وitalic وغيرها.
+        </p>
+
+      </header>
+      <!-- </header> = نهاية رأس الدرس -->
+
+
+      <section class="lesson-body">
+        <!--
+          <section> = قسم منطقي في الصفحة له موضوع مشترك
+          عنصر Semantic - أفضل من div
+          كل section يجب أن يكون له عنوان (h2 أو h3...)
+          class="lesson-body" = تنسيق جسم محتوى الدرس
+        -->
+
+        <!-- =================== القسم الأول =================== -->
+
+        <h2>1. عناصر العناوين (Headings)</h2>
+        <!--
+          <h2> = Heading 2 = عنوان المستوى الثاني
+          يأتي بعد h1 في التسلسل الهرمي
+          لا تتخطى المستويات: لا تذهب من h1 مباشرة لـ h4
+        -->
+
+        <p>
+          توفر HTML ستة مستويات للعناوين، من <code>&lt;h1&gt;</code> (الأكبر والأهم) إلى <code>&lt;h6&gt;</code> (الأصغر والأقل أهمية).
+          <!--
+            <code> = عرض كود مضمّن (Inline Code) بخط ثابت
+            مختلف عن <pre><code> الذي يُستخدم للكود متعدد الأسطر
+            &lt; و &gt; = طريقة كتابة < و > في HTML
+          -->
+          العناوين مهمة جداً لمحركات البحث (SEO) ولتنظيم محتوى الصفحة.
+        </p>
+
+        <div class="code-explain-card">
+          <!--
+            <div> حاوي بطاقة الكود
+            class="code-explain-card" = خلفية داكنة (Monokai theme)
+          -->
+          <pre><code>&lt;h1&gt;عنوان رئيسي - الأكبر&lt;/h1&gt;
+&lt;h2&gt;عنوان ثانوي&lt;/h2&gt;
+&lt;h3&gt;عنوان من المستوى الثالث&lt;/h3&gt;
+&lt;h4&gt;عنوان من المستوى الرابع&lt;/h4&gt;
+&lt;h5&gt;عنوان من المستوى الخامس&lt;/h5&gt;
+&lt;h6&gt;عنوان من المستوى السادس - الأصغر&lt;/h6&gt;</code></pre>
+          <!--
+            <pre> = Preformatted Text
+            يحافظ على المسافات والأسطر كما هي
+            يُستخدم مع <code> لعرض الكود بشكل صحيح
+
+            <code> = يميز الكود بخط Monospace
+          -->
+        </div>
+
+        <div class="live-preview-box">
+          <!--
+            <div> لعرض مثال حي (Preview)
+            class="live-preview-box" = حد منقط أزرق كإطار
+            بيقول للقارئ "هكذا تبدو النتيجة في المتصفح"
+          -->
+          <p class="preview-label">👁️ شكل العناوين في المتصفح:</p>
+          <h1 style="font-size:2em;margin:5px 0">عنوان h1 - الأكبر</h1>
+          <!--
+            style="..." = CSS مضمّن مباشرة في العنصر (Inline Style)
+            الأفضل استخدام CSS خارجي، لكن هنا للعرض السريع فقط
+            font-size:2em = حجم الخط ضعف الحجم العادي
+            margin:5px 0 = 5px فوق وتحت، 0 يمين وشمال
+          -->
+          <h2 style="font-size:1.6em;margin:5px 0;color:#333">عنوان h2</h2>
+          <h3 style="font-size:1.3em;margin:5px 0;color:#444">عنوان h3</h3>
+          <h4 style="font-size:1.1em;margin:5px 0;color:#555">عنوان h4</h4>
+          <h5 style="font-size:0.95em;margin:5px 0;color:#666">عنوان h5</h5>
+          <h6 style="font-size:0.85em;margin:5px 0;color:#777">عنوان h6 - الأصغر</h6>
+        </div>
+
+        <div class="tip-box">
+          <!--
+            <div> لمربع التنبيه / النصيحة
+            class="tip-box" = خلفية صفراء فاتحة + حد أيمن أصفر
+          -->
+          💡 <strong>قاعدة مهمة:</strong> استخدم <code>&lt;h1&gt;</code> مرة واحدة فقط في كل صفحة (العنوان الرئيسي). هذا مهم جداً لمحركات البحث.
+          <!--
+            <strong> = نص مهم - Bold دلالي
+            استخدمه فقط للنصوص المهمة فعلاً وليس للتنسيق فقط
+          -->
+        </div>
+
+        <hr>
+        <!--
+          <hr> = Horizontal Rule = خط فاصل أفقي
+          وسم فارغ - لا يحتاج إغلاق
+          يفصل الأقسام المختلفة
+        -->
+
+        <!-- =================== القسم الثاني =================== -->
+
+        <h2>2. عنصر الفقرة &lt;p&gt;</h2>
+
+        <p>
+          وسم <code>&lt;p&gt;</code> يُستخدم لكتابة الفقرات. المتصفح يضيف تلقائياً مسافة (هامش) قبل وبعد كل فقرة لتمييزها عن غيرها.
+        </p>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;p&gt;هذه هي الفقرة الأولى. يمكنك كتابة أي نص هنا.&lt;/p&gt;
+&lt;p&gt;هذه هي الفقرة الثانية. المتصفح يفصل بينها تلقائياً.&lt;/p&gt;
+&lt;p&gt;يمكن أن تحتوي الفقرة على نص طويل جداً وسيتم تقسيمه
+تلقائياً حسب عرض الشاشة.&lt;/p&gt;</code></pre>
+        </div>
+
+        <hr>
+
+        <!-- =================== القسم الثالث =================== -->
+
+        <h2>3. تنسيق النصوص</h2>
+
+        <p>توفر HTML وسوم لتنسيق النص داخل الفقرات والعناوين:</p>
+
+        <div class="tags-comparison">
+          <!--
+            <div> حاوي لعرض البطاقات جنباً لجنب
+            class="tags-comparison" = display:flex في CSS
+          -->
+
+          <div class="tag-type-card">
+            <!--
+              <div> بطاقة لكل وسم
+              class="tag-type-card" = تنسيق البطاقة الفردية
+            -->
+            <h3><code>&lt;strong&gt;</code> - نص عريض مهم</h3>
+            <!--
+              <h3> = عنوان المستوى الثالث
+              <code> = عرض الوسم بخط ثابت
+            -->
+            <p>يجعل النص <strong>غامقاً وعريضاً</strong> ويدل على أنه مهم دلالياً.</p>
+            <!--
+              <strong> داخل <p> = مثال حي على الوسم نفسه!
+              الزائر يرى النص عريضاً ويفهم وظيفة الوسم
+            -->
+            <code>&lt;p&gt;هذا نص &lt;strong&gt;مهم جداً&lt;/strong&gt;&lt;/p&gt;</code>
+          </div>
+
+          <div class="tag-type-card">
+            <h3><code>&lt;em&gt;</code> - نص مائل للتأكيد</h3>
+            <p>يجعل النص <em>مائلاً (Italic)</em> ويدل على التأكيد.</p>
+            <!--
+              <em> = Emphasis = تأكيد
+              مختلف عن <i>:
+              - <em> له معنى دلالي = "هذا النص مؤكد"
+              - <i> = مجرد Italic بدون معنى
+            -->
+            <code>&lt;p&gt;هذا نص &lt;em&gt;مؤكد&lt;/em&gt;&lt;/p&gt;</code>
+          </div>
+
+          <div class="tag-type-card">
+            <h3><code>&lt;mark&gt;</code> - تظليل النص</h3>
+            <p>يضيف <mark>تظليل أصفر</mark> للنص للفت الانتباه.</p>
+            <!--
+              <mark> = تظليل - مثل قلم التحديد
+              يظهر بخلفية صفراء تلقائياً
+            -->
+            <code>&lt;p&gt;هذا &lt;mark&gt;مظلل&lt;/mark&gt;&lt;/p&gt;</code>
+          </div>
+
+          <div class="tag-type-card">
+            <h3><code>&lt;small&gt;</code> - نص صغير</h3>
+            <p>يجعل النص <small>أصغر حجماً</small> للتعليقات الثانوية.</p>
+            <!--
+              <small> = نص أصغر من المحيط به
+              مناسب للحواشي، حقوق النشر، الملاحظات
+            -->
+            <code>&lt;p&gt;نص عادي &lt;small&gt;صغير&lt;/small&gt;&lt;/p&gt;</code>
+          </div>
+
+          <div class="tag-type-card">
+            <h3><code>&lt;del&gt;</code> - نص محذوف</h3>
+            <p>يضيف خطاً على النص: <del>نص قديم</del></p>
+            <!--
+              <del> = Deleted = محذوف
+              مثالي لعرض الأسعار القديمة أو المعلومات المعدّلة
+            -->
+            <code>&lt;del&gt;نص قديم&lt;/del&gt;</code>
+          </div>
+
+          <div class="tag-type-card">
+            <h3><code>&lt;br&gt;</code> - سطر جديد</h3>
+            <p>ينقلك لسطر جديد داخل نفس الفقرة (وسم فارغ لا يحتاج إغلاق).</p>
+            <!--
+              <br> = Break = كسر السطر
+              وسم فارغ - لا يحتاج لوسم إغلاق
+              استخدمه بحذر - الأفضل استخدام <p> لفقرات جديدة
+            -->
+            <code>&lt;p&gt;سطر أول&lt;br&gt;سطر ثانٍ&lt;/p&gt;</code>
+          </div>
+
+        </div>
+        <!-- </div> = نهاية tags-comparison -->
+
+        <hr>
+
+        <!-- =================== القسم الرابع =================== -->
+
+        <h2>4. مثال متكامل</h2>
+
+        <div class="code-explain-card">
+          <pre><code>&lt;h1&gt;مرحباً بك في موقعي&lt;/h1&gt;
+
+&lt;h2&gt;من أنا؟&lt;/h2&gt;
+&lt;p&gt;أنا &lt;strong&gt;محمد&lt;/strong&gt;، مطور ويب من &lt;em&gt;مصر&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2&gt;ما الذي أتعلمه؟&lt;/h2&gt;
+&lt;p&gt;أتعلم حالياً &lt;mark&gt;HTML و CSS&lt;/mark&gt; من الصفر.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;آخر تحديث: يونيو 2024&lt;/small&gt;&lt;/p&gt;</code></pre>
+        </div>
+
+      </section>
+      <!-- </section> = نهاية جسم الدرس -->
+
+      <footer class="lesson-footer-nav">
+        <!--
+          <footer> داخل <article> = ذيل الدرس
+          يحتوي على أزرار التنقل بين الدروس
+        -->
+        <a href="lesson1.html" class="btn btn-secondary">⬅️ الدرس السابق</a>
+        <!--
+          <a> = رابط يبدو كزرار بفضل class="btn"
+          btn-secondary = لون ثانوي (رمادي)
+          يأخذ المستخدم للدرس السابق
+        -->
+        <a href="lesson3.html" class="btn btn-primary">الدرس التالي: الروابط والصور ➡️</a>
+        <!--
+          btn-primary = اللون الأساسي (أزرق)
+          دائماً اجعل "التالي" أكثر وضوحاً من "السابق"
+        -->
+      </footer>
+      <!-- </footer> = نهاية ذيل الدرس -->
+
+    </article>
+    <!-- </article> = نهاية مقال الدرس -->
+
+  </main>
+  <!-- </main> = نهاية المحتوى الرئيسي -->
+
+
+  <!-- ============================================================ -->
+  <!-- FOOTER - ذيل الصفحة الرئيسي                                  -->
+  <!-- ============================================================ -->
+
+  <footer id="main-footer" class="main-footer">
+    <!--
+      <footer> = ذيل الصفحة - عنصر Semantic
+      يحتوي عادة على حقوق النشر والروابط القانونية
+      مختلف عن footer الدرس - هذا footer الموقع كله
+    -->
+    <div class="container">
+      <!--
+        <div class="container"> = غلاف لتوسيط المحتوى
+        نفس container المستخدمة في كل الصفحة
+        CSS الـ container: max-width: 1200px + margin: 0 auto
+      -->
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 تعلم HTML - جميع الحقوق محفوظة
+          <!--
+            &copy; = © = رمز Copyright
+            هذه HTML Entity - طريقة كتابة الرموز الخاصة:
+            &copy; = ©   |   &amp; = &   |   &lt; = <   |   &gt; = >
+            &nbsp; = مسافة غير قابلة للكسر (Non-Breaking Space)
+          -->
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- </footer> = نهاية ذيل الصفحة -->
+
+
+  <!-- ============================================================ -->
+  <!-- STYLE - تنسيقات CSS خاصة بهذه الصفحة                        -->
+  <!-- ============================================================ -->
+
+  <style>
+    /*
+      <style> = تضمين CSS مباشرة في HTML
+      الأفضل دائماً وضع CSS في ملف خارجي (style.css)
+      لكن هذه الأنماط خاصة بهذه الصفحة فقط
+
+      التعليق في CSS يكتب هكذا، بدون تداخل
+      الكتابة: اسم-المحدد { خاصية: قيمة; }
+    */
+
+    /* تنسيق معلومات الدرس الوصفية */
+    .lesson-meta {
+      margin-bottom: 15px;   /* مسافة سفلية = 15 بكسل */
+      font-size: 0.9em;       /* حجم الخط = 90% من الأب */
+      color: #666;            /* لون رمادي متوسط */
+    }
+
+    /* تنسيق شارة المستوى */
+    .category-badge {
+      padding: 4px 8px;        /* مسافة داخلية */
+      border-radius: 4px;      /* زوايا مستديرة */
+      font-weight: bold;        /* خط عريض */
+      background: #e3f2fd;     /* خلفية زرقاء فاتحة */
+      color: #0d47a1;          /* نص أزرق غامق */
+      margin-left: 10px;       /* مسافة يسارية (RTL) */
+    }
+
+    /* نص وقت القراءة */
+    .lesson-title { font-size: 2.2em; margin-top: 10px; margin-bottom: 15px; color: #1a1a1a; }
+    .lesson-summary { font-size: 1.2em; line-height: 1.6; color: #555; background: #fdfdfd; padding: 15px; border-right: 4px solid #007bff; }
+
+    /* تنسيق عناوين جسم الدرس */
+    .lesson-body h2 {
+      font-size: 1.6em;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      color: #007bff;           /* أزرق */
+      border-bottom: 2px solid #eaeaea;  /* خط سفلي رمادي */
+      padding-bottom: 8px;
+    }
+
+    .lesson-body p { font-size: 1.1em; line-height: 1.7; color: #333; margin-bottom: 15px; }
+
+    /* بطاقة الكود الداكنة */
+    .code-explain-card {
+      background: #272822;    /* خلفية داكنة (Monokai) */
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      overflow-x: auto;       /* شريط تمرير أفقي للكود الطويل */
+    }
+    .code-explain-card code { color: #f8f8f2; font-family: monospace; font-size: 1em; white-space: pre; }
+    /* white-space: pre = يحافظ على المسافات والأسطر */
+
+    /* صندوق المعاينة الحي */
+    .live-preview-box {
+      background: #fff;
+      border: 2px dashed #007bff;  /* حد منقط أزرق */
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+    }
+    .preview-label { color: #007bff; font-weight: bold; margin-bottom: 10px; }
+
+    /* صندوق النصيحة */
+    .tip-box {
+      background: #fff8e1;      /* خلفية صفراء فاتحة */
+      border-right: 4px solid #ffc107;  /* حد أيمن أصفر */
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin: 15px 0;
+      line-height: 1.8;
+    }
+
+    /* البطاقات جنباً لجنب */
+    .tags-comparison { display: flex; gap: 20px; margin: 25px 0; flex-wrap: wrap; }
+    /* display: flex = تخطيط أفقي */
+    /* gap: 20px = مسافة بين البطاقات */
+    /* flex-wrap: wrap = ينزل للأسفل لو ضاقت المساحة */
+
+    .tag-type-card { flex: 1; min-width: 250px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa; }
+    .tag-type-card h3 { color: #333; margin-top: 0; font-size: 1em; }
+    .tag-type-card code { display: block; background: #eee; padding: 8px 12px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.9em; }
+
+    /* أزرار التنقل بين الدروس */
+    .lesson-footer-nav {
+      display: flex;
+      justify-content: space-between;  /* واحد يمين وواحد شمال */
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;  /* خط علوي فاصل */
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+  </style>
+
+  <script src="../script.js"></script>
+</body>
+<!-- </body> = نهاية جسم الصفحة -->
+
+</html>
+<!-- </html> = نهاية الصفحة -->

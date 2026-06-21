@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس الأول من مسار JavaScript: مقدمة وكيفية إضافة JavaScript وطباعة البيانات">
+  <title>📖 JS - الدرس 1: مقدمة في JavaScript | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge beginner" style="background:rgba(234,179,8,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3);">JavaScript - الدرس الأول - مبتدئ</span>
+          <span class="read-time">⏱️ مدة القراءة: 12 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">⚡ مقدمة في JavaScript</h1>
+        <p class="lesson-description">
+          JavaScript هي لغة البرمجة التي تُحيي صفحات الويب وتجعلها تفاعلية!
+          ستتعلم في هذا الدرس ما هي JS وكيف تضيفها لصفحاتك وكيف تطبع بياناتك.
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>🤔 ما هي JavaScript؟</h2>
+        <div class="info-box">
+          <p>🧠 JavaScript هي لغة البرمجة الوحيدة التي يفهمها المتصفح مباشرة!</p>
+          <ul>
+            <li>🟠 <strong>HTML</strong> = هيكل الصفحة (ماذا يوجد؟)</li>
+            <li>🔵 <strong>CSS</strong> = شكل الصفحة (كيف تبدو؟)</li>
+            <li>🟡 <strong>JavaScript</strong> = سلوك الصفحة (ماذا تفعل؟)</li>
+          </ul>
+          <p>مثال: زر يفتح قائمة، نموذج يتحقق من البيانات، بيانات تُحمَّل بدون تحديث الصفحة!</p>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📝 كيف تضيف JavaScript؟</h2>
+
+        <h3>1. داخلي مباشر (Inline)</h3>
+        <pre class="code-block"><code><span class="comment">&lt;!-- مباشرة في سمات HTML - لا يُنصح به --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">onclick</span>="<span class="value">alert('مرحباً!')</span>"<span class="tag">&gt;</span>اضغط هنا<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!--
+  onclick = حدث النقر
+  alert() = دالة تعرض نافذة منبثقة
+  ⚠️ يخلط HTML مع JS - غير مُنصح به
+--&gt;</span></code></pre>
+
+        <h3>2. في وسم script (Internal)</h3>
+        <pre class="code-block"><code><span class="tag">&lt;script&gt;</span>
+  <span class="comment">// هنا نكتب JavaScript مباشرة في ملف HTML</span>
+  <span class="comment">// التعليق في JS يبدأ بـ //</span>
+
+  console.log('مرحباً بالعالم!');
+  <span class="comment">// console.log = طباعة في وحدة تحكم المتصفح</span>
+
+  alert('أهلاً بك!');
+  <span class="comment">// alert = نافذة منبثقة</span>
+<span class="tag">&lt;/script&gt;</span>
+
+<span class="comment">&lt;!--
+  ملاحظة مهمة: ضع &lt;script&gt; قبل &lt;/body&gt;
+  مش في &lt;head&gt;
+  لأن HTML لازم يتحمل الأول قبل ما JS تبدأ تعمل
+--&gt;</span></code></pre>
+
+        <h3>3. ملف خارجي (External) ✅ الأفضل</h3>
+        <pre class="code-block"><code><span class="comment">&lt;!-- في ملف HTML قبل &lt;/body&gt; --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>="<span class="value">script.js</span>"<span class="tag">&gt;&lt;/script&gt;</span>
+
+<span class="comment">&lt;!--
+  src = مسار ملف JavaScript
+  ✅ أفضل للمشاريع الكبيرة لأن:
+  - فصل JS عن HTML
+  - إعادة استخدام نفس الملف
+  - أسهل في التعديل
+--&gt;</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🖨️ طرق إخراج البيانات</h2>
+        <pre class="code-block"><code><span class="comment">// 1. طباعة في Console المتصفح (للمطورين فقط)</span>
+console.log('مرحباً!');
+<span class="comment">// مهم جداً للـ Debugging - اكتشاف الأخطاء</span>
+
+console.log(42);
+console.log(true);
+console.log([1, 2, 3]);
+<span class="comment">// يمكن طباعة أي نوع بيانات</span>
+
+console.error('حدث خطأ!');
+<span class="comment">// يطبع رسالة خطأ باللون الأحمر</span>
+
+console.warn('تحذير!');
+<span class="comment">// يطبع تحذير باللون الأصفر</span>
+
+<span class="comment">// 2. نافذة منبثقة (تُزعج المستخدم - تجنبها)</span>
+alert('هذه رسالة تنبيه!');
+
+<span class="comment">// 3. نافذة تأكيد - تُعيد true أو false</span>
+const confirmed = confirm('هل أنت متأكد؟');
+console.log(confirmed); <span class="comment">// true أو false</span>
+
+<span class="comment">// 4. نافذة إدخال بيانات</span>
+const name = prompt('ما اسمك؟');
+console.log('مرحباً ' + name);
+
+<span class="comment">// 5. الكتابة في صفحة HTML (لا يُنصح به)</span>
+document.write('&lt;h1&gt;مرحباً!&lt;/h1&gt;');
+<span class="comment">// يحذف محتوى الصفحة ويضع هذا بدلاً منه!</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>💬 التعليقات في JavaScript</h2>
+        <pre class="code-block"><code><span class="comment">// هذا تعليق على سطر واحد
+// كل ما بعد // في نفس السطر = تعليق
+// لا يُنفَّذ ولا يظهر للمستخدم</span>
+
+<span class="comment">/*
+  هذا تعليق متعدد الأسطر
+  يمكن امتداده على أكثر من سطر
+  مفيد لشرح أجزاء كبيرة من الكود
+*/</span>
+
+<span class="comment">// ✅ اكتب تعليقات وافية لكودك!</span>
+<span class="comment">// الكود الجيد هو الذي يشرح نفسه</span>
+<span class="comment">// لكن التعليقات تشرح السبب (WHY) وليس الماذا (WHAT)</span>
+
+const price = 100; <span class="comment">// سعر المنتج بالجنيه</span>
+const discount = 0.2; <span class="comment">// خصم 20%</span>
+const finalPrice = price * (1 - discount);
+<span class="comment">// السعر النهائي = 80 جنيه</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ JavaScript لغة البرمجة الوحيدة التي يفهمها المتصفح</li>
+            <li>✅ ثلاث طرق لإضافة JS: Inline وInternal وExternal</li>
+            <li>✅ External JS (ملف منفصل) هي الأفضل</li>
+            <li>✅ console.log() للطباعة وDbugging</li>
+            <li>✅ alert() وconfirm() وprompt() للتفاعل مع المستخدم</li>
+            <li>✅ طريقتا التعليق: // للسطر الواحد و /* */ للمتعدد</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="../../index.html" class="nav-btn prev-btn" id="nav-home">🏠 الرئيسية</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">1</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson2.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: المتغيرات ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار JavaScript</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

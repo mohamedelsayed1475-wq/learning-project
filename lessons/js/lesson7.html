@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس السابع JavaScript: معالجة الأحداث والتفاعل - Event Handling in JavaScript">
+  <title>📖 JS - الدرس 7: معالجة الأحداث (Event Handling) | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge intermediate" style="background:rgba(234,179,8,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3);">JavaScript - الدرس السابع - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 19 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">⚡ معالجة الأحداث والتفاعل (Event Handling)</h1>
+        <p class="lesson-description">
+          الآن نجعل الموقع حياً ومتفاعلاً! تعلم كيف تستجيب لضغطة زر من المستخدم، أو الكتابة في حقل إدخال، أو إرسال نموذج، لتقديم تجربة حركية تفاعلية.
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>⚡ ما هي الأحداث (Events)؟</h2>
+        <p>
+          الحدث هو إشارة أو فعل يحدث في النظام (مثل المتصفح)، ويشير إلى أن شيئاً ما قد تم القيام به.
+          أمثلة: ضغط زر الفأرة، تحميل الصفحة، تحريك الفأرة، الضغط على لوحة المفاتيح، أو إرسال نموذج.
+        </p>
+        <div class="info-box">
+          <p>💡 قديماً، كان المطورون يكتبون الأحداث في كود HTML هكذا: <code>&lt;button onclick="alert('hi')"&gt;</code>. هذه الممارسة سيئة وتجعل الكود غير منظم. الطريقة الحديثة والاحترافية هي ربط الحدث من خلال جافاسكريبت بالكامل.</p>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📞 مسجل ومستمع الأحداث (addEventListener)</h2>
+        <p>الطريقة القياسية والأنظف للاستماع لحدث معين وتطبيق كود عند حدوثه:</p>
+        <pre class="code-block"><code><span class="comment">// 1️⃣ تحديد الزر من الصفحة</span>
+const myButton = document.querySelector('.action-btn');
+
+<span class="comment">// 2️⃣ تسجيل مستمع الأحداث</span>
+myButton.addEventListener('click', function() {
+  <span class="comment">// الكود بداخل هذه الدالة (Callback) سيعمل فقط عند نقر الزر</span>
+  console.log('تم النقر على الزر بنجاح! 🚀');
+});
+
+<span class="comment">// 3️⃣ أو كتابتها باستخدام الدالة السهمية (Arrow Function)</span>
+myButton.addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme');
+});</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🌟 أشهر أنواع الأحداث في صفحات الويب</h2>
+        <pre class="code-block"><code>const inputField = document.querySelector('#username');
+const myForm = document.querySelector('#login-form');
+
+<span class="comment">// 1️⃣ حدث 'input': يعمل لحظياً أثناء كتابة المستخدم لأي حرف</span>
+inputField.addEventListener('input', (event) => {
+  console.log('النص الحالي:', inputField.value);
+});
+
+<span class="comment">// 2️⃣ حدث 'change': يعمل عندما ينهي المستخدم الكتابة ويخرج من الحقل</span>
+inputField.addEventListener('change', () => {
+  console.log('تم تأكيد النص');
+});
+
+<span class="comment">// 3️⃣ حدث 'keydown' و 'keyup': عند الضغط على لوحة المفاتيح</span>
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    console.log('تم الضغط على زر Esc لإغلاق النافذة');
+  }
+});
+
+<span class="comment">// 4️⃣ حدث 'submit': عند إرسال نموذج HTML (Form)</span>
+myForm.addEventListener('submit', (e) => {
+  <span class="comment">// سنشرح هذا السطر الهام في القسم التالي</span>
+  e.preventDefault();
+  console.log('تم إرسال البيانات بدون إعادة تحميل الصفحة!');
+});</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>📂 كائن الحدث (Event Object) وإيقاف السلوك الافتراضي</h2>
+        <p>
+          عند حدوث أي حدث، يمرر المتصفح تلقائياً كائناً يحتوي على معلومات تفصيلية عن هذا الحدث (نستقبله غالباً بـ <code>e</code> أو <code>event</code>).
+        </p>
+        <pre class="code-block"><code>const card = document.querySelector('.card');
+
+card.addEventListener('click', (e) => {
+  <span class="comment">// 1. e.target: يشير للعنصر الحقيقي الذي تم نقره</span>
+  console.log('العنصر الذي نقرته هو:', e.target);
+
+  <span class="comment">// 2. معلومات أخرى عن الحدث</span>
+  console.log('موضع النقر الأفقي:', e.clientX);
+  console.log('موضع النقر العمودي:', e.clientY);
+});
+
+<span class="comment">// 3. e.preventDefault(): منع السلوك التلقائي للمتصفح</span>
+const link = document.querySelector('#my-link');
+link.addEventListener('click', (e) => {
+  e.preventDefault(); 
+  <span class="comment">// يمنع الرابط من الانتقال لعنوان الويب المحدد له</span>
+  <span class="comment">// هذا يفيدنا عند الرغبة في تنفيذ كود جافاسكريبت بدلاً من الانتقال</span>
+  console.log('لن ينتقل الرابط لأي مكان الآن!');
+});</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ الأحداث هي تفاعلات المستخدم والأفعال التي تقع بداخل الصفحة.</li>
+            <li>✅ نستخدم <code>addEventListener</code> لربط الأحداث بالعناصر بشكل نظيف.</li>
+            <li>✅ الأحداث الأكثر شيوعاً هي <code>click</code> و <code>input</code> و <code>submit</code>.</li>
+            <li>✅ كائن الحدث (Event Object) يُمرر تلقائياً ويحمل معلومات تفصيلية هامة.</li>
+            <li>✅ <code>e.preventDefault()</code> تمنع السلوك الافتراضي للمتصفح (كإرسال النماذج أو الانتقال بالرابط).</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson6.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: التحكم في DOM</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">7</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson8.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: التخزين المحلي ومشروع عملي ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار JavaScript</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

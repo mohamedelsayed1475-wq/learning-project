@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الدرس السادس JavaScript: التحكم في عناصر الصفحة - DOM Manipulation in JavaScript">
+  <title>📖 JS - الدرس 6: التحكم في عناصر الصفحة (DOM) | تعلم الويب</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="../../index.html" id="logo-link"><span class="logo-icon">🎓</span><span class="logo-text">تعلم الويب</span></a>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lesson1.html" class="nav-link active">📖 الدروس</a></li>
+        <li class="nav-item"><a href="../../playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="../../quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="../../cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة"><span class="menu-icon">☰</span></button>
+    </nav>
+  </header>
+
+  <main id="lesson-main" class="container">
+    <article class="lesson-article">
+      <header class="lesson-header">
+        <div class="lesson-meta">
+          <span class="category-badge intermediate" style="background:rgba(234,179,8,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3);">JavaScript - الدرس السادس - متوسط</span>
+          <span class="read-time">⏱️ مدة القراءة: 20 دقيقة</span>
+        </div>
+        <h1 class="lesson-title">🌳 التحكم في عناصر الصفحة (DOM Manipulation)</h1>
+        <p class="lesson-description">
+          تعديل محتوى الصفحة بشكل حيوي وديناميكي! تعلم كيف تستهدف عناصر HTML وتغير ألوانها، نصوصها، وتنسيقاتها، بل وتصنع عناصر جديدة تماماً من خلال كود جافاسكريبت.
+        </p>
+      </header>
+
+      <section class="lesson-section">
+        <h2>🌳 ما هي شجرة مستند الويب (DOM)؟</h2>
+        <p>
+          <strong>DOM</strong> اختصار لـ <strong>Document Object Model</strong> (نموذج كائن المستند).
+          عندما يقوم المتصفح بتحميل صفحة HTML، فإنه يقوم ببناء شجرة تمثل الصفحة، حيث يمثل كل وسم أو عنصر في الصفحة "عقدة" (Node) في هذه الشجرة.
+        </p>
+        <div class="info-box">
+          <p>💡 يمثل كائن <code>document</code> البوابة الرئيسية للتحكم في هذه الشجرة. من خلاله نستطيع الوصول لكل شيء داخل الصفحة وتعديله!</p>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🔍 تحديد وتحديد العناصر (Selecting Elements)</h2>
+        <p>قبل تعديل أي عنصر في الصفحة، يجب أولاً العثور عليه وتحديده بداخل كود جافاسكريبت:</p>
+        <pre class="code-block"><code><span class="comment">// 1️⃣ تحديد عنصر عن طريق الـ ID الخاص به</span>
+const title = document.getElementById('main-title');
+
+<span class="comment">// 2️⃣ تحديد عنصر باستخدام محددات CSS (الأحدث والأكثر مرونة) ✅</span>
+const logo = document.querySelector('.logo-text');  <span class="comment">// يستهدف أول عنصر يحمل كلاس logo-text</span>
+const firstParagraph = document.querySelector('p'); <span class="comment">// يستهدف أول وسم &lt;p&gt; في الصفحة</span>
+const activeLink = document.querySelector('nav a.active'); <span class="comment">// محدد مركب مثل CSS</span>
+
+<span class="comment">// 3️⃣ تحديد عناصر متعددة من نفس النوع</span>
+const allButtons = document.querySelectorAll('.btn'); <span class="comment">// يعيد قائمة (NodeList) بجميع الأزرار</span>
+allButtons.forEach(btn => {
+  <span class="comment">// يمكننا المرور على كل عنصر على حدة</span>
+  console.log(btn);
+});</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>✍️ تعديل المحتوى والخصائص (Modifying Elements)</h2>
+        <p>بمجرد تحديد العنصر، يمكنك تغيير محتواه، تنسيقه، أو سماته:</p>
+        <pre class="code-block"><code>const myDiv = document.querySelector('.card');
+
+<span class="comment">// 1️⃣ تعديل النص الداخلي للعنصر (بأمان)</span>
+myDiv.textContent = 'مرحباً بالمتعلمين الجدد!';
+
+<span class="comment">// 2️⃣ تعديل محتوى HTML الداخلي (يقبل وسوم HTML)</span>
+myDiv.innerHTML = '&lt;h3&gt;عنوان جديد&lt;/h3&gt;&lt;p&gt;فقرة جديدة&lt;/p&gt;';
+
+<span class="comment">// 3️⃣ تعديل التنسيقات المباشرة (Inline Styles)</span>
+myDiv.style.color = '#ef4444'; <span class="comment">// تغيير اللون للأحمر</span>
+myDiv.style.backgroundColor = '#fef2f2'; <span class="comment">// لاحظ كتابة camelCase للخصائص ذات المقطعين (background-color في CSS)</span>
+myDiv.style.fontSize = '18px';
+
+<span class="comment">// 4️⃣ تعديل سمات العنصر (Attributes)</span>
+const image = document.querySelector('img');
+image.setAttribute('src', 'new-image.jpg'); <span class="comment">// تغيير مسار الصورة</span>
+console.log(image.getAttribute('src'));     <span class="comment">// قراءة قيمة السمة src</span></code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🏷️ التحكم في الكلاسات (ClassList API) ✅ الأفضل للمظهر</h2>
+        <div class="info-box">
+          <p>⚠️ بدلاً من تعديل التنسيقات مباشرة بالـ Style، الممارسة الأفضل هي وضع التنسيق في كلاس بملف CSS، ثم إضافة أو حذف الكلاس باستخدام جافاسكريبت.</p>
+        </div>
+        <pre class="code-block"><code>const box = document.querySelector('.box');
+
+<span class="comment">// إضافة كلاس للعنصر</span>
+box.classList.add('highlight');
+
+<span class="comment">// إزالة كلاس</span>
+box.classList.remove('active');
+
+<span class="comment">// تبديل الكلاس (إذا كان موجوداً يحذفه، وإذا لم يكن يضيفه)</span>
+box.classList.toggle('dark-mode');
+
+<span class="comment">// التحقق من وجود الكلاس (يرجع true أو false)</span>
+if (box.classList.contains('hidden')) {
+  console.log('الصندوق مخفي حالياً');
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>➕ إنشاء وحذف العناصر ديناميكياً (Creating & Removing Elements)</h2>
+        <pre class="code-block"><code><span class="comment">// 1️⃣ إنشاء عنصر جديد في الذاكرة</span>
+const newParagraph = document.createElement('p');
+
+<span class="comment">// 2️⃣ تخصيص العنصر وتعبئة بياناته</span>
+newParagraph.textContent = 'تم إنشاء هذا النص بواسطة جافاسكريبت!';
+newParagraph.classList.add('info-text');
+
+<span class="comment">// 3️⃣ إدراج العنصر داخل الصفحة (حقنه في عنصر أب)</span>
+const container = document.querySelector('.container');
+container.appendChild(newParagraph); <span class="comment">// يضاف كآخر ابن للعنصر container</span>
+
+<span class="comment">// 4️⃣ حذف العنصر نهائياً من الصفحة</span>
+const oldTitle = document.getElementById('obsolete-title');
+if (oldTitle) {
+  oldTitle.remove(); <span class="comment">// يحذفه فوراً من شجرة الـ DOM</span>
+}</code></pre>
+      </section>
+
+      <section class="lesson-section">
+        <h2>🎓 ما تعلمناه في هذا الدرس</h2>
+        <div class="lesson-summary">
+          <ul>
+            <li>✅ الـ DOM هو تمثيل شجري لصفحة الويب بداخل الذاكرة.</li>
+            <li>✅ كائن <code>document</code> هو المسؤول الرئيسي عن عمليات الـ DOM.</li>
+            <li>✅ نحدد العناصر باستخدام <code>querySelector</code> و <code>querySelectorAll</code>.</li>
+            <li>✅ نعدل النصوص بـ <code>textContent</code> ووسوم HTML بـ <code>innerHTML</code>.</li>
+            <li>✅ نغير المظهر بأمان واحترافية من خلال التحكم في الكلاسات بـ <code>classList</code>.</li>
+            <li>✅ ننشئ عناصر جديدة بـ <code>createElement</code> ونلحقها بالصفحة بـ <code>appendChild</code>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="lesson-navigation" aria-label="التنقل بين الدروس">
+        <a href="lesson5.html" class="nav-btn prev-btn" id="nav-prev">← الدرس السابق: المصفوفات والكائنات</a>
+        <div class="lesson-progress-indicator"><span class="current-lesson">6</span><span class="total-lessons">/ 8</span></div>
+        <a href="lesson7.html" class="nav-btn next-btn" id="nav-next">الدرس التالي: معالجة الأحداث ←</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p class="footer-text">🎓 منصة تعلم الويب - مسار JavaScript</p></div></footer>
+  <script src="../../script.js"></script>
+</body>
+</html>
