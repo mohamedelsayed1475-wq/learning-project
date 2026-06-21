@@ -325,11 +325,13 @@ function setupManualCompletion(category, lessonId) {
       showConfettiEffect();
     });
     
-    // مراقبة التمرير لإظهار الزر عند الاقتراب من نهاية الصفحة
+    // مراقبة التمرير: يظهر الزر عند الوصول لـ 80% من الصفحة
     window.addEventListener("scroll", function() {
       var d = document.documentElement;
-      var offset = d.scrollHeight - d.clientHeight;
-      if (d.scrollTop > offset - 350) {
+      var scrolled = d.scrollTop + d.clientHeight;
+      var total    = d.scrollHeight;
+      var scrollPercent = scrolled / total;
+      if (scrollPercent >= 0.80) {
         btn.classList.add("visible");
       }
     });
@@ -370,7 +372,7 @@ function showConfettiEffect() {
     
     setTimeout((function(p) {
       return function() { p.remove(); };
-    })(particle), 1200);
+    })(particle), 2000);
   }
 }
 

@@ -59,7 +59,7 @@
       <div class="cert-locked-notice" id="cert-locked-notice" style="display:none;">
         <span class="lock-icon">🔒</span>
         <span>
-          الشهادة مقفولة حتى تجتاز <strong>الاختبار النهائي</strong> بنتيجة 70% أو أعلى.<br>
+          الشهادة مقفولة حتى تجتاز <strong>الاختبار النهائي</strong> بنتيجة 80% أو أعلى.<br>
           <a href="quiz.html" style="color:#7d5a00; text-decoration:underline;">اذهب للاختبار الآن ←</a>
         </span>
       </div>
@@ -202,9 +202,9 @@
       if (!quizData) return false;
       try {
         var results = JSON.parse(quizData);
-        // نقبل أي تنسيق: { score: 75 } أو { percentage: 75 }
+        // نقبل أي تنسيق: { score: 85 } أو { percentage: 85 }
         var score = results.score || results.percentage || 0;
-        return score >= 70;
+        return score >= 80;
       } catch(e) { return false; }
     }
 
@@ -245,11 +245,11 @@
       // تحقق من حالة الاختبار
       var passed    = checkQuizResult();
       var lockedEl  = document.getElementById('cert-locked-notice');
-      var generateBtn = document.getElementById('cert-generate-btn');
 
       if (!passed) {
-        // نُظهر التنبيه لكن نسمح بتوليد الشهادة (بدون علامة الاجتياز)
         lockedEl.style.display = 'flex';
+        alert("⚠️ عذراً، الشهادة مقفولة حتى تجتاز الاختبار النهائي بنسبة 80% أو أعلى!");
+        return;
       } else {
         lockedEl.style.display = 'none';
       }
@@ -319,11 +319,27 @@
     }
 
     // ---- استعادة الاسم المحفوظ عند تحميل الصفحة ----
+    // ---- استعادة الاسم المحفوظ عند تحميل الصفحة وفحص حالة الاختبار ----
     window.addEventListener('DOMContentLoaded', function() {
       var savedName  = localStorage.getItem('cert_student_name');
       var savedTitle = localStorage.getItem('cert_student_title');
       if (savedName)  document.getElementById('student-name-input').value  = savedName;
       if (savedTitle) document.getElementById('student-title-input').value = savedTitle;
+
+      // فحص حالة الاختبار
+      var passed = checkQuizResult();
+      var lockedEl = document.getElementById('cert-locked-notice');
+      var formEl = document.getElementById('cert-form');
+      if (!passed) {
+        lockedEl.style.display = 'flex';
+        formEl.style.opacity = '0.6';
+        document.getElementById('student-name-input').disabled = true;
+        document.getElementById('student-title-input').disabled = true;
+        document.getElementById('cert-generate-btn').disabled = true;
+        document.getElementById('cert-generate-btn').style.cursor = 'not-allowed';
+      } else {
+        lockedEl.style.display = 'none';
+      }
     });
   </script>
 
