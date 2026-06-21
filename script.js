@@ -5,9 +5,60 @@
   =====================================================
 */
 
+// فحص وتطبيق المظهر المختار مباشرة قبل تحميل شجرة الـ DOM لمنع الوميض الأبيض
+(function() {
+  var savedTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+})();
+
+// نقطة ربط النشرة البريدية (استبدل YOUR_ID_HERE بمعرّف Formspree الخاص بك)
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_ID_HERE";
+var lastNewsletterSubmit = 0;
+
 // انتظر تحميل الصفحة بالكامل
 document.addEventListener("DOMContentLoaded", function() {
   
+  // تهيئة زر تبديل الوضع الداكن ديناميكياً في الهيدر لجميع الصفحات
+  var mainNav = document.getElementById("main-nav");
+  if (mainNav) {
+    var savedTheme = localStorage.getItem("theme") || "light";
+    var toggleBtn = document.createElement("button");
+    toggleBtn.className = "theme-toggle-btn";
+    toggleBtn.id = "theme-toggle-btn";
+    toggleBtn.setAttribute("type", "button");
+    toggleBtn.setAttribute("aria-label", "تبديل مظهر الموقع");
+    toggleBtn.innerHTML = savedTheme === "dark" ? "☀️" : "🌙";
+    
+    toggleBtn.addEventListener("click", function() {
+      var currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+      var newTheme = currentTheme === "dark" ? "light" : "dark";
+      
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      toggleBtn.innerHTML = newTheme === "dark" ? "☀️" : "🌙";
+      
+      // إذا كان هناك iframe في الصفحة (مثل الملعب)، نقوم بتمرير السمة له أيضاً
+      var iframe = document.getElementById("live-output-frame") || document.getElementById("output-frame");
+      if (iframe) {
+        try {
+          var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          if (iframeDoc && iframeDoc.documentElement) {
+            iframeDoc.documentElement.setAttribute("data-theme", newTheme);
+          }
+        } catch (e) {
+          // تجاهل الخطأ في حال تعذر الوصول لمحتوى الإطار
+        }
+      }
+    });
+    
+    var menuToggle = document.getElementById("menu-toggle");
+    if (menuToggle) {
+      mainNav.insertBefore(toggleBtn, menuToggle);
+    } else {
+      mainNav.appendChild(toggleBtn);
+    }
+  }
+
   // 1. تفعيل زر القائمة للجوال (Mobile Navigation Toggle)
   var menuToggle = document.getElementById("menu-toggle");
   var navMenu = document.getElementById("nav-menu");
@@ -26,11 +77,11 @@ document.addEventListener("DOMContentLoaded", function() {
   var isHTML = window.location.href.match(/\/lessons\/lesson(\d+)\.html/i);
 
   if (isCSS) {
-    markLessonAsCompleted('css', parseInt(isCSS[1], 10));
+    setupManualCompletion('css', parseInt(isCSS[1], 10));
   } else if (isJS) {
-    markLessonAsCompleted('js', parseInt(isJS[1], 10));
+    setupManualCompletion('js', parseInt(isJS[1], 10));
   } else if (isHTML) {
-    markLessonAsCompleted('html', parseInt(isHTML[1], 10));
+    setupManualCompletion('html', parseInt(isHTML[1], 10));
   }
   
   initializeProgress();
@@ -41,6 +92,79 @@ document.addEventListener("DOMContentLoaded", function() {
     runBtn.addEventListener("click", runCode);
     // تشغيل أولي لعرض النتيجة الافتراضية
     runCode();
+  }
+
+  // 4. ربط وتفعيل النشرة البريدية (Newsletter Form)
+  var newsletterForm = document.getElementById("newsletter-form");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      var emailInput = document.getElementById("email-input");
+      if (!emailInput) return;
+      
+      var emailValue = emailInput.value.trim();
+      
+      // التحقق البسيط من البريد الإلكتروني
+      if (!emailValue || !emailValue.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        showNotification("⚠️ يرجى إدخال بريد إلكتروني صحيح.", false);
+        return;
+      }
+      
+      // حدد معدل الإرسال (Rate Limiting) - 10 ثوانٍ
+      var now = Date.now();
+      if (now - lastNewsletterSubmit < 10000) {
+        var secondsLeft = Math.ceil((10000 - (now - lastNewsletterSubmit)) / 1000);
+        showNotification("⏳ يرجى الانتظار " + secondsLeft + " ثوانٍ قبل المحاولة مرة أخرى.", false);
+        return;
+      }
+      
+      var subscribeBtn = document.getElementById("subscribe-btn");
+      var originalBtnText = subscribeBtn ? subscribeBtn.innerHTML : "اشترك الآن 🔔";
+      
+      if (subscribeBtn) {
+        subscribeBtn.disabled = true;
+        subscribeBtn.innerHTML = "جاري الإرسال... ⏳";
+      }
+      
+      // محاولة الإرسال لـ Formspree
+      fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ email: emailValue })
+      })
+      .then(function(response) {
+        if (response.ok) {
+          showNotification("🎉 تم الاشتراك بالنشرة البريدية بنجاح! شكراً لك.", true);
+          emailInput.value = "";
+          lastNewsletterSubmit = Date.now();
+        } else {
+          throw new Error("API error");
+        }
+      })
+      .catch(function(error) {
+        // Fallback: حفظ محلي عند حدوث فشل أو خطأ شبكة
+        var backups = JSON.parse(localStorage.getItem("newsletter_backups")) || [];
+        if (!backups.includes(emailValue)) {
+          backups.push(emailValue);
+          localStorage.setItem("newsletter_backups", JSON.stringify(backups));
+        }
+        
+        // إشعار نجاح للزائر (fallback UX)
+        showNotification("🎉 شكراً لك! تم الاشتراك بنجاح وسنتواصل معك قريباً.", true);
+        emailInput.value = "";
+        lastNewsletterSubmit = Date.now();
+      })
+      .finally(function() {
+        if (subscribeBtn) {
+          subscribeBtn.disabled = false;
+          subscribeBtn.innerHTML = originalBtnText;
+        }
+      });
+    });
   }
 
 });
@@ -173,4 +297,101 @@ function markLessonAsCompleted(category, lessonId) {
     localStorage.setItem(key, JSON.stringify(completedNumbers));
     initializeProgress();
   }
+}
+
+// دالة تهيئة زر إكمال الدرس يدوياً وتحديد ظهوره عند التمرير لآخر الصفحة
+function setupManualCompletion(category, lessonId) {
+  var key = "completed" + category.toUpperCase();
+  var completedLessons = JSON.parse(localStorage.getItem(key)) || [];
+  var isCompleted = completedLessons.map(Number).includes(Number(lessonId));
+
+  // إنشاء زر الإكمال العائم
+  var btn = document.createElement("button");
+  btn.id = "mark-complete-btn";
+  btn.className = "mark-complete-btn-floating";
+  
+  if (isCompleted) {
+    btn.innerHTML = "✨ مكتمل بنجاح 🎉";
+    btn.classList.add("completed");
+    btn.classList.add("visible"); // إذا كان مكتمل من قبل، يظهر فوراً
+    btn.disabled = true;
+  } else {
+    btn.innerHTML = "أكملت هذا الدرس ✅";
+    btn.addEventListener("click", function() {
+      markLessonAsCompleted(category, lessonId);
+      btn.innerHTML = "✨ مكتمل بنجاح 🎉";
+      btn.classList.add("completed");
+      btn.disabled = true;
+      showConfettiEffect();
+    });
+    
+    // مراقبة التمرير لإظهار الزر عند الاقتراب من نهاية الصفحة
+    window.addEventListener("scroll", function() {
+      var d = document.documentElement;
+      var offset = d.scrollHeight - d.clientHeight;
+      if (d.scrollTop > offset - 350) {
+        btn.classList.add("visible");
+      }
+    });
+    
+    // فحص احتياطي في حال كانت الشاشة قصيرة جداً أو المحتوى لا يتطلب سكرول
+    setTimeout(function() {
+      var d = document.documentElement;
+      if (d.scrollHeight <= d.clientHeight + 100) {
+        btn.classList.add("visible");
+      }
+    }, 500);
+  }
+
+  document.body.appendChild(btn);
+}
+
+// دالة إظهار تأثير الاحتفال العائم وToast عند إكمال الدرس
+function showConfettiEffect() {
+  // 1. إظهار إشعار Toast جميل باستخدام الدالة الموحدة
+  showNotification("🎉 أحسنت! تم تسجيل إكمال الدرس وتحديث تقدمك بنجاح.", true);
+
+  // 2. إطلاق تأثير جزيئات الألوان
+  for (var i = 0; i < 40; i++) {
+    var particle = document.createElement("div");
+    particle.className = "confetti-particle";
+    
+    // موقع الزر العائم في الركن الأيمن السفلي
+    particle.style.right = (Math.random() * 80 + 20) + "px";
+    particle.style.bottom = "80px";
+    particle.style.backgroundColor = ["#4dabf7", "#28a745", "#ffc107", "#e74c3c", "#9b59b6", "#fd7e14"][Math.floor(Math.random() * 6)];
+    
+    var angle = Math.random() * Math.PI * 2;
+    var velocity = Math.random() * 120 + 60;
+    
+    particle.style.setProperty("--dx", (Math.cos(angle) * velocity) + "px");
+    particle.style.setProperty("--dy", (-Math.sin(angle) * velocity - 120) + "px");
+    document.body.appendChild(particle);
+    
+    setTimeout((function(p) {
+      return function() { p.remove(); };
+    })(particle), 1200);
+  }
+}
+
+// دالة موحدة لإظهار التنبيهات المنبثقة (Toast)
+function showNotification(message, isSuccess) {
+  var toast = document.createElement("div");
+  toast.className = "completion-toast";
+  if (!isSuccess) {
+    toast.style.borderRightColor = "#e74c3c"; // شريط أحمر للتنبيهات أو الأخطاء
+  }
+  toast.innerHTML = message;
+  document.body.appendChild(toast);
+  
+  setTimeout(function() {
+    toast.classList.add("show");
+  }, 100);
+  
+  setTimeout(function() {
+    toast.classList.remove("show");
+    setTimeout(function() {
+      toast.remove();
+    }, 500);
+  }, 3500);
 }

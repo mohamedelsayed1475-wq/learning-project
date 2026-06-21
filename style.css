@@ -12,12 +12,32 @@
   --secondary-color: #6c757d;
   --bg-color: #ffffff;
   --card-bg: #f8f9fa;
+  --section-bg: #f4f6f9;
+  --header-bg: #ffffff;
   --text-color: #212529;
   --text-muted: #6c757d;
   --border-color: #dee2e6;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   --radius: 8px;
   --transition: all 0.3s ease;
+  --newsletter-bg: #e3f2fd;
+  --newsletter-text: #0d47a1;
+}
+
+[data-theme="dark"] {
+  --primary-color: #4dabf7; /* مريح للعين في القالب الداكن */
+  --primary-hover: #3793dd;
+  --secondary-color: #495057;
+  --bg-color: #0f172a; /* رمادي أزرق داكن */
+  --card-bg: #1e293b;
+  --section-bg: #0b0f19; /* أغمق للخلفيات المتداخلة */
+  --header-bg: #1e293b;
+  --text-color: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --newsletter-bg: #1e293b;
+  --newsletter-text: #63b3ed;
 }
 
 /* التنسيق العام للصفحة */
@@ -38,7 +58,7 @@ body {
 
 /* الهيدر وقائمة التنقل */
 #main-header {
-  background: var(--bg-color);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow);
   position: sticky;
@@ -245,7 +265,7 @@ body {
 
 /* شبكة الدروس */
 .lessons-section {
-  background-color: #f4f6f9;
+  background-color: var(--section-bg);
   padding: 60px 0;
 }
 
@@ -271,7 +291,7 @@ body {
 }
 
 .lesson-card {
-  background-color: white;
+  background-color: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -350,7 +370,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fafafa;
+  background-color: var(--section-bg);
 }
 
 .lesson-duration {
@@ -426,7 +446,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f1f3f5;
+  background-color: var(--section-bg);
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -464,7 +484,7 @@ body {
 }
 
 .cheat-card {
-  background-color: white;
+  background-color: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 20px;
@@ -501,12 +521,12 @@ body {
 
 /* تتبع التقدم */
 .progress-section {
-  background-color: #f8f9fa;
+  background-color: var(--section-bg);
   padding: 60px 0;
 }
 
 .progress-tracker {
-  background: white;
+  background: var(--card-bg);
   padding: 30px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -550,9 +570,9 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
-  background-color: #f8f9fa;
+  background-color: var(--section-bg);
   border-radius: 6px;
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border-color);
 }
 
 .progress-item-status {
@@ -579,7 +599,7 @@ body {
 }
 
 .faq-item {
-  background-color: white;
+  background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 15px;
@@ -607,7 +627,7 @@ body {
 
 /* الاشتراك في التحديثات */
 .newsletter-section {
-  background-color: #e3f2fd;
+  background-color: var(--newsletter-bg);
   padding: 60px 0;
   text-align: center;
 }
@@ -622,7 +642,7 @@ body {
 }
 
 .newsletter-description {
-  color: #0d47a1;
+  color: var(--newsletter-text);
   margin-bottom: 30px;
 }
 
@@ -1009,4 +1029,740 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* =====================================================
+   تنسيقات زر إكمال الدرس العائم والتنبيهات المرافقة له
+   ===================================================== */
+
+/* الزر العائم */
+.mark-complete-btn-floating {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1001;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 28px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(30px);
+}
+
+.mark-complete-btn-floating.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mark-complete-btn-floating:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6);
+  background-color: var(--primary-hover);
+}
+
+.mark-complete-btn-floating.completed {
+  background-color: #28a745;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+  cursor: default;
+}
+
+.mark-complete-btn-floating.completed:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+/* إشعار التنبيه Toast */
+.completion-toast {
+  position: fixed;
+  bottom: 95px;
+  right: 25px;
+  z-index: 1002;
+  background-color: #212529;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-weight: bold;
+  font-size: 0.95rem;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  border-right: 4px solid #28a745;
+}
+
+.completion-toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* تأثير الاحتفال بالجزئيات */
+.confetti-particle {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+  animation: confettiExplode 1.2s forwards cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+@keyframes confettiExplode {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* =====================================================
+   أنماط معالجة الوضع الداكن الإضافية وتجاوزات صفحات الدروس
+   ===================================================== */
+
+/* زر تبديل المظهر في الهيدر */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: var(--text-color);
+  margin-right: 10px;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--border-color);
+  transform: rotate(30deg) scale(1.1);
+}
+
+/* تجاوزات الوضع الداكن للدروس */
+[data-theme="dark"] body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .lesson-title {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .lesson-summary {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+  border-right-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .lesson-body p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .explain-list dt {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .explain-list dt code {
+  color: #63b3ed !important;
+  background-color: #1e293b !important;
+}
+
+[data-theme="dark"] .explain-list dd {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .tag-type-card {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .tag-type-card h3 {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .tag-type-card code {
+  background-color: #0f172a !important;
+  color: #f43f5e !important;
+}
+
+[data-theme="dark"] .info-box {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .code-textarea {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+[data-theme="dark"] .action-btn {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .action-btn:hover {
+  background-color: #334155 !important;
+}
+
+/* تنسيق للـ iframe في الوضع الداكن ليأخذ خلفية داكنة تناسب الألعاب */
+[data-theme="dark"] .live-iframe, [data-theme="dark"] .output-iframe {
+  background: #1e293b !important;
+}
+
+[data-theme="dark"] .challenges-grid .challenge-item {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .challenges-grid .challenge-item h3 {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] .cheatsheet-search-input {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .quiz-question-card {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .option-label {
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .option-label:hover {
+  background: #1e293b !important;
+  border-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .explanation-box {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .explanation-options-list li {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .quiz-pagination-controls {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .page-indicator {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .certificate-form-card {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .cert-form-group input {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .result-card {
+  background: linear-gradient(135deg, #1e293b, #0f172a) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .result-card p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .site-footer {
+  background-color: #0b0f19 !important;
+  border-top: 1px solid #1e293b !important;
+}
+
+[data-theme="dark"] .site-footer p {
+  color: #94a3b8 !important;
+}
+
+/* تنسيق المجموعات الفاصلة والخطوط */
+[data-theme="dark"] hr {
+  border-color: #334155 !important;
+}
+
+/* =====================================================
+   أنماط الملعب التفاعلي - تبويبات CodeMirror
+   ===================================================== */
+
+.editor-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 10px 15px 0;
+  background: #1a1a2e;
+  border-bottom: 2px solid #2d2d4e;
+}
+
+.editor-tab {
+  padding: 8px 18px;
+  border: none;
+  background: #2d2d4e;
+  color: #94a3b8;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.03em;
+}
+
+.editor-tab:hover {
+  background: #3d3d6e;
+  color: #e2e8f0;
+}
+
+.editor-tab.active {
+  background: #282a36;
+  color: #f8f8f2;
+  border-bottom: 2px solid #bd93f9;
+}
+
+.tab-editors {
+  background: #282a36;
+}
+
+.tab-editor-panel {
+  width: 100%;
+}
+
+.tab-editor-panel textarea {
+  display: none; /* CodeMirror يخفيها تلقائياً */
+}
+
+/* ضبط CodeMirror ليملأ العرض */
+.tab-editor-panel .CodeMirror {
+  height: 320px;
+  font-size: 14px;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  line-height: 1.6;
+}
+
+.editor-action-footer {
+  background: #1a1a2e;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px 15px !important;
+}
+
+.run-button {
+  background: linear-gradient(135deg, #50fa7b, #2dd4bf) !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  border: none !important;
+  padding: 10px 22px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+  font-size: 0.95rem !important;
+}
+
+.run-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 18px rgba(80,250,123,0.4) !important;
+}
+
+.save-button, .share-button {
+  background: #2d2d4e !important;
+  color: #f8f8f2 !important;
+  border: 1px solid #3d3d6e !important;
+  padding: 9px 18px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-size: 0.88rem !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+
+.save-button:hover, .share-button:hover {
+  background: #3d3d6e !important;
+  transform: translateY(-2px) !important;
+}
+
+/* sr-only accessibility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* =====================================================
+   أنماط صفحة الشهادة
+   ===================================================== */
+
+.certificate-page-main {
+  padding: 60px 20px;
+  min-height: 80vh;
+}
+
+.certificate-hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.certificate-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  margin-bottom: 12px;
+}
+
+.certificate-hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* بطاقة النموذج */
+.certificate-form-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  max-width: 560px;
+  margin: 0 auto 50px;
+  border: 1px solid var(--border-color);
+}
+
+.cert-form-group {
+  margin-bottom: 22px;
+}
+
+.cert-form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.cert-form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+  direction: rtl;
+  transition: border-color 0.3s;
+}
+
+.cert-form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.cert-locked-notice {
+  background: linear-gradient(135deg, #fef3cd, #ffe48e);
+  border: 1px solid #f6cc45;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 25px;
+  color: #7d5a00;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cert-locked-notice .lock-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.cert-generate-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--primary-color), #6366f1);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cert-generate-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+}
+
+.cert-generate-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: #94a3b8;
+}
+
+/* الشهادة نفسها */
+#certificate-output-area {
+  display: none;
+  margin-top: 50px;
+}
+
+.certificate-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+#certificate-display {
+  background: linear-gradient(145deg, #ffffff, #f0f7ff);
+  border: 6px solid #4dabf7;
+  border-radius: 20px;
+  padding: 60px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(77,171,247,0.15);
+  direction: rtl;
+}
+
+#certificate-display::before {
+  content: '';
+  position: absolute;
+  top: -50px; left: -50px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(77,171,247,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+#certificate-display::after {
+  content: '';
+  position: absolute;
+  bottom: -50px; right: -50px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,102,241,0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.cert-corner-decoration {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.2;
+}
+
+.cert-corner-tl { top: 18px; right: 18px; }
+.cert-corner-br { bottom: 18px; left: 18px; }
+
+.cert-logo-area {
+  margin-bottom: 12px;
+  font-size: 3.5rem;
+}
+
+.cert-site-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4dabf7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.cert-title {
+  font-size: 1rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.cert-main-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.cert-presented-to {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+#cert-student-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #4361ee;
+  margin-bottom: 24px;
+  font-family: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
+}
+
+.cert-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, #4dabf7, #6366f1);
+  border: none;
+  margin: 0 auto 24px;
+  border-radius: 3px;
+}
+
+.cert-body-text {
+  font-size: 1rem;
+  color: #475569;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+}
+
+.cert-meta {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.cert-meta-item {
+  text-align: center;
+}
+
+.cert-meta-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.cert-meta-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.cert-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #4dabf7, #6366f1);
+  color: white;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* أزرار التحميل */
+.cert-download-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.cert-download-btn {
+  padding: 13px 28px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cert-download-btn.primary {
+  background: linear-gradient(135deg, #4dabf7, #6366f1);
+  color: white;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.3);
+}
+
+.cert-download-btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(99,102,241,0.45);
+}
+
+.cert-download-btn.secondary {
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 2px solid #e2e8f0;
+}
+
+.cert-download-btn.secondary:hover {
+  transform: translateY(-2px);
+  background: #e2e8f0;
+}
+
+/* الوضع الداكن للشهادة */
+[data-theme="dark"] #certificate-display {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border-color: #4dabf7;
+  box-shadow: 0 20px 60px rgba(77,171,247,0.1);
+}
+
+[data-theme="dark"] .cert-main-title { color: #f1f5f9; }
+[data-theme="dark"] .cert-body-text { color: #94a3b8; }
+[data-theme="dark"] .cert-meta-value { color: #e2e8f0; }
+[data-theme="dark"] .cert-meta { border-top-color: #334155; }
+[data-theme="dark"] .cert-download-btn.secondary {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+[data-theme="dark"] .cert-download-btn.secondary:hover {
+  background: #334155;
+}
+
+/* تنسيق المجموعات الفاصلة والخطوط - الوضع الداكن للـ editor */
+[data-theme="dark"] .editor-tabs { background: #12121f; border-bottom-color: #2d2d4e; }
+[data-theme="dark"] .editor-tab { background: #1e1e35; color: #64748b; }
+[data-theme="dark"] .editor-tab.active { background: #282a36; color: #f8f8f2; }
+[data-theme="dark"] .editor-action-footer { background: #12121f; }
+[data-theme="dark"] .tab-editors { background: #282a36; }
 

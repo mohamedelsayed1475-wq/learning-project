@@ -15,6 +15,14 @@
   
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="style.css">
+  <!-- CodeMirror 5 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/htmlmixed/htmlmixed.min.js"></script>
 </head>
 
 <body>
@@ -75,30 +83,45 @@
         <div class="card-header">
           <h2 class="card-title">📝 اكتب الكود هنا</h2>
           <div class="editor-actions">
-            <button type="button" class="action-btn" onclick="clearEditor()">🧹 مسح</button>
-            <button type="button" class="action-btn" onclick="resetEditor()">🔄 إعادة تعيين</button>
+            <button type="button" class="action-btn" onclick="clearEditor()">🧹 مسح النشط</button>
+            <button type="button" class="action-btn" onclick="resetEditor()">🔄 إعادة تعيين الكل</button>
           </div>
         </div>
         
-        <div class="card-body">
-          <label for="interactive-code-editor" class="sr-only">محرر كود HTML</label>
-          <textarea id="interactive-code-editor" class="code-textarea" spellcheck="false" placeholder="اكتب كود HTML هنا...">
-<h1>مرحباً بك في ملعب HTML! 👋</h1>
-<p>هذا النص مكتوب داخل فقرة <code>&lt;p&gt;</code>.</p>
-
-<h3>أشياء يمكنك القيام بها هنا:</h3>
-<ul>
-  <li>تغيير هذا النص وكتابة ما تريد.</li>
-  <li>إضافة صور باستخدام وسم <code>&lt;img&gt;</code>.</li>
-  <li>إضافة روابط باستخدام وسم <code>&lt;a&gt;</code>.</li>
-</ul>
-
-<button type="button" onclick="alert('أحسنت! لقد قمت بتشغيل الكود بنجاح!')">اضغط عليّ 🎉</button>
-</textarea>
+        <div class="card-body" style="padding:0;">
+          <!-- تبويبات الأكواد -->
+          <div class="editor-tabs">
+            <button type="button" class="editor-tab active" id="tab-html" onclick="switchEditorTab('html')">HTML 🏗️</button>
+            <button type="button" class="editor-tab" id="tab-css" onclick="switchEditorTab('css')">CSS 🎨</button>
+            <button type="button" class="editor-tab" id="tab-js" onclick="switchEditorTab('js')">JavaScript ⚡</button>
+          </div>
           
-          <button type="button" class="btn btn-primary run-button" onclick="updateOutput()">
-            ▶️ تشغيل الكود وعرض النتيجة
-          </button>
+          <div class="tab-editors">
+            <div id="html-editor-panel" class="tab-editor-panel">
+              <label for="html-code-editor" class="sr-only">محرر كود HTML</label>
+              <textarea id="html-code-editor"></textarea>
+            </div>
+            <div id="css-editor-panel" class="tab-editor-panel" style="display:none;">
+              <label for="css-code-editor" class="sr-only">محرر كود CSS</label>
+              <textarea id="css-code-editor"></textarea>
+            </div>
+            <div id="js-editor-panel" class="tab-editor-panel" style="display:none;">
+              <label for="js-code-editor" class="sr-only">محرر كود JS</label>
+              <textarea id="js-code-editor"></textarea>
+            </div>
+          </div>
+          
+          <div class="editor-action-footer" style="padding: 15px;">
+            <button type="button" class="btn btn-primary run-button" onclick="updateOutput()">
+              ▶️ تشغيل الكود
+            </button>
+            <button type="button" class="btn btn-secondary save-button" onclick="saveCodeToLocal()">
+              💾 حفظ الكود
+            </button>
+            <button type="button" class="btn btn-secondary share-button" onclick="shareCodeLink()">
+              🔗 مشاركة الرابط
+            </button>
+          </div>
         </div>
       </div>
 
@@ -108,7 +131,7 @@
           <h2 class="card-title">🖥️ النتيجة الفورية</h2>
         </div>
         <div class="card-body output-container">
-          <iframe id="live-output-frame" class="live-iframe" title="معاينة كود HTML">
+          <iframe id="live-output-frame" class="live-iframe" title="معاينة الكود">
           </iframe>
         </div>
       </div>
@@ -162,39 +185,257 @@
   <script src="script.js"></script>
 
   <script>
+    var editors = {};
+    var currentTab = 'html';
+
+    var defaultHTML = `<h1>مرحباً بك في الملعب! 👋</h1>
+<p>هنا تقدر تكتب <strong>HTML</strong> و <em>CSS</em> و <code>JavaScript</code> في تبويبات منفصلة.</p>
+
+<ul>
+  <li>اكتب HTML هنا</li>
+  <li>أضف تنسيق في تبويب CSS</li>
+  <li>أضف تفاعل في تبويب JS</li>
+</ul>
+
+<button onclick="document.body.style.background='#4dabf7'">🎨 غيّر اللون!</button>`;
+
+    var defaultCSS = `/* تنسيقات الصفحة */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+  color: #1e293b;
+  line-height: 1.7;
+  text-align: right;
+  direction: rtl;
+  background: #f8fafc;
+  transition: background 0.4s ease;
+}
+
+h1 {
+  color: #4dabf7;
+  font-size: 1.8em;
+}
+
+button {
+  background: #4dabf7;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77,171,247,0.4);
+}`;
+
+    var defaultJS = `// كود JavaScript التفاعلي
+console.log('مرحباً من الملعب!');
+
+// يمكنك التعامل مع عناصر الصفحة هنا
+// مثال:
+document.querySelector('h1').addEventListener('click', function() {
+  this.style.color = '#' + Math.floor(Math.random()*16777215).toString(16);
+});`;
+
+    // تهيئة محررات CodeMirror عند تحميل الصفحة
+    window.addEventListener('DOMContentLoaded', function() {
+      // محرر HTML
+      editors.html = CodeMirror.fromTextArea(document.getElementById('html-code-editor'), {
+        mode: 'htmlmixed',
+        theme: 'dracula',
+        lineNumbers: true,
+        lineWrapping: true,
+        indentWithTabs: true,
+        indentUnit: 2,
+        direction: 'ltr',
+        autoCloseTags: true
+      });
+
+      // محرر CSS
+      editors.css = CodeMirror.fromTextArea(document.getElementById('css-code-editor'), {
+        mode: 'css',
+        theme: 'dracula',
+        lineNumbers: true,
+        lineWrapping: true,
+        indentUnit: 2,
+        direction: 'ltr'
+      });
+
+      // محرر JS
+      editors.js = CodeMirror.fromTextArea(document.getElementById('js-code-editor'), {
+        mode: 'javascript',
+        theme: 'dracula',
+        lineNumbers: true,
+        lineWrapping: true,
+        indentUnit: 2,
+        direction: 'ltr'
+      });
+
+      // استرجاع الكود المحفوظ أو تحميل الكود الافتراضي
+      var saved = loadCodeFromLocal();
+      if (saved) {
+        editors.html.setValue(saved.html || defaultHTML);
+        editors.css.setValue(saved.css || defaultCSS);
+        editors.js.setValue(saved.js || defaultJS);
+      } else {
+        // تحقق من وجود كود مشترك برابط
+        var urlParams = new URLSearchParams(window.location.search);
+        var sharedCode = urlParams.get('code');
+        if (sharedCode) {
+          try {
+            var decoded = JSON.parse(decodeURIComponent(atob(sharedCode)));
+            editors.html.setValue(decoded.html || defaultHTML);
+            editors.css.setValue(decoded.css || defaultCSS);
+            editors.js.setValue(decoded.js || defaultJS);
+          } catch(e) {
+            editors.html.setValue(defaultHTML);
+            editors.css.setValue(defaultCSS);
+            editors.js.setValue(defaultJS);
+          }
+        } else {
+          editors.html.setValue(defaultHTML);
+          editors.css.setValue(defaultCSS);
+          editors.js.setValue(defaultJS);
+        }
+      }
+
+      // تشغيل أولي للمعاينة
+      updateOutput();
+
+      // ضبط ارتفاع CodeMirror
+      document.querySelectorAll('.CodeMirror').forEach(function(cm) {
+        cm.style.height = '320px';
+        cm.style.fontSize = '14px';
+      });
+    });
+
+    // تبديل بين التبويبات
+    function switchEditorTab(tab) {
+      currentTab = tab;
+
+      // تحديث أزرار التبويبات
+      document.querySelectorAll('.editor-tab').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      document.getElementById('tab-' + tab).classList.add('active');
+
+      // إظهار/إخفاء لوحات المحررات
+      ['html', 'css', 'js'].forEach(function(t) {
+        var panel = document.getElementById(t + '-editor-panel');
+        panel.style.display = t === tab ? 'block' : 'none';
+        if (t === tab && editors[t]) {
+          editors[t].refresh();
+        }
+      });
+    }
+
+    // تشغيل المعاينة بدمج HTML + CSS + JS
     function updateOutput() {
-      var code = document.getElementById("interactive-code-editor").value;
-      var iframe = document.getElementById("live-output-frame");
+      var htmlCode = editors.html ? editors.html.getValue() : '';
+      var cssCode  = editors.css  ? editors.css.getValue()  : '';
+      var jsCode   = editors.js   ? editors.js.getValue()   : '';
+
+      var combined = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<style>
+body { font-family: sans-serif; padding: 15px; margin: 0; color: #333; line-height: 1.6; }
+${cssCode}
+</style>
+</head>
+<body>
+${htmlCode}
+<script>
+try { ${jsCode} } catch(e) { console.error(e); }
+<\/script>
+</body>
+</html>`;
+
+      var iframe = document.getElementById('live-output-frame');
       var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-      
       iframeDoc.open();
-      iframeDoc.write('<html lang="ar" dir="rtl"><head><style>body { font-family: sans-serif; padding: 15px; margin: 0; color: #333; line-height: 1.6; } button { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; } button:hover { background: #0056b3; }</style></head><body>' + code + '</body></html>');
+      iframeDoc.write(combined);
       iframeDoc.close();
     }
 
+    // مسح المحرر النشط فقط
     function clearEditor() {
-      document.getElementById("interactive-code-editor").value = "";
-      updateOutput();
+      if (editors[currentTab]) {
+        editors[currentTab].setValue('');
+        updateOutput();
+      }
     }
 
+    // إعادة تعيين جميع المحررات للكود الافتراضي
     function resetEditor() {
-      document.getElementById("interactive-code-editor").value = `<h1>مرحباً بك في ملعب HTML! 👋</h1>
-<p>هذا النص مكتوب داخل فقرة <code>&lt;p&gt;</code>.</p>
-
-<h3>أشياء يمكنك القيام بها هنا:</h3>
-<ul>
-  <li>تغيير هذا النص وكتابة ما تريد.</li>
-  <li>إضافة صور باستخدام وسم <code>&lt;img&gt;</code>.</li>
-  <li>إضافة روابط باستخدام وسم <code>&lt;a&gt;</code>.</li>
-</ul>
-
-<button type="button" onclick="alert('أحسنت! لقد قمت بتشغيل الكود بنجاح!')">اضغط عليّ 🎉</button>`;
+      if (editors.html) editors.html.setValue(defaultHTML);
+      if (editors.css)  editors.css.setValue(defaultCSS);
+      if (editors.js)   editors.js.setValue(defaultJS);
       updateOutput();
     }
 
-    window.onload = function() {
-      updateOutput();
-    };
+    // حفظ الكود في localStorage
+    function saveCodeToLocal() {
+      var data = {
+        html: editors.html ? editors.html.getValue() : '',
+        css:  editors.css  ? editors.css.getValue()  : '',
+        js:   editors.js   ? editors.js.getValue()   : '',
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem('playground_saved_code', JSON.stringify(data));
+      showPlaygroundNotification('💾 تم حفظ الكود بنجاح في المتصفح!', true);
+    }
+
+    // استرجاع الكود المحفوظ
+    function loadCodeFromLocal() {
+      var saved = localStorage.getItem('playground_saved_code');
+      return saved ? JSON.parse(saved) : null;
+    }
+
+    // مشاركة الكود برابط
+    function shareCodeLink() {
+      var data = {
+        html: editors.html ? editors.html.getValue() : '',
+        css:  editors.css  ? editors.css.getValue()  : '',
+        js:   editors.js   ? editors.js.getValue()   : ''
+      };
+      try {
+        var encoded = btoa(encodeURIComponent(JSON.stringify(data)));
+        var shareUrl = window.location.origin + window.location.pathname + '?code=' + encoded;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareUrl).then(function() {
+            showPlaygroundNotification('🔗 تم نسخ رابط المشاركة إلى الحافظة!', true);
+          }).catch(function() {
+            prompt('انسخ الرابط يدوياً:', shareUrl);
+          });
+        } else {
+          prompt('انسخ الرابط يدوياً:', shareUrl);
+        }
+      } catch(e) {
+        showPlaygroundNotification('❌ الكود كبير جداً للمشاركة برابط، جرّب حفظه بدلاً من ذلك.', false);
+      }
+    }
+
+    // إشعار مخصص للملعب
+    function showPlaygroundNotification(msg, success) {
+      var toast = document.createElement('div');
+      toast.className = 'completion-toast';
+      if (!success) toast.style.borderRightColor = '#e74c3c';
+      toast.innerHTML = msg;
+      document.body.appendChild(toast);
+      setTimeout(function() { toast.classList.add('show'); }, 100);
+      setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() { toast.remove(); }, 500);
+      }, 3000);
+    }
   </script>
 
 </body>

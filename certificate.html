@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="احصل على شهادة إتمام دورة HTML - تولّد شهادتك بنقرة واحدة وتحميلها كـ PDF">
+  <title>🏆 شهادة الإتمام - تعلم HTML</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <!-- html2pdf.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HEADER                                                        -->
+  <!-- ============================================================ -->
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="nav-logo">
+        <a href="index.html" id="logo-link">
+          <span class="logo-icon">🎓</span>
+          <span class="logo-text">تعلم HTML</span>
+        </a>
+      </div>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">🏠 الرئيسية</a></li>
+        <li class="nav-item"><a href="lessons/lesson1.html" class="nav-link">📖 الدروس</a></li>
+        <li class="nav-item"><a href="playground.html" class="nav-link">⚡ الملعب</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">🧪 الاختبارات</a></li>
+        <li class="nav-item"><a href="cheatsheet.html" class="nav-link">📋 المرجع السريع</a></li>
+        <li class="nav-item"><a href="certificate.html" class="nav-link active">🏆 الشهادة</a></li>
+      </ul>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة">
+        <span class="menu-icon">☰</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- MAIN CONTENT                                                  -->
+  <!-- ============================================================ -->
+  <main id="certificate-main" class="container certificate-page-main">
+
+    <!-- قسم العنوان -->
+    <section class="certificate-hero">
+      <h1>🏆 شهادة إتمام الدورة</h1>
+      <p>أكملت الدورة بنجاح؟ أدخل اسمك وحمّل شهادتك الرسمية كملف PDF بنقرة واحدة!</p>
+    </section>
+
+    <!-- بطاقة النموذج -->
+    <div class="certificate-form-card">
+
+      <!-- تنبيه القفل - يظهر فقط إذا لم يُكمل الاختبار -->
+      <div class="cert-locked-notice" id="cert-locked-notice" style="display:none;">
+        <span class="lock-icon">🔒</span>
+        <span>
+          الشهادة مقفولة حتى تجتاز <strong>الاختبار النهائي</strong> بنتيجة 70% أو أعلى.<br>
+          <a href="quiz.html" style="color:#7d5a00; text-decoration:underline;">اذهب للاختبار الآن ←</a>
+        </span>
+      </div>
+
+      <!-- نموذج الاسم -->
+      <form id="cert-form" onsubmit="return false;">
+        <div class="cert-form-group">
+          <label for="student-name-input">👤 اسمك الكامل (بالعربي)</label>
+          <input
+            type="text"
+            id="student-name-input"
+            name="student-name"
+            placeholder="مثال: أحمد محمد السيد"
+            maxlength="60"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <div class="cert-form-group">
+          <label for="student-title-input">🎯 التخصص / اللقب (اختياري)</label>
+          <input
+            type="text"
+            id="student-title-input"
+            name="student-title"
+            placeholder="مثال: مطور ويب مبتدئ"
+            maxlength="50"
+          >
+        </div>
+
+        <button type="button" class="cert-generate-btn" id="cert-generate-btn" onclick="generateCertificate()">
+          <span>✨</span>
+          <span>إنشاء الشهادة</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- منطقة الشهادة - تظهر بعد الضغط على "إنشاء" -->
+    <div id="certificate-output-area">
+
+      <div class="certificate-wrapper">
+
+        <!-- الشهادة نفسها -->
+        <div id="certificate-display">
+
+          <!-- زخارف الزوايا -->
+          <span class="cert-corner-decoration cert-corner-tl">🌟</span>
+          <span class="cert-corner-decoration cert-corner-br">🌟</span>
+
+          <!-- لوجو الموقع -->
+          <div class="cert-logo-area">🎓</div>
+          <div class="cert-site-name">تعلم HTML</div>
+
+          <!-- شعار الشهادة -->
+          <div class="cert-badge">✅ دورة HTML الشاملة للمبتدئين</div>
+
+          <p class="cert-title">شهادة إتمام وتميّز</p>
+          <h2 class="cert-main-title">HTML من الصفر إلى الاحتراف</h2>
+
+          <p class="cert-presented-to">تُمنح هذه الشهادة إلى</p>
+          <div id="cert-student-name">— اسم الطالب —</div>
+
+          <hr class="cert-divider">
+
+          <p class="cert-body-text" id="cert-body-text">
+            تقديراً لإتمامه دورة <strong>HTML من الصفر إلى الاحتراف</strong>
+            بنجاح، والتي تشمل 29+ درساً تفاعلياً تغطي أساسيات لغة HTML
+            وبنية الصفحات وأفضل الممارسات.
+          </p>
+
+          <!-- بيانات الشهادة -->
+          <div class="cert-meta">
+            <div class="cert-meta-item">
+              <div class="cert-meta-label">تاريخ الإصدار</div>
+              <div class="cert-meta-value" id="cert-issue-date">—</div>
+            </div>
+            <div class="cert-meta-item">
+              <div class="cert-meta-label">عدد الدروس</div>
+              <div class="cert-meta-value">29+ درس</div>
+            </div>
+            <div class="cert-meta-item">
+              <div class="cert-meta-label">الرقم التسلسلي</div>
+              <div class="cert-meta-value" id="cert-serial">—</div>
+            </div>
+          </div>
+
+        </div>
+        <!-- #certificate-display -->
+
+        <!-- أزرار التحميل -->
+        <div class="cert-download-actions">
+          <button type="button" class="cert-download-btn primary" onclick="downloadAsPDF()" id="cert-pdf-btn">
+            <span>📥</span>
+            <span>تحميل PDF</span>
+          </button>
+          <button type="button" class="cert-download-btn secondary" onclick="window.print()">
+            <span>🖨️</span>
+            <span>طباعة</span>
+          </button>
+          <button type="button" class="cert-download-btn secondary" onclick="regenerateCertificate()">
+            <span>✏️</span>
+            <span>تعديل الاسم</span>
+          </button>
+        </div>
+
+      </div>
+      <!-- .certificate-wrapper -->
+    </div>
+    <!-- #certificate-output-area -->
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                        -->
+  <!-- ============================================================ -->
+  <footer id="main-footer" class="main-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 تعلم HTML - جميع الحقوق محفوظة
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- SCRIPTS                                                       -->
+  <!-- ============================================================ -->
+  <script src="script.js"></script>
+
+  <script>
+    var studentName    = '';
+    var studentTitle   = '';
+    var certIssueDate  = '';
+    var certSerial     = '';
+
+    // ---- التحقق من نتيجة الاختبار ----
+    function checkQuizResult() {
+      var quizData = localStorage.getItem('quiz_results');
+      if (!quizData) return false;
+      try {
+        var results = JSON.parse(quizData);
+        // نقبل أي تنسيق: { score: 75 } أو { percentage: 75 }
+        var score = results.score || results.percentage || 0;
+        return score >= 70;
+      } catch(e) { return false; }
+    }
+
+    // ---- توليد الرقم التسلسلي الفريد ----
+    function generateSerial(name) {
+      var ts   = Date.now().toString(36).toUpperCase();
+      var hash = 0;
+      for (var i = 0; i < name.length; i++) {
+        hash = ((hash << 5) - hash) + name.charCodeAt(i);
+        hash |= 0;
+      }
+      return 'HTML-' + Math.abs(hash).toString(36).toUpperCase().padStart(4, '0') + '-' + ts;
+    }
+
+    // ---- تنسيق التاريخ بالعربي ----
+    function formatArabicDate() {
+      var now = new Date();
+      var months = ['يناير','فبراير','مارس','أبريل','مايو','يونيو',
+                    'يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+      return now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+    }
+
+    // ---- إنشاء الشهادة ----
+    function generateCertificate() {
+      var nameInput  = document.getElementById('student-name-input');
+      var titleInput = document.getElementById('student-title-input');
+
+      studentName  = nameInput.value.trim();
+      studentTitle = titleInput.value.trim();
+
+      if (!studentName) {
+        nameInput.focus();
+        nameInput.style.borderColor = '#e74c3c';
+        setTimeout(function() { nameInput.style.borderColor = ''; }, 2000);
+        return;
+      }
+
+      // تحقق من حالة الاختبار
+      var passed    = checkQuizResult();
+      var lockedEl  = document.getElementById('cert-locked-notice');
+      var generateBtn = document.getElementById('cert-generate-btn');
+
+      if (!passed) {
+        // نُظهر التنبيه لكن نسمح بتوليد الشهادة (بدون علامة الاجتياز)
+        lockedEl.style.display = 'flex';
+      } else {
+        lockedEl.style.display = 'none';
+      }
+
+      // ملء بيانات الشهادة
+      certIssueDate = formatArabicDate();
+      certSerial    = generateSerial(studentName);
+
+      document.getElementById('cert-student-name').textContent = studentName;
+      document.getElementById('cert-issue-date').textContent   = certIssueDate;
+      document.getElementById('cert-serial').textContent       = certSerial;
+
+      // تحديث نص الشهادة ليشمل التخصص إن وُجد
+      var bodyText = document.getElementById('cert-body-text');
+      var titlePart = studentTitle
+        ? ' (' + studentTitle + ')'
+        : '';
+      bodyText.innerHTML = 'تقديراً لإتمام <strong>' + studentName + '</strong>' + titlePart
+        + ' دورة <strong>HTML من الصفر إلى الاحتراف</strong>'
+        + ' بنجاح، والتي تشمل 29+ درساً تفاعلياً تغطي أساسيات لغة HTML'
+        + ' وبنية الصفحات وأفضل الممارسات.';
+
+      // إظهار منطقة الشهادة مع أنيميشن
+      var outputArea = document.getElementById('certificate-output-area');
+      outputArea.style.display = 'block';
+      outputArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // حفظ الاسم في localStorage
+      localStorage.setItem('cert_student_name',  studentName);
+      localStorage.setItem('cert_student_title', studentTitle);
+    }
+
+    // ---- تحميل الشهادة كـ PDF بـ html2pdf.js ----
+    function downloadAsPDF() {
+      var btn = document.getElementById('cert-pdf-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳</span><span>جاري التحضير...</span>';
+
+      var element  = document.getElementById('certificate-display');
+      var safeName = studentName.replace(/[^\u0600-\u06FF\w\s]/g, '').trim().replace(/\s+/g, '-');
+      var dateStr  = new Date().toISOString().split('T')[0];
+      var filename = 'شهادة-HTML-' + safeName + '-' + dateStr + '.pdf';
+
+      var options = {
+        margin:       [10, 10, 10, 10],
+        filename:     filename,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' },
+        pagebreak:    { mode: 'avoid-all' }
+      };
+
+      html2pdf().set(options).from(element).save().then(function() {
+        btn.disabled = false;
+        btn.innerHTML = '<span>📥</span><span>تحميل PDF</span>';
+      }).catch(function(err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.innerHTML = '<span>📥</span><span>تحميل PDF</span>';
+      });
+    }
+
+    // ---- إعادة تحرير الشهادة ----
+    function regenerateCertificate() {
+      document.getElementById('certificate-output-area').style.display = 'none';
+      document.getElementById('student-name-input').focus();
+    }
+
+    // ---- استعادة الاسم المحفوظ عند تحميل الصفحة ----
+    window.addEventListener('DOMContentLoaded', function() {
+      var savedName  = localStorage.getItem('cert_student_name');
+      var savedTitle = localStorage.getItem('cert_student_title');
+      if (savedName)  document.getElementById('student-name-input').value  = savedName;
+      if (savedTitle) document.getElementById('student-title-input').value = savedTitle;
+    });
+  </script>
+
+</body>
+</html>
